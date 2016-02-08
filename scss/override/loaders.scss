@@ -1,0 +1,14 @@
+.spinner-white-only {
+  border-color: color('shades', 'white');
+}
+
+.spinner-grey-only {
+  border-color: color('grey', 'darken-1');
+}
+
+.preloader-wrapper {
+  &.button {
+    width: 20px;
+    height: 20px;
+  }
+}

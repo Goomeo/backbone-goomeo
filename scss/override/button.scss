@@ -1,0 +1,12 @@
+.btn {
+  margin: 10px;
+}
+
+.picker__input.picker__input--active {
+  border-bottom: 1px solid $input-focus-color;
+  box-shadow: 0 1px 0 0 $input-focus-color;
+
+  + label {
+    color : $input-focus-color;
+  }
+}

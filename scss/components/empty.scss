@@ -1,0 +1,9 @@
+empty {
+  color: $empty-text-color;
+  font-size: $empty-text-size;
+  text-transform: $empty-text-transform;
+  i {
+    font-size: $empty-icon-size !important;
+    text-align: right;
+  }
+}

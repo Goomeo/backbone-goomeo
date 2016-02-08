@@ -1,0 +1,20 @@
+// slide panels
+$slidepanel-background-color : color('blue-grey', 'lighten-5');
+$slidepanel-fade-background-color : color('blue-grey', 'lighten-3');
+$slidepanel-fade-opacity : 0.6;
+$slidepanel-topbar-height : 40px;
+$slidepanel-topbar-line-height : $slidepanel-topbar-height;
+$slidepanel-topbar-background-color : color('blue-grey', 'darken-4');
+$slidepanel-topbar-text-color : color('shades', 'white');
+$slidepanel-topbar-hover-color : color('blue-grey', 'base');
+$slidepanel-topbar-padding-left : 40px;
+$slidepanel-topbar-font-size : 1rem;
+
+// empty
+$empty-icon-size : 10rem;
+$empty-text-size : 2rem;
+$empty-text-transform : uppercase;
+$empty-text-color : color('blue-grey', 'darken-3');
+
+// parsley
+$parsley-color : color('red', 'base');

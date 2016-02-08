@@ -1,0 +1,19 @@
+.parsley-error {
+  label {
+    color : $parsley-color;
+  }
+  input {
+    border-color: $parsley-color;
+
+    &:focus {
+      border-color: $parsley-color !important;
+      box-shadow: 0 1px 0 0 $parsley-color !important;
+    }
+  }
+
+  .parsley-errors-list {
+    margin: 0;
+    font-size: 0.8rem;
+    color: $parsley-color;
+  }
+}

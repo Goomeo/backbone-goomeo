@@ -1,0 +1,323 @@
+.slidepanel-expand{
+  padding :  50px 5px 4px 15px;
+}
+
+@-webkit-keyframes slide-widthMax{
+  0% { left : 100% }
+  100% { left : 0; }
+}
+@keyframes slide-widthMax{
+  0% { left : 100% }
+  100% { left : 0; }
+}
+@-webkit-keyframes slide-widthMax-close{
+  0% { left : 0 }
+  100% { left : 100%; }
+}
+@keyframes slide-widthMax-close{
+  0% { left : 0 }
+  100% { left : 100%; }
+}
+
+@-webkit-keyframes slide-widthHigh{
+  0% { left : 100% }
+  100% { left : 10%; }
+}
+@keyframes slide-widthHigh{
+  0% { left : 100% }
+  100% { left : 10%; }
+}
+@-webkit-keyframes slide-widthHigh-close{
+  0% { left : 10% }
+  100% { left : 100%; }
+}
+@keyframes slide-widthHigh-close{
+  0% { left : 10% }
+  100% { left : 100%; }
+}
+
+@-webkit-keyframes slide-widthMediumHigh{
+  0% { left : 100% }
+  100% { left : 20%; }
+}
+@keyframes slide-widthMediumHigh{
+  0% { left : 100% }
+  100% { left : 20%; }
+}
+@-webkit-keyframes slide-widthMediumHigh-close{
+  0% { left : 20% }
+  100% { left : 100%; }
+}
+@keyframes slide-widthMediumHigh-close{
+  0% { left : 20% }
+  100% { left : 100%; }
+}
+
+@-webkit-keyframes slide-widthLowHigh{
+  0% { left : 100% }
+  100% { left : 30%; }
+}
+@keyframes slide-widthLowHigh{
+  0% { left : 100% }
+  100% { left : 30%; }
+}
+@-webkit-keyframes slide-widthLowHigh-close{
+  0% { left : 30% }
+  100% { left : 100%; }
+}
+@keyframes slide-widthLowHigh-close{
+  0% { left : 30% }
+  100% { left : 100%; }
+}
+
+@-webkit-keyframes slide-widthMedium{
+  0% { left : 100% }
+  100% { left : 50%; }
+}
+@keyframes slide-widthMedium{
+  0% { left : 100% }
+  100% { left : 50%; }
+}
+@-webkit-keyframes slide-widthMedium-close{
+  0% { left : 50% }
+  100% { left : 100%; }
+}
+@keyframes slide-widthMedium-close{
+  0% { left : 50% }
+  100% { left : 100%; }
+}
+
+@-webkit-keyframes slide-widthLow{
+  0% { left : 100% }
+  100% { left : 70%; }
+}
+@keyframes slide-widthLow{
+  0% { left : 100% }
+  100% { left : 70%; }
+}
+@-webkit-keyframes slide-widthLow-close{
+  0% { left : 70% }
+  100% { left : 100%; }
+}
+@keyframes slide-widthLow-close{
+  0% { left : 70% }
+  100% { left : 100%; }
+}
+
+
+.slidepanels{
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 150%;
+  background-color: $slidepanel-background-color;
+  z-index: 1000;
+  overflow : hidden;
+
+  .top-bar{
+    height: $slidepanel-topbar-height;
+    line-height: $slidepanel-topbar-line-height;
+    font-size: $slidepanel-topbar-font-size;
+    background-color: $slidepanel-topbar-background-color;
+    color: $slidepanel-topbar-text-color;
+    padding-left: $slidepanel-topbar-padding-left;
+
+    .actions{
+      float: right;
+      padding-right: 20px;
+    }
+  }
+
+  //&.resize{
+  //  .transition(all, 0.5s, ease);
+  //}
+
+  &.max{
+    width : 100%;
+    &.animate-open{
+      animation : slide-widthMax 0.1s;
+      -webkit-animation : slide-widthMax 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthMax-close 0.1s;
+      -webkit-animation : slide-widthMax-close 0.1s;
+    }
+    &.isOpen{
+      left : 0;
+    }
+  }
+
+  &.high{
+    width : 90%;
+    &.animate-open{
+      animation : slide-widthHigh 0.1s;
+      -webkit-animation : slide-widthHigh 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthHigh-close 0.1s;
+      -webkit-animation : slide-widthHigh-close 0.1s;
+    }
+    &.isOpen{
+      left : 10%;
+    }
+  }
+
+  &.medium-high{
+    width : 80%;
+    &.animate-open{
+      animation : slide-widthMediumHigh 0.1s;
+      -webkit-animation : slide-widthMediumHigh 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthMediumHigh-close 0.1s;
+      -webkit-animation : slide-widthMediumHigh-close 0.1s;
+    }
+    &.isOpen{
+      left : 20%;
+    }
+  }
+
+  &.low-high{
+    width : 70%;
+    &.animate-open{
+      animation : slide-widthLowHigh 0.1s;
+      -webkit-animation : slide-widthLowHigh 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthLowHigh-close 0.1s;
+      -webkit-animation : slide-widthLowHigh-close 0.1s;
+    }
+    &.isOpen{
+      left : 30%;
+    }
+  }
+
+  &.medium{
+    width : 50%;
+    &.animate-open{
+      animation : slide-widthMedium 0.1s;
+      -webkit-animation : slide-widthMedium 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthMedium-close 0.1s;
+      -webkit-animation : slide-widthMedium-close 0.1s;
+    }
+    &.isOpen{
+      left : 50%;
+    }
+  }
+
+  &.low{
+    width : 30%;
+    &.animate-open{
+      animation : slide-widthLow 0.1s;
+      -webkit-animation : slide-widthLow 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthLow-close 0.1s;
+      -webkit-animation : slide-widthLow-close 0.1s;
+    }
+    &.isOpen{
+      left : 70%;
+    }
+  }
+
+  &.full{
+    width : 100%;
+    left: 0 !important;
+  }
+
+  .subpanel{
+    position : absolute;
+    top : 0;
+    right: 0;
+    bottom: 0;
+    background-color : #e9e9e9;
+    height : 100%;
+    left: 100%;
+    z-index: 5;
+
+    &.animate-open{
+      animation : slide-widthMax 0.1s;
+      -webkit-animation : slide-widthMax 0.1s;
+    }
+    &.animate-close{
+      animation : slide-widthMax-close 0.1s;
+      -webkit-animation : slide-widthMax-close 0.1s;
+    }
+    &.isOpen{
+      left: 0;
+    }
+  }
+
+  .placeholder{
+    position : absolute;
+    height : 100%;
+    width : 36px;
+    border-right : 1px solid #888;
+    background-color : #cecece;
+    z-index: 6;
+
+    &:hover{
+      cursor : pointer;
+    }
+  }
+
+  //.titleHolder{
+  //  //writing-mode : tb-rl;
+  //  .rotate(270deg);
+  //  white-space : nowrap;
+  //  color   : #888;
+  //  font-family  : Open Sans , arial;
+  //  font-size : 20px;
+  //}
+
+  .empty {
+    color: #ddd;
+  }
+
+  .slidepanel-close {
+    color: color('shades', 'white');
+    transition: all .1s linear;
+    text-decoration: none;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: $slidepanel-topbar-height;
+    width: $slidepanel-topbar-height;
+    line-height: $slidepanel-topbar-line-height;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent!important;
+    border: none!important;
+
+    i {
+      line-height: $slidepanel-topbar-line-height;
+    }
+
+    &:hover {
+      color: color('blue-grey', 'base');
+    }
+  }
+
+  // partie formulaire des slidePanels
+  .slidepanel-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: $slidepanel-topbar-height;
+  }
+}
+
+.slidepanel-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: $slidepanel-fade-background-color;
+  opacity: $slidepanel-fade-opacity;
+}
