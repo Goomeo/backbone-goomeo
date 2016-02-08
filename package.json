@@ -1,6 +1,6 @@
 {
   "name": "backbone-goomeo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Backbone extensions, mixing, ... for Goomeo.",
   "main": "index.js",
   "scripts": {
@@ -42,5 +42,13 @@
     "riot-mixin-pack": "^0.1.6",
     "underscore": "^1.8.3",
     "underscore.string": "^3.2.3"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "materialize": "global:Materialize"
   }
 }

@@ -1,12 +1,16 @@
 'use strict';
 
 var _           = require('underscore'),
-    config      = require('../config'),
     Globalize   = require('globalize'),
     moment      = require('moment');
 
 module.exports = {
-    config : config,
+    config : {
+        locale : {
+            default : 'en',
+            availables : [ 'en' ]
+        }
+    },
     init   : function init(config) {
         if (!_.isUndefined(config)) {
             this.config = config;
@@ -144,7 +148,7 @@ module.exports = {
                     }
 
                     variablesMsg[variable.key || index] = currentGlobalize[variable.type].apply(currentGlobalize, this._getFormatOpts(variable))(variable.value);
-                }.bind(this));
+                }, this);
 
                 return msgFormatter(variablesMsg);
             }
