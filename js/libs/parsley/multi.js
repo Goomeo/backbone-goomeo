@@ -1,10 +1,9 @@
 'use strict';
 
 var _       = require('underscore'),
-    langs   = require('../lang'),
-    config  = require('../../config');
+    langs   = require('../lang');
 
-module.exports = function validator(ParsleyValidator) {
+module.exports = function validator(ParsleyValidator, config) {
     var validator = ParsleyValidator.addValidator('multi', function multi(value, requirement) {
         var group   = $('input[data-parsley-multi="'+ requirement +'"],textarea[data-parsley-multi="'+ requirement +'"]'),
             isEmpty = _.isEmpty(value),

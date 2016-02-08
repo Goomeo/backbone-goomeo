@@ -15,8 +15,12 @@ module.exports = {
         var locale  = this.getLocale();
 
         this._initGlobalize(locale);
-        this._initMoment(locale);
-        this._initParsley(locale);
+        this._initMoment();
+        this._initParsley();
+
+        moment.locale(locale);
+        window.Parsley.setLocale(locale);
+        this.globalize.locale(locale);
     },
     _initGlobalize : function initGlobalize(locale) {
         // loading globalize files
@@ -26,42 +30,16 @@ module.exports = {
             require('cldr-data/supplemental/numberingSystems'),
             require('cldr-data/supplemental/plurals'),
             require('cldr-data/supplemental/ordinals'),
-            require('cldr-data/supplemental/currencyData'),
-
-            require('cldr-data/main/en/numbers'),
-            require('cldr-data/main/en/currencies'),
-            require('cldr-data/main/en/units'),
-
-            require('cldr-data/main/fr/numbers'),
-            require('cldr-data/main/fr/currencies'),
-            require('cldr-data/main/fr/units'),
-
-            require('cldr-data/main/de/numbers'),
-            require('cldr-data/main/de/currencies'),
-            require('cldr-data/main/de/units')
+            require('cldr-data/supplemental/currencyData')
         );
 
-        this.globalize.loadMessages(_.extend({},
-            require('../nls/en.json'),
-            require('../nls/fr.json'),
-            require('../nls/de.json')
-        ));
-
-        this.globalize.locale(locale);
+        this._initMainData();
+        this._initMessages();
     },
-    _initMoment : function initMoment(locale) {
-        moment.locale('fr', require('moment/locale/fr'));
-        moment.locale('de', require('moment/locale/de'));
-
-        moment.locale(locale);
-    },
-    _initParsley : function initParsley(locale) {
-        require('parsleyjs/dist/i18n/en');
-        require('parsleyjs/dist/i18n/de');
-        require('parsleyjs/dist/i18n/fr');
-
-        window.Parsley.setLocale(locale);
-    },
+    _initMoment     : function initMoment() { },
+    _initParsley    : function initParsley() {},
+    _initMainData   : function initMainData() {},
+    _initMessages   : function initMessages() {},
     changeLocale : function changeLocale(locale) {
         var newLocale       = locale,
             currentLocale   = localStorage.getItem('locale');
@@ -72,6 +50,9 @@ module.exports = {
 
         if (newLocale != currentLocale) {
             moment.locale(newLocale);
+            this.globalize.locale(newLocale);
+            window.Parsley.setLocale(newLocale);
+
             localStorage.setItem('locale', newLocale);
 
             // @todo gestion de la langue dans l'url

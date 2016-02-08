@@ -3,9 +3,9 @@
 var _       = require('underscore');
 
 module.exports = {
-    init : function init() {
+    init : function init(config) {
         this._extendConfig();
-        this._initValidators();
+        this._initValidators(config);
     },
     _extendConfig : function extendConfig() {
         var Parsley = window.Parsley;
@@ -23,7 +23,7 @@ module.exports = {
             return el.$element.closest('.input-field');
         }
     },
-    _initValidators : function initValidators() {
+    _initValidators : function initValidators(config) {
         var Parsley = window.Parsley;
 
         if (!Parsley) {
@@ -35,7 +35,7 @@ module.exports = {
         ];
 
         _.each(validators, function (validator) {
-            validator(Parsley);
+            validator(Parsley, config);
         });
     }
 };
