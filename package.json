@@ -1,0 +1,43 @@
+{
+  "name": "backbone-goomeo",
+  "version": "0.1.0",
+  "description": "Backbone extensions, mixing, ... for Goomeo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goomeo/backbone-goomeo.git"
+  },
+  "keywords": [
+    "backbone",
+    "riotjs",
+    "mixin",
+    "material",
+    "components"
+  ],
+  "author": "Goomeo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Goomeo/backbone-goomeo/issues"
+  },
+  "homepage": "https://github.com/Goomeo/backbone-goomeo#readme",
+  "dependencies": {
+    "animate.css": "^3.5.1",
+    "backbone": "^1.2.3",
+    "backbone.paginator": "^2.0.3",
+    "backbone.stickit": "^0.9.2",
+    "backbone.subroute": "^0.4.6",
+    "hammerjs": "^2.0.6",
+    "jquery": "^2.2.0",
+    "materialize-css": "^0.97.5",
+    "moment": "^2.11.2",
+    "moment-timezone": "^0.5.0",
+    "parsleyjs": "^2.2.0",
+    "riot": "^2.3.15",
+    "riot-mixin-pack": "^0.1.6",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.3"
+  }
+}
