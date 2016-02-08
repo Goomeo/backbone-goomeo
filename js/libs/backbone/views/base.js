@@ -3,7 +3,7 @@
 var $               = require('jquery'),
     _               = require('underscore'),
     Backbone        = require('backbone'),
-    Materialize     = require('materialize'),
+    Materialize     = global.Materialize,
     moment          = require('moment'),
     riot            = require('riot'),
     viewManager     = require('../viewManager'),

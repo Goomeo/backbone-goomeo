@@ -1,6 +1,5 @@
 <material-input>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }"
-        >
+    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
         <i if="{ opts.icon }" class="material-icons prefix">{ opts.icon }</i>
         <input id="{ opts.dataId }"
                name="{ opts.dataName }"
