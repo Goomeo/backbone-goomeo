@@ -34,8 +34,13 @@ module.exports = {
             require('./parsley/multi')
         ];
 
+        validators = this.addValidators(validators);
+
         _.each(validators, function (validator) {
             validator(Parsley, config);
         });
+    },
+    addValidators : function addValidators(validators) {
+        return validators;
     }
 };

@@ -18,7 +18,6 @@ require('../../../components/i18n.tag');
 require('../../../components/raw.tag');
 require('../../../components/empty.tag');
 require('../../../components/loaders/spinner.tag');
-require('../../../components/form/btn.pending.tag');
 
 Backbone.$ = $;
 
