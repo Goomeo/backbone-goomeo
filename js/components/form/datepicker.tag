@@ -21,14 +21,15 @@
         this.mixin(parsleyMixin);
 
         this.on('mount', function () {
-            var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datePicker)),
-                datePicker  = $datePicker.pickadate('picker');
+            var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datePicker));
 
-            if (!datePicker) {
+            this.datePicker  = $datePicker.pickadate('picker');
+
+            if (!this.datePicker) {
                 return;
             }
 
-            datePicker.on({
+            this.datePicker.on({
                 open : function () {
                     $('label', this.root).addClass('active');
                     this.trigger('datepicker:open');
@@ -55,6 +56,10 @@
                     this.trigger('datepicker:set', thingSet);
                 }.bind(this)
             });
+        });
+
+        this.on('before-unmount', function () {
+            this.datePicker.stop();
         });
     </script>
 </material-datepicker>
