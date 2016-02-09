@@ -6,6 +6,7 @@
                type="date"
                class="datepicker"
                value="{ opts.value }"
+               disabled="{ opts.disabled }"
                 >
         <label for="{ opts.dataId }" class="{ isActive ? 'active' : '' }"><i18n word="{ opts.label || 'date' }" /></label>
     </div>

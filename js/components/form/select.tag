@@ -3,6 +3,8 @@
         <select
             id="{ opts.dataId }"
             name="{ opts.dataName }"
+            disabled="{ opts.disabled }"
+            multiple="{ opts.multiple }"
             >
             <option if="{ opts.default }" value="">{ opts.default }</option>
             <option each={ opts.items } value="{ value }" selected="{ selected }">{ name }</option>
