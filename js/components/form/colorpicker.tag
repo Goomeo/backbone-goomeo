@@ -13,7 +13,7 @@
         var _            = require('underscore'),
                 $            = require('jquery'),
                 tinycolor    = require('tinycolor2'),
-                parsleyMixin = require('backbone-goomeo/js/libs/riot/mixins/parsley'),
+                parsleyMixin = require('../../libs/riot/mixins/parsley'),
                 $fade;
 
         this.mixin(parsleyMixin);

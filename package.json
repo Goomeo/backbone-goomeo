@@ -1,6 +1,6 @@
 {
   "name": "backbone-goomeo",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Backbone extensions, mixing, ... for Goomeo.",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "materialize-css": "^0.97.5",
     "moment": "^2.11.2",
     "moment-timezone": "^0.5.0",
+    "nouislider": "^8.2.1",
     "parsleyjs": "^2.2.0",
     "riot": "^2.3.15",
     "riot-mixin-pack": "^0.1.6",

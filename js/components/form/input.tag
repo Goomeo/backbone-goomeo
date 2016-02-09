@@ -4,6 +4,7 @@
         <input id="{ opts.dataId }"
                name="{ opts.dataName }"
                type="{ opts.type || 'text' }"
+               disabled="{ opts.disabled }"
                value="{ opts.value }"
         >
         <label for="{ opts.dataId }" class="{ isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>

@@ -5,6 +5,7 @@
         <textarea id="{ opts.dataId }"
                name="{ opts.dataName }"
                class="materialize-textarea"
+               disabled="{ opts.disabled }"
                 >{ opts.value }</textarea>
         <label for="{ opts.dataId }" class="{ isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
     </div>

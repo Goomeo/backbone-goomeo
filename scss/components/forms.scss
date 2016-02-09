@@ -55,3 +55,8 @@ form.gform {
     }
   }
 }
+
+// composants
+material-checkbox + material-checkbox, material-radio + material-radio {
+  margin-left: 10px;
+}
