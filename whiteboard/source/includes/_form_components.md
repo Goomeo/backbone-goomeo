@@ -395,3 +395,31 @@ Voici les fonctions accéssibles depuis le tag côté javascript :
 | -----     | -----                                     |
 | `get`     | Permet de récupérer la valeur du slider.  Merci de voir la [documentation de nouislider](http://refreshless.com/nouislider) |
 | `set`     | Permet de modifier la valeur du slider. Merci de voir la [documentation de nouislider](http://refreshless.com/nouislider) |
+
+## Pending
+
+Génère un bouton gérant un état de loading dans le style de *Ladda-Button*. Ce composant est utilisé pour mettre en attente l'utilisateur lors de la validation du formulaire, ...
+
+```html
+<btn-pending data-id="validate"></btn-pending>
+```
+
+```javascript
+this.mountTags({
+    tag : 'btn-pending'
+});
+```
+
+| option        | description                                                                                   | default       |
+| ------        | -----------                                                                                   | -------       |
+| color         | Couleur du bouton d'après celles de materialoze-css                                           | green         |
+| type          | Type de bouton                                                                                | submit        |
+| dataId        | ID du bouton                                                                                  | submit        |
+| label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | validate      |
+
+Voici les événements que vous pouvez lancer depuis le javascript gràce à la fonction `trigger` :
+
+| événement             | description                                                   |
+| -----                 | -----                                                         |
+| `start`               | Met le bouton dans l'état de loading. Dans ce cas le bouton est disabled et n'est plus clickable |
+| `stop`                | Met le bouton dans son fonctionnement normal. Le bouton est clickable. |
