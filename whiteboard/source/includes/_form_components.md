@@ -310,3 +310,62 @@ Voici la liste des événements que vous pouvez capturer dans votre vue :
 | `datepicker:set`      | Appelé lors du passage d'une valeur                           |
 
 <aside class="notice">Pour le moment ce n'est pas encore fait, mais les noms des mois, jours, boutons seront automatiquement traduit selon la locale de l'application.</aside>
+
+## Slider
+
+Génère un slider basé sur l'input HTML5 range.
+
+```html
+<material-slider
+    data-id="date"
+    data-name="date"
+    parsley-required="true"
+    ></material-slider>
+```
+
+```javascript
+this.mountTags({
+    tag : 'material-slider'
+});
+```
+
+| option        | description                       | default   |
+| ------        | -----------                       | -------   |
+| data-id       | Identifiant de l'input            | -         |
+| data-name     | Nom de l'input                    | -         |
+| value         | date renseignée de base           | -         |
+| disabled      | Si renseigné, disable l'input     | -         |
+| min           | Valeur minimale du slider         | 0         |
+| max           | Valeur maximale du slider         | 100       |
+
+## NoUiSlider
+
+Génère un slider plus complet en utilisant la library *noUiSlider*.
+
+```html
+<material-nouislider></material-nouislider>
+```
+
+```javascript
+this.mountTags({
+    tag : 'material-nouislider',
+    options : {
+        slider : {
+            start: [20, 80],
+            connect: true,
+            step: 1,
+            range: {
+                'min': 0,
+                'max': 100
+            }
+        }
+    }
+});
+```
+
+| option        | description                       | default   |
+| ------        | -----------                       | -------   |
+| slider        | Options de noUiSlider. Merci de voir la [documentation de nouislider](http://refreshless.com/nouislider) | - |
+
+Voici la configuration de base de nouislider :
+
