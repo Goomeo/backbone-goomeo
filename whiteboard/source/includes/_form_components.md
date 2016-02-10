@@ -263,3 +263,50 @@ Voici la liste des événements que vous pouvez capturer dans votre vue :
 Génère un datepicker avec le label de base. Pour le datepicker, on utilise la library jquery *pickadate* modifiée par l'équire de *materialize-css*. 
 Cette library permet d'avoir un datepicker entièrement configurable.
 
+```html
+<material-datepicker
+    col="s6"
+    data-id="date"
+    data-name="date"
+    parsley-required="true"
+    icon="event"
+    ></material-datepicker>
+```
+
+```javascript
+this.mountTags({
+    tag : 'material-datepicker'
+});
+```
+
+| option        | description                                                                                               | default   |
+| ------        | -----------                                                                                               | -------   |
+| col           | Si renseigné, permet de définir la colonne associée au grid système                                       | -         |
+| data-id       | Identifiant de l'input                                                                                    | -         |
+| data-name     | Nom de l'input                                                                                            | -         |
+| value         | date renseignée de base                                                                                   | -         |
+| label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit                | date      |
+| icon          | nom de l'icon du material design afin de le rajouté en préfixe                                            | -         |
+| disabled      | Si renseigné, disable l'input                                                                             | -         |
+| datepicker    | Configuration du datepicker. Merci de voir la [documentation de pickadate](http://amsul.ca/pickadate.js/) | -         |
+
+<aside class="notice">Utilise *ParsleyJS*.</aside>
+
+Voici la configuration de base de datepicker :
+
+| option            | description                                                                                   | valeur    |
+| ------            | -----------                                                                                   | -------   |
+| container         | Emplacement de la fenêtre du datepicker dans le DOM html. Doit être un sélecteur CSS valide.  | body      |
+
+Voici la liste des événements que vous pouvez capturer dans votre vue :
+
+| événement             | description                                                   |
+| -----                 | -----                                                         |
+| `datepicker:open`     | Appelé lors de l'ouverture du datepicker                      |
+| `datepicker:close`    | Appelé lors de la fermeture du datepicker                     |
+| `datepicker:render`   | Appelé lors de l'affichage du datepicker                      |
+| `datepicker:start`    | Appelé lors de l'initialisation du datepicker                 |
+| `datepicker:stop`     | Appelé lors de la destruction du datepicker                   |
+| `datepicker:set`      | Appelé lors du passage d'une valeur                           |
+
+<aside class="notice">Pour le moment ce n'est pas encore fait, mais les noms des mois, jours, boutons seront automatiquement traduit selon la locale de l'application.</aside>

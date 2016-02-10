@@ -22,7 +22,7 @@
         this.mixin(parsleyMixin);
 
         this.on('mount', function () {
-            var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datePicker));
+            var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datepicker));
 
             this.datePicker  = $datePicker.pickadate('picker');
 
