@@ -351,7 +351,7 @@ this.mountTags({
     tag : 'material-nouislider',
     options : {
         slider : {
-            start: [20, 80],
+            start: [0, 100],
             connect: true,
             step: 1,
             range: {
@@ -369,3 +369,29 @@ this.mountTags({
 
 Voici la configuration de base de nouislider :
 
+| option        | description                                                                                           | default                |
+| ------        | -----------                                                                                           | -------                |
+| start         | Valeurs de départ du slider                                                                           | [0, 100]               |
+| step          | De combien en combien bouge la valeur du slide                                                        | 1                      |
+| range         | Valeur min/max du slider                                                                              | { min : 0, max : 100 } |
+| format        | Transformation de la valeur du slider. Par défaut, on supprime les décipales des valeurs du slider    | { to : function, from : function } |
+
+
+Voici la liste des événements que vous pouvez capturer dans votre vue :
+
+| événement             | description                                                   |
+| -----                 | -----                                                         |
+| `nouislider:update`   | Appelée quand la valeur du slider change. Retourne un tableau des valeurs (left et right) ainsi que le curseur qui bouge (si c'est celui de gauche ou droite). |
+| `nouislider:slide`    | Appelée quand on fait bouger le slider |
+| `nouislider:set`      | Appelée quand on modifie une valeur manuellement du slider via la méthode `set()` |
+| `nouislider:change`   | Appelé quand la valeur du slide a changée |
+| `nouislider:start`    | Appelée lors de la construction du slider |
+| `nouislider:end`      | Appelée lors de la destruction du slider |
+| `nouislider:hover`    | Appelé lors du survol de la souris. Passe en paramètre la valeur du slider à cet endroit. |
+
+Voici les fonctions accéssibles depuis le tag côté javascript :
+
+| fonction  | description                               |
+| -----     | -----                                     |
+| `get`     | Permet de récupérer la valeur du slider.  Merci de voir la [documentation de nouislider](http://refreshless.com/nouislider) |
+| `set`     | Permet de modifier la valeur du slider. Merci de voir la [documentation de nouislider](http://refreshless.com/nouislider) |

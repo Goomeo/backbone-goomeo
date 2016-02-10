@@ -7,8 +7,7 @@
 
         this.on('mount', function () {
             var defaultOptions = {
-                start: [20, 80],
-                connect: true,
+                start: [0, 100],
                 step: 1,
                 range: {
                     'min': 0,
