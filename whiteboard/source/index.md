@@ -14,7 +14,7 @@ includes:
   - jquery
   - backbone_view
   - riot
-  
+  - form_components
 
 search: true
 ---
