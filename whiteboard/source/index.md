@@ -15,6 +15,7 @@ includes:
   - backbone_view
   - riot
   - components
+  - loaders_components
   - form_components
 
 search: true
