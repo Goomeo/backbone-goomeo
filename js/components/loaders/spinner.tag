@@ -1,5 +1,5 @@
 <spinner>
-    <div class="preloader-wrapper { opts.size } active">
+    <div class="preloader-wrapper { opts.size || small } active">
         <div class="spinner-layer { opts.color || spinner-green-only }">
             <div class="circle-clipper left">
                 <div class="circle"></div>
