@@ -33,3 +33,4 @@ theme: whiteboard
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
+  repo: git@github.com:Goomeo/backbone-goomeo.git
