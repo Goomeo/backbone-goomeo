@@ -309,6 +309,22 @@
     bottom: 0;
     top: $slidepanel-topbar-height;
   }
+
+  @media #{$medium-and-down} {
+    width: 100% !important;
+
+    &.animate-open{
+      animation : slide-widthHigh 0.1s !important;
+      -webkit-animation : slide-widthHigh 0.1s !important;
+    }
+    &.animate-close{
+      animation : slide-widthHigh-close 0.1s !important;
+      -webkit-animation : slide-widthHigh-close 0.1s !important;
+    }
+    &.isOpen{
+      left : 0 !important;
+    }
+  }
 }
 
 .slidepanel-fade {
