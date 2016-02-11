@@ -1,0 +1,17 @@
+.modal {
+  &.small {
+    width: 25%;
+
+    @media #{$medium-and-down} {
+      width: 80%;
+    }
+  }
+  &.medium {
+    width: 35%;
+
+    @media #{$medium-and-down} {
+      width: 80%;
+    }
+  }
+}
+
