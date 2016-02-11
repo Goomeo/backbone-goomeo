@@ -26,8 +26,6 @@ module.exports = function () {
 
 La seule limitation avec Browserify, c'est que votre code ainsi structuré n'est pas utilisable directement dans le navigateur. Vous devrez impérativement builder votre code afin de générer un fichier javascript valide.
 
-_Pour voir comment compiler votre code facilement en temps réel, [veuillez vous référez à la documentation du build](build)._
-
 ## Configuration
 
 Il est possible de dire certaines choses à Browserify pour simplifier l'utilisation des ressources externes, mettre certaines variables en global sur notre code, ...

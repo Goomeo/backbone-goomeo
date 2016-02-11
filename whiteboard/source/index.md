@@ -41,3 +41,9 @@ Vous devez impérativement avoir NodeJS >= 0.12 pour pouvoir utiliser cette libr
 
 Normalement tous les composants Riot et le code Javascript sont compatible sous ie9+. Toutefois, plusieurs animations CSS et la police d'icône ne fonctionneront pas dessus.
 
+## Installation
+
+```bash
+npm install --save backbone-goomeo
+```
+
