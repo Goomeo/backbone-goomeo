@@ -44,7 +44,9 @@ module.exports = Backbone.View.extend({
             this._domContentLoaded();
 
             if (_.isFunction($.fn.tooltip)) {
-                this.$('[data-tooltip]').tooltip({delay: 50});
+                this.$('[data-tooltip]').tooltip({
+                    delay : 50
+                });
             }
 
             return this;
