@@ -49,6 +49,8 @@ module.exports = Backbone.View.extend({
                 });
             }
 
+
+
             return this;
         }.bind(this));
 
@@ -312,7 +314,7 @@ module.exports = Backbone.View.extend({
      * @private
      */
     _initStickit : function initStickit() {
-        if (_.has(this, 'bindings') && !_.isUndefined(this.model)) {
+        if (!_.isEmpty(this.bindings) && !_.isUndefined(this.model)) {
             this.stickit();
         }
 
