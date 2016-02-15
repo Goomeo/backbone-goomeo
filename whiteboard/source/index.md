@@ -17,6 +17,10 @@ includes:
   - components
   - loaders_components
   - form_components
+  - api_eventManager
+  - api_viewManager
+  - api_panelManager
+  - api_modalManager
 
 search: true
 ---

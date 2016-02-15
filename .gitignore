@@ -94,3 +94,5 @@ fabric.properties
 dist/
 tmp/
 build/
+
+.deploy_git/
