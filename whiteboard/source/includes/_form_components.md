@@ -36,6 +36,7 @@ Input de base généré avec le label associé.
 | value     | valeur de l'input                                                                             | -         |
 | isActive  | ajoute la classe `active` au label associé                                                    | -         |
 | label     | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | name      |
+| noLabel   | Si renseigné, l'input n'aura pas de label                                                     | -         |
 
 <aside class="notice">Utilise *ParsleyJS*.</aside>
 
@@ -68,6 +69,7 @@ Textarea de base généré avec le label associé.
 | value     | valeur de l'input                                                                             | -         |
 | isActive  | ajoute la classe `active` au label associé                                                    | -         |
 | label     | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | name      |
+| noLabel   | Si renseigné, l'input n'aura pas de label                                                     | -         |
 
 <aside class="notice">Utilise *ParsleyJS*.</aside>
 
@@ -168,6 +170,7 @@ Select de base avec les éléments passés en Javascript
 | multiple  | Si présent, le select est un multiselect                                                      | -         |
 | label     | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | choice    |
 | default   | Option par défaut des selects affichée en première position sans aucune valeur associée       | -         |
+| noLabel   | Si renseigné, l'input n'aura pas de label                                                     | -         |
 | items     | Tableau d'éléments                                                                            | [ ]       |
 | items[ ].name      | libellé d'un élément                                                                 | -         |
 | items[ ].value     | valeur d'un élément                                                                  | -         |
@@ -232,6 +235,7 @@ this.mountTags({
 | data-name | Nom de l'input                                                                                | -         |
 | color     | couleur renseignée de base                                                                    | -         |
 | label     | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | color     |
+| noLabel   | Si renseigné, l'input n'aura pas de label                                                     | -         |
 | spectrum  | Configuration spectrum. Merci de voir la [documentation de Spectrum](https://bgrins.github.io/spectrum/) | - |
 
 <aside class="notice">Utilise *ParsleyJS*.</aside>
@@ -286,6 +290,7 @@ this.mountTags({
 | data-name     | Nom de l'input                                                                                            | -         |
 | value         | date renseignée de base                                                                                   | -         |
 | label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit                | date      |
+| noLabel       | Si renseigné, l'input n'aura pas de label                                                                 | -         |
 | icon          | nom de l'icon du material design afin de le rajouté en préfixe                                            | -         |
 | disabled      | Si renseigné, disable l'input                                                                             | -         |
 | datepicker    | Configuration du datepicker. Merci de voir la [documentation de pickadate](http://amsul.ca/pickadate.js/) | -         |
