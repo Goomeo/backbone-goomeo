@@ -84,10 +84,24 @@ module.exports = {
                     }
                 }, this);
             }
+
+            if (view.model) {
+                view.model.off(null, null, view);
+            }
+            if (view.collection) {
+                view.collection.off(null, null, view);
+            }
+
             if (view.collections) {
+                _.each(view.collections, function (collection) {
+                    collection.off(null, null, view);
+                });
                 delete view.collections;
             }
             if (view.models) {
+                _.each(view.models, function (model) {
+                    model.off(null, null, view);
+                });
                 delete view.models;
             }
 

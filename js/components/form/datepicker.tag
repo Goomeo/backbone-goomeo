@@ -6,20 +6,25 @@
                type="date"
                class="datepicker"
                value="{ opts.value }"
+               data-value="{ opts.value }"
                disabled="{ opts.disabled }"
                 >
-        <label for="{ opts.dataId }" class="{ isActive ? 'active' : '' }"><i18n word="{ opts.label || 'date' }" /></label>
+        <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'date' }" /></label>
     </div>
 
     <script>
         var $               = require('jquery'),
-            _               = require('underscore'),
-            parsleyMixin    = require('../../libs/riot/mixins/parsley'),
-            defaultOptions  = {
-                container       : 'body'
-            };
+                _               = require('underscore'),
+                parsleyMixin    = require('../../libs/riot/mixins/parsley'),
+                defaultOptions  = {
+                    container       : 'body'
+                };
 
         this.mixin(parsleyMixin);
+
+        if (this.opts.value) {
+            this.opts.isActive = true;
+        }
 
         this.on('mount', function () {
             var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datepicker));

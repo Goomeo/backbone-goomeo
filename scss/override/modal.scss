@@ -1,0 +1,23 @@
+.modal {
+  &.small {
+    width: 25%;
+    .modal-content {
+      padding: $modal-small-padding;
+    }
+    h4 {
+      font-size: $modal-smapp-title-size;
+    }
+
+    @media #{$medium-and-down} {
+      width: 80%;
+    }
+  }
+  &.medium {
+    width: 35%;
+
+    @media #{$medium-and-down} {
+      width: 80%;
+    }
+  }
+}
+

@@ -1,11 +1,11 @@
 <colorpicker>
     <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
         <div class="chip">
-            <span if="{ !opts.color }" class="color-container material-icons">palette</span>
-            <span class="color-name"><i18n if="{ !opts.color }" word="{ opts.libelle || 'colorpickerChooseColor' }" /></span>
+            <span class="color-container material-icons" style="background-color: { backgroundColor || 'inherit' }; color: { textColor || 'inherit' };">palette</span>
+            <span class="color-name">{ opts.color }<i18n if="{ !opts.color }" word="{ opts.libelle || 'colorpickerChooseColor' }" /></span>
         </div>
         <input type="text" id="{ opts.dataId }" name="{ opts.dataName }" value="{ opts.color }"/>
-        <label for="{ opts.dataId }" class="active"><i18n word="{ opts.label || 'color' }" /></label>
+        <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="active"><i18n word="{ opts.label || 'color' }" /></label>
     </div>
 
 
@@ -18,8 +18,12 @@
 
         this.mixin(parsleyMixin);
 
-        this.on('mount', function () {
+        if (this.opts.color) {
+            this.backgroundColor = this.opts.color;
+            this.textColor       = tinycolor.mostReadable(this.opts.color, ['#000000', '#FFFFFF']).toHexString();
+        }
 
+        this.on('mount', function () {
             var options = _.extend({
                 showInitial     : true,
                 showInput       : true,
