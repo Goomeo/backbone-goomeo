@@ -5,7 +5,7 @@
             <span class="color-name">{ opts.color }<i18n if="{ !opts.color }" word="{ opts.libelle || 'colorpickerChooseColor' }" /></span>
         </div>
         <input type="text" id="{ opts.dataId }" name="{ opts.dataName }" value="{ opts.color }"/>
-        <label for="{ opts.dataId }" class="active"><i18n word="{ opts.label || 'color' }" /></label>
+        <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="active"><i18n word="{ opts.label || 'color' }" /></label>
     </div>
 
 

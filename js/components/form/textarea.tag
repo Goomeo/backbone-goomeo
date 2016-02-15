@@ -7,7 +7,7 @@
                class="materialize-textarea"
                disabled="{ opts.disabled }"
                 >{ opts.value }</textarea>
-        <label for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
+        <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
     </div>
 
     <script>
