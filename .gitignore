@@ -96,3 +96,6 @@ tmp/
 build/
 
 .deploy_git/
+whiteboard/public/
+whiteboard/.deploy_git/
+whiteboard/db.json

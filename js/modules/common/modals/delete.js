@@ -2,7 +2,7 @@
 
 var _               = require('underscore'),
     View            = require('backbone-goomeo/js/libs/backbone/views/base'),
-    tpl             = require('tpl/common/modals/delete.html');
+    tpl             = require('../../../tpl/common/modals/delete.html');
 
 require('backbone-goomeo/js/components/form/input.tag');
 
