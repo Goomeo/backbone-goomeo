@@ -59,6 +59,34 @@ fichier : /js/modules/events/maps/index.js
 vue     : events:maps:index
 ```
 
+## Ouverture/fermeture d'un slidePanel.
+
+> ouverture :
+
+```javascript
+this.panels.open({
+    view    : this.createSubView('todo:form', formView, {
+        model : this.model
+    }),
+    options : {
+        title : 'Test'
+    }
+});
+```
+
+> fermeture :
+
+```javascript
+this.panels.close();
+```
+
+Un slidePanel est un panneau latéral souvent utilisé pour afficher des formulaires ou des donnés complémentaires. Vous avez la possibilité d'en ouvrir et d'en fermet facilement au sein de votre vue backbone gràce à `this.panels`.
+ 
+Cet objet vous donne accès aux fonction `open()` et `close` du panelManager.
+
+Si vous voulez plus d'informations. rendez-vous sur la documentation du panelManager.
+
+
 ## Montage de tags Riot
 
 *Pour de plus amples informations concernant les tags, comment les créer, rangement, ..., Veuillez vous rendre sur la documentation dédiée.*
