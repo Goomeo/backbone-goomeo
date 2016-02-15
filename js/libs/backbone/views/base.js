@@ -8,7 +8,8 @@ var $               = require('jquery'),
     riot            = require('riot'),
     viewManager     = require('../viewManager'),
     eventManager    = require('../eventManager'),
-    panelManager    = require('../../goomeo/panelManager');
+    panelManager    = require('../../goomeo/panelManager'),
+    modalManager    = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -134,6 +135,14 @@ module.exports = Backbone.View.extend({
         },
         show : function (params) {
             Materialize.toast(params.message, params.duration || 3000, params.style, params.callback);
+        }
+    },
+    modal : {
+        open : function open(params) {
+            modalManager.open(params);
+        },
+        close : function close(params) {
+            modalManager.close(params);
         }
     },
     /**
