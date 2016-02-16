@@ -450,11 +450,42 @@ this.mountTags({
 | col           | Si renseigné, permet de définir la colonne associée au grid système                           | -         |
 | data-id       | Identifiant de l'input                                                                        | -         |
 | data-name     | Nom de l'input                                                                                | -         |
-| value         | va;eur renseignée de base                                                                     | -         |
+| value         | valeur renseignée de base                                                                     | -         |
 | num           | Nombre d'étoiles voulues                                                                      | 5         |
 | label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | rating    |
 | no-label      | Si renseigné, l'input n'aura pas de label                                                     | -         |
 | no-star-label | Si renseigné, n'affiche pas le numéro des étoiles                                             | -         |
+
+<aside class="notice">Utilise *ParsleyJS*.</aside>
+
+Voici la liste des événements que vous pouvez capturer dans votre vue :
+
+| événement             | description                                                   |
+| -----                 | -----                                                         |
+| `change`              | Appelée lorsque vous changez la valeur du rating. Retourne la nouvelle valeur |
+
+## Survey
+
+Génère un élément survey permettant de donner sune note de 1 à 10. 1 étant la pire note et 10 la mieux .
+
+```html
+<survey></survey>
+```
+
+```javascript
+this.mountTags({
+    tag : 'survey'
+});
+```
+
+| option        | description                                                                                   | default   |
+| ------        | -----------                                                                                   | -------   |
+| col           | Si renseigné, permet de définir la colonne associée au grid système                           | -         |
+| data-id       | Identifiant de l'input                                                                        | -         |
+| data-name     | Nom de l'input                                                                                | -         |
+| value         | valeur renseignée de base                                                                     | -         |
+| label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | rating    |
+| no-label      | Si renseigné, l'input n'aura pas de label                                                     | -         |
 
 <aside class="notice">Utilise *ParsleyJS*.</aside>
 
