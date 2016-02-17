@@ -75,12 +75,12 @@ module.exports = {
         return _.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale;
     },
     /**
-     * Translate keyword with numberFormat. See wiki for full usage.
+     * Traduit le mot clé passé en paramètre en utilisant globalize. Compatible pluralize, numberFormat, ...
      *
-     * @param   {String}            keyword                 Message key
-     * @param   {Array | Object}    [options]               Variables in message with options if format needed
-     * @param   {Object}            [options.root]          Root config for format (use if no specific format on the variable)
-     * @param   {object}            [options.variables]     Array of variables object
+     * @param   {String}            keyword                 mot clé à traduire
+     * @param   {object}            [options]               Options de la fonction i18n
+     * @param   {object}            [options.root]          Root config for format (use if no specific format on the variable)
+     * @param   {object}            [options.variables]     Variables de remplacement dans la phrase à traduire
      * @param   {string}            [options.locale]        Forcer une locale à Globalize
      * @returns {String}
      */
@@ -102,16 +102,16 @@ module.exports = {
             }
 
             // format simple avec les variables passées en tableau ou en objet de type {clé : valeur ...)
-            if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
-                var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
-
-                options = _.each(options, function (option, key) {
-                    if (_.isNumber(option)) {
-                        options[key] = numberFormatter(option);
-                    }
-                });
-                return msgFormatter(options);
-            }
+            //if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
+            //    var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
+            //
+            //    options = _.each(options, function (option, key) {
+            //        if (_.isNumber(option)) {
+            //            options[key] = numberFormatter(option);
+            //        }
+            //    });
+            //    return msgFormatter(options);
+            //}
 
             // format avec options spécifiques
             if (options && options.variables) {
@@ -152,6 +152,8 @@ module.exports = {
 
                 return msgFormatter(variablesMsg);
             }
+
+            return msgFormatter();
         } catch (err) {
             if (err.code == 'E_MISSING_MESSAGE') {
                 console.warn('No traduction for : ' + keyword);
