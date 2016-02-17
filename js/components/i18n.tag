@@ -17,6 +17,10 @@
             }
         });
 
+        if (this.opts.locale) {
+            config.locale = this.opts.locale;
+        }
+
         this.lang = lang.i18n(opts.word, config);
     </script>
 </i18n>
