@@ -54,13 +54,21 @@ Retourne un tableau de tags Riot.
 
 Supprime tous les tags Riot de notre Vue
 
-## beforeRender() 
+## waitingRender(callback)
 
-Fonction appelée juste avant l'appel de Render
+Fonction appelée avant beforeRender pour afficher du contenu pendant l'exécution de cette fonction (chargement, une emptyView, ...). Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction
 
-## afterRender()
+## beforeRender(callback) 
 
-Fonction appelée juste après l'appel de Render
+Fonction appelée juste avant l'appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction
+
+## render(callback)
+
+Fonction appelée pour afficher le rendu final de votre vue. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction
+
+## afterRender(callback)
+
+Fonction appelée juste après l'appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction
 
 ## prerequireAction()
 
