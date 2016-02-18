@@ -9,7 +9,8 @@ var $               = require('jquery'),
     viewManager     = require('../viewManager'),
     eventManager    = require('../eventManager'),
     panelManager    = require('../../goomeo/panelManager'),
-    modalManager    = require('../../goomeo/modalManager');
+    modalManager    = require('../../goomeo/modalManager'),
+    stringFunctions = require('../../goomeo/stringFunctions');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -28,11 +29,12 @@ module.exports = Backbone.View.extend({
 
         _.bindAll(this, 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
-        this.models         = options.models || {};
-        this.collections    = options.collections || {};
-        this.subviews       = {};
-        this.name           = options.name;
-        this.tags           = {};
+        this.models             = options.models || {};
+        this.collections        = options.collections || {};
+        this.subviews           = {};
+        this.name               = options.name;
+        this.tags               = {};
+        this.compiledTemplates  = {};
 
         this._initGlobalEvents();
 
@@ -168,15 +170,17 @@ module.exports = Backbone.View.extend({
      * @return  {string}                                Template compilé
      */
     template : function template(template, params) {
-        var compile = _.template(template);
+        var hash = stringFunctions.hashCode(template);
 
-        if (!params) {
-            params = {};
+        if (!this.compiledTemplates[hash]) {
+            this.compiledTemplates[hash] = _.template(template);
         }
 
-        params.moment = moment;
+        params = _.extend({}, params, {
+            moment : moment
+        });
 
-        return compile(params);
+        return this.compiledTemplates[hash](params);
     },
     /**
      * Supprime la vue et tout ce qui s'y rapporte en événements et en tags
