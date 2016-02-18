@@ -494,3 +494,87 @@ Voici la liste des événements que vous pouvez capturer dans votre vue :
 | événement             | description                                                   |
 | -----                 | -----                                                         |
 | `change`              | Appelée lorsque vous changez la valeur du rating. Retourne la nouvelle valeur |
+
+## Lang Input
+
+Génère plusieurs input en fonction des langues passées en paramètre. Ces input permettent de remplir un champ traduit au sein de votre projet.
+
+> Format du champ traduit
+
+```json
+{
+  "fr" : "Titre francais",
+  "en" : "titre en"
+}
+```
+
+```html
+<material-input-lang
+    id="name"
+    name="name"
+    col="m6"
+    ></material-input-lang>
+```
+
+```javascript
+this.mountTags({
+    tag : 'material-input-lang',
+    options : {
+        langs : [ 'fr', 'en' ]
+    }
+});
+```
+
+| option        | description                                                                                   | default   |
+| ------        | -----------                                                                                   | -------   |
+| col           | Si renseigné, permet de définir la colonne associée au grid système                           | -         |
+| data-id       | Identifiant de l'input                                                                        | -         |
+| data-name     | Nom de l'input                                                                                | -         |
+| value         | valeur renseignée de base                                                                     | -         |
+| label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | name      |
+| disabled      | Si renseigné alors tous les input du composant sont désactivés.                               | -         |
+| is-active     | Si renseigné, les label ont la classe `active` de renseigné.                                  | -         |
+
+<aside class="notice">Utilise *ParsleyJS*.</aside>
+
+## Lang Textarea
+
+Génère plusieurs textarea en fonction des langues passées en paramètre. Ces textarea permettent de remplir un champ traduit au sein de votre projet.
+
+> Format du champ traduit
+
+```json
+{
+  "fr" : "Titre francais",
+  "en" : "titre en"
+}
+```
+
+```html
+<material-textarea-lang
+    id="name"
+    name="name"
+    col="m6"
+    ></material-textarea-lang>
+```
+
+```javascript
+this.mountTags({
+    tag : 'material-textarea-lang',
+    options : {
+        langs : [ 'fr', 'en' ]
+    }
+});
+```
+
+| option        | description                                                                                   | default   |
+| ------        | -----------                                                                                   | -------   |
+| col           | Si renseigné, permet de définir la colonne associée au grid système                           | -         |
+| data-id       | Identifiant de l'input                                                                        | -         |
+| data-name     | Nom de l'input                                                                                | -         |
+| value         | valeur renseignée de base                                                                     | -         |
+| label         | libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit    | name      |
+| disabled      | Si renseigné alors tous les input du composant sont désactivés.                               | -         |
+| is-active     | Si renseigné, les label ont la classe `active` de renseigné.                                  | -         |
+
+<aside class="notice">Utilise *ParsleyJS*.</aside>
