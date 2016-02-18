@@ -2,6 +2,7 @@
 
 var $               = require('jquery'),
     _               = require('underscore'),
+    async           = require('async'),
     Backbone        = require('backbone'),
     Materialize     = global.Materialize,
     moment          = require('moment'),
@@ -27,7 +28,7 @@ module.exports = Backbone.View.extend({
     constructor : function constructor(options) {
         Backbone.View.apply(this, arguments);
 
-        _.bindAll(this, 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
+        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
         this.models             = options.models || {};
         this.collections        = options.collections || {};
@@ -39,28 +40,24 @@ module.exports = Backbone.View.extend({
         this._initGlobalEvents();
 
         this.render = _.wrap(this.render, function wrapRender(render) {
-            this.beforeRender();
-            render.call(this);
-            this.afterRender();
-            this._mountBasicTags();
-            this._initStickit();
-            this._domContentLoaded();
+            async.series([
+                this.waitingRender,
+                this.beforeRender,
+                render,
+                this.afterRender
+            ], function () {
+                this._mountBasicTags();
+                this._initStickit();
+                this._domContentLoaded();
 
-            if (_.isFunction($.fn.tooltip)) {
-                this.$('[data-tooltip]').tooltip({
-                    delay : 50
-                });
-            }
-
-
+                if (_.isFunction($.fn.tooltip)) {
+                    this.$('[data-tooltip]').tooltip({
+                        delay : 50
+                    });
+                }
+            }.bind(this));
 
             return this;
-        }.bind(this));
-
-        this.initialize = _.wrap(this.initialize, function wrapInitialize(initialize) {
-            _.bindAll(this, 'render');
-            initialize();
-            this.prerequireAction();
         }.bind(this));
     },
     global : {
@@ -366,7 +363,7 @@ module.exports = Backbone.View.extend({
     },
     // fonctions de base vides
     render              : function render() {},
-    beforeRender        : function beforeRender() {},
-    afterRender         : function afterRender() {},
-    prerequireAction    : function prerequireAction() {}
+    beforeRender        : function beforeRender(callback) { callback(); },
+    afterRender         : function afterRender(callback) { callback(); },
+    waitingRender       : function waitingRender(callback) { callback(); }
 });
