@@ -50,6 +50,9 @@ module.exports = View.extend({
         if (_.isFunction(this.cancelCallback)) {
             this.cancelCallback();
         }
+        this.modal.close({
+            name : this.name
+        });
     },
     acceptAction : function acceptAction(evt) {
         if (this.hasDoubleVerif === true) {
@@ -70,5 +73,8 @@ module.exports = View.extend({
         if (_.isFunction(this.validateCallback)) {
             this.validateCallback();
         }
+        this.modal.close({
+            name : this.name
+        });
     }
 });
