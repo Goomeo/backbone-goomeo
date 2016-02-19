@@ -1,0 +1,2577 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="js/lib/energize.js" type="text/javascript"></script>
+<script src="js/lib/imagesloaded.min.js" type="text/javascript"></script>
+<script src="js/lib/jquery_ui.js" type="text/javascript"></script>
+<script src="js/lib/jquery.highlight.js" type="text/javascript"></script>
+<script src="js/lib/jquery.tocify.js" type="text/javascript"></script>
+<script src="js/lib/lunr.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+
+    
+      <script>
+        $(function() {
+            setupLanguages(["javascript","html"]);
+        });
+      </script>
+    
+  </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png">
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.jpg">
+      
+        <div class="lang-selector">
+          
+              <a href="#" data-language-name="javascript">javascript</a>
+          
+              <a href="#" data-language-name="html">html</a>
+          
+        </div>
+      
+      
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      
+      <div id="toc">
+      </div>
+      
+        <ul class="toc-footer">
+          
+              <li><a href="http://www.goomeo.com/">Powered by Goomeo</a></li>
+          
+              <li><a href="http://github.com/mpociot/whiteboard">Documentation Powered by Whiteboard</a></li>
+          
+        </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Bienvenue dans la documentation de <em>Backbone-Goomeo</em>, la library tout en un pour Backbone comprenant entre autre :</p>
+<ul>
+<li>des extensions Backbone</li>
+<li>des validateurs Parsley</li>
+<li>des composants RiotJS</li>
+</ul>
+<p>Vous trouverez dans cette documentation toutes les infos pour utiliser ce projet au sein du votre.</p>
+<h2 id="Pr_E9requis"><a href="#Pr_E9requis" class="headerlink" title="Prérequis"></a>Prérequis</h2><p><strong>Attention</strong> : Cette library a été conçue pour être utilisée au sein d’un projet pour du Front et compilé avec <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>.</p>
+<p>Vous devez impérativement avoir NodeJS &gt;= 0.12 pour pouvoir utiliser cette library.</p>
+<h2 id="Compatibilit_E9"><a href="#Compatibilit_E9" class="headerlink" title="Compatibilité"></a>Compatibilité</h2><p>Normalement tous les composants Riot et le code Javascript sont compatible sous ie9+. Toutefois, plusieurs animations CSS et la police d’icône ne fonctionneront pas dessus.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><pre><code class="highlight bash"><span class="line">npm install --save backbone-goomeo</span><br></code></pre>
+
+        
+          
+              <h1 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h1><p>Pour la compilation du projet, nous utilisons le package Browserify qui permet de coder son projet en utilisant la norme CommonJS en lieu et place de la norme AMD.</p>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>La norme CommonJS permet de structurer son code en fichiers et d’appeler les dépendances comme nous le ferions sous NodeJS :</p>
+<pre><code class="javascript highlight"><span class="meta">'use strict'</span>;
+
+<span class="comment">// appel des dépendances et les stocker dans des var</span>
+<span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);
+
+<span class="comment">// appel de dépendances sans les stocker dans des variables (ex: pour étendre jquery)</span>
+<span class="built_in">require</span>(<span class="string">'jquery.form2js'</span>);
+
+<span class="comment">// objet/fonction/variable retourné par l'appel de ce fichier par la commande require()</span>
+<span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+  <span class="built_in">console</span>.log(<span class="string">'a'</span>);
+};
+</code></pre>
+<h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>La seule limitation avec Browserify, c’est que votre code ainsi structuré n’est pas utilisable directement dans le navigateur. Vous devrez impérativement builder votre code afin de générer un fichier javascript valide.</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Il est possible de dire certaines choses à Browserify pour simplifier l’utilisation des ressources externes, mettre certaines variables en global sur notre code, …</p>
+<h3 id="Librairies_externes"><a href="#Librairies_externes" class="headerlink" title="Librairies externes"></a>Librairies externes</h3><p>Il est possible que dans les librairies installées par <em>NPM</em>, il y en aie plusieurs qui ne soient pas prévues pour fonctionner sous CommonJS. Heureusement, il est possible de palier à ceci dans le fichier <em>package.json</em> afin d’indiquer à Browserify de convertir les fichiers suivants :</p>
+<blockquote>
+<p>Browser files</p>
+</blockquote>
+<pre><code class="json highlight">{
+  "<span class="attr">browser</span>": {
+    "<span class="attr">jQuery</span>": <span class="string">"./node_modules/jquery/dist/jquery.min.js"</span>,
+    "<span class="attr">jquery.form2js</span>": <span class="string">"./node_modules/form2js/src/jquery.toObject.js"</span>
+  }
+}
+</code></pre>
+<p>Ici nous indiquons aux fichiers <code>jquery.min,js</code> et <code>jquery.toObject.js</code> d’être convertis en fichiers CommonJS valide et d’être appelé avec la fonction <code>require()</code> via le mot clé <code>jQuery</code> et <code>jQuery.form2js</code>.</p>
+<h3 id="Variables_globales"><a href="#Variables_globales" class="headerlink" title="Variables globales"></a>Variables globales</h3><p>Dans le projet nous utilisons qu’une variable globale : <em>jquery</em>. Effectivement, si l’on veut <code>require(&#39;jQuery&#39;)</code>, on va tout le temps récupérer l’objet jQuery de base et non l’objet étendu par tous les modules. Pour palier à ça, nous plaçons jQuery en variable globale afin d’avoir toujours le <code>jQuery</code> étendu au lieu de celui de base.</p>
+<p>Pour cela, nous passons par un <em>shim</em> de browserify configuré comme ceci :</p>
+<blockquote>
+<p>Shims :</p>
+</blockquote>
+<pre><code class="json highlight">{
+  "<span class="attr">browserify-shim</span>": {
+    "<span class="attr">jquery</span>": <span class="string">"global:jQuery"</span>
+  }
+}
+</code></pre>
+<p>Ici on dit que la variable globale <code>jQuery</code> sera chargée automatiquement dans nos script avec l’appel <code>require(&#39;jquery&#39;)</code>.</p>
+<p>Bien entendu, il faut que dans votre code vous ayez ceci :</p>
+<blockquote>
+<p>variables globales :</p>
+</blockquote>
+<pre><code class="javascript highlight"><span class="comment">// définition de la variable globale jQuery</span>
+global.jQuery = <span class="built_in">require</span>(<span class="string">'jQuery'</span>);
+</code></pre>
+<h3 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h3><p>Les alias servent à simplifier l’accès à différents répertoires du projet. Par exemple, si vous êtes dans un sous répertoire au cinquième niveau et que vous voulez récupérer un template, vous devrez préfixer votre require de plusieurs <code>../</code> ce qui peut vite devenir embêtant.</p>
+<p>Voici la liste des alias disponibles :</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Correspond à </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collections</td>
+<td>/js/collections </td>
+</tr>
+<tr>
+<td>components</td>
+<td>/js/components </td>
+</tr>
+<tr>
+<td>libs</td>
+<td>/js/libs </td>
+</tr>
+<tr>
+<td>models</td>
+<td>/js/models </td>
+</tr>
+<tr>
+<td>modules</td>
+<td>/js/modules </td>
+</tr>
+<tr>
+<td>tpl</td>
+<td>/js/tpl </td>
+</tr>
+</tbody>
+</table>
+<p>Si vous voulez ajouter un template facilement, vous le pouvez grâce au <code>package.json</code> de la façon suivante :</p>
+<pre><code class="json highlight">{
+  "<span class="attr">aliasify</span>": {
+    "<span class="attr">aliases</span>": {
+      "<span class="attr">tpl</span>": <span class="string">"./js/tpl"</span>,
+      "<span class="attr">models</span>": <span class="string">"./js/models"</span>,
+      "<span class="attr">components</span>": <span class="string">"./js/components"</span>,
+      "<span class="attr">libs</span>": <span class="string">"./js/libs"</span>,
+      "<span class="attr">modules</span>": <span class="string">"./js/modules"</span>,
+      "<span class="attr">collections</span>": <span class="string">"./js/collections"</span>
+    }
+  }
+}
+</code></pre>
+
+          
+              <h1 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h1><p>Le projet utilise toujours une couche de jQuery pour simplifier la manipulation du DOM ou pour le bon fonctionnement de <a href="backbone">Backbone</a>.</p>
+<h2 id="Appel"><a href="#Appel" class="headerlink" title="Appel"></a>Appel</h2><p>Si vous avez besoin d’utiliser jQuery, vous avez plusieurs façons de le faire selon l’endroit où vous êtes :</p>
+<ul>
+<li><strong>Vue Backbone</strong>  :<ul>
+<li>via <code>this.$</code>. Les vues backbone ont effectivement un accès interne à jQuery. Il faut aussi savoir qu’il est limité au DOM de la vue courante <strong>ainsi</strong> qu’à ses sous vues.</li>
+<li>via <code>var $ = require(&#39;jquery&#39;)</code>. Ici, on charge jQuery via le composant <em>require</em>. Là le sélecteur jQuery a accès au DOM complet.</li>
+</ul>
+</li>
+<li><strong>Scripts JS</strong>    :<ul>
+<li>via <code>var $ = require(&#39;jquery&#39;)</code>. Ici, on charge jQuery via le composant <em>require</em>. Là le sélecteur jQuery a accès au DOM complet.</li>
+</ul>
+</li>
+<li><strong>Vues HTML</strong>     :<ul>
+<li>via <code>jQuery</code>. Là le sélecteur jQuery a accès au DOM complet.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>Il est parfois utile et nécéssaire d’étendre jQuery avec de nouvelles fonctions/modules. Pour cela, plusieurs solutions sont possibles.</p>
+<p>Si vous voulez éttendre jQuery à tout le projet, peu importe l’application lancée derrière, vous devrez injecter les dépendances dans le fichier <em>js/init.js</em>. Là vous trouverez une fonction qui s’appelle <strong>extendjQuery</strong> et vous aurez juste à ajouter votre module par un simple appel à <code>require(&#39;monmodule&#39;)</code> :</p>
+<pre><code class="highlight">{
+  extendjQuery : function extendjQuery() {
+    $.support.cors = true;
+
+    // form2js pour $(&apos;form&apos;).toObject();
+    require(&apos;form2js&apos;);
+    require(&apos;jquery.form2js&apos;);
+  }
+}
+</code></pre><h3 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h3><p><strong>Attention</strong> : Il est fortement probable que certains modules jQuery ne soient pas pensés pour fonctionner avec <em>CommonJS</em>.</p>
+<p>Si c’est le cas, vous devrez renseigner certaines choses dans le fichier <em>package.json</em> à la rubrique <em>browser</em> :</p>
+<pre><code class="highlight">{
+    &quot;browser&quot; : {
+         &quot;jQuery&quot;         : &quot;./node_modules/jquery/dist/jquery.min.js&quot;,
+         &quot;jquery.form2js&quot; : &quot;./node_modules/form2js/src/jquery.toObject.js&quot;
+    }
+}
+</code></pre><p>Ceci va permettre à browserify de convertir le code du fichier en code compatible <em>CommonJS</em> et de créer un alias pour le récupérer via la commande <code>require()</code>.</p>
+
+          
+              <h1 id="Vues_Backbone"><a href="#Vues_Backbone" class="headerlink" title="Vues Backbone"></a>Vues Backbone</h1><p>Les vues Backbone du projet ne devront pas étendre <code>Backbone.View</code>. En effet, nous avons créer une classe de base afin d’ajouter un nombre de fonctions utiles permettant d’améliorer le développement.</p>
+<p>La classe de base se trouve dans <em>/js/libs/backbone/views/base.js</em>. Si vous voulez éttendre cette vue pour avoir d’autres vues de base réutilisables, vous devrez les créer dans le répertoire <em>/js/libs/backbone/views</em></p>
+<h2 id="Organisation"><a href="#Organisation" class="headerlink" title="Organisation"></a>Organisation</h2><p>Toute la partie javascript sera rangée dans le répertoire <code>js</code> et toute la partie HTML sera rangée dans le répertoire <code>tpl</code>.</p>
+<p>Chaque groupe fonctionnel de vues doit se retrouver dans un répertoire désignant ce même groupe. Par exemple, toutes les vues composant le module LNS se retrouvent dans un sous répertoire lns. De même, la vue maîtresse de ce groupe devra s’appeler index.</p>
+<p>Les parties vues et templates doivent suivre la même règle et les mêmes nommages. Par exemple, le template de la vue <code>/modules/events/lns/index.js</code> se retrouvera comme ceci : <code>/tpl/events/lns/index.html</code></p>
+<pre><code class="text highlight">js
+├── collections                  # Répertoire de toutes les collections
+│   └── todo                     # collections propres au module todo
+│       └── tasks.js             # Collection tasks
+├── models                       # Répertoire de tous les models
+│   └── todo                     # models propres au module todo
+│       └── task.js              # model task
+├── modules                      # Partie vues Javascript
+│   └── todo                     # vues propres au module todo
+│       ├── forms                # répertoire des formulaires
+│       │   └── form.js          # vue du formulaire
+|       ├── item.js              # vue pour une tâche
+│       └── index.js             # page d&apos;accueuil du module todo
+└── tpl                          # templates
+    └── todo                     # vues propres au module todo
+        ├── forms                # répertoire des formulaires
+        │   └── form.html        # template du formulaire
+        └── index.html           # template de la page d&apos;accueuil
+</code></pre>
+<h2 id="Cr_E9ation_d_u2019une_sous_vue"><a href="#Cr_E9ation_d_u2019une_sous_vue" class="headerlink" title="Création d’une sous vue"></a>Création d’une sous vue</h2><p>Dans les anciens projets, nous avions pour habitude de créer toutes les sous vues par le viewManager. Mais la tâche était redondante sur le fait qu’il fallait ajouter manuellement la vue au tableau <code>subviews</code> afin que toutes les vues soient détruites quand la principale l’était.</p>
+<p>Dorénavant, vous devrez passer par la méthode <code>this.createSubView()</code>. La fonction s’utilise de la même façon à la différence que vous n’avez plus besoin de rajouter la sous-vue au tableau de subviews. Elle le fait pour vous.</p>
+<pre><code class="javascript highlight"><span class="comment">// avant</span>
+<span class="keyword">var</span> subView = vm.create(<span class="string">'nomdevotrevue'</span>, votreView, {
+    key : <span class="string">'foo'</span>
+});
+<span class="keyword">this</span>.subviews.push(subView);
+
+<span class="comment">// après</span>
+<span class="keyword">var</span> subView = <span class="keyword">this</span>.createSubView(<span class="string">'nomdevotrevue'</span>, votreView, {
+    key : <span class="string">'foo'</span>
+});
+</code></pre>
+<blockquote>
+<p>Le nom de votre vue sera composée comme ceci :</p>
+</blockquote>
+<pre><code class="text highlight">fichier : /js/modules/events/maps/index.js
+vue     : events:maps:index
+</code></pre>
+<h2 id="Ouverture/fermeture_d_u2019un_slidePanel"><a href="#Ouverture/fermeture_d_u2019un_slidePanel" class="headerlink" title="Ouverture/fermeture d’un slidePanel."></a>Ouverture/fermeture d’un slidePanel.</h2><blockquote>
+<p>ouverture :</p>
+</blockquote>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.panels.open({
+    view    : <span class="keyword">this</span>.createSubView(<span class="string">'todo:form'</span>, formView, {
+        model : <span class="keyword">this</span>.model
+    }),
+    options : {
+        title : <span class="string">'Test'</span>
+    }
+});
+</code></pre>
+<blockquote>
+<p>fermeture :</p>
+</blockquote>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.panels.close();
+</code></pre>
+<p>Un slidePanel est un panneau latéral souvent utilisé pour afficher des formulaires ou des donnés complémentaires. Vous avez la possibilité d’en ouvrir et d’en fermet facilement au sein de votre vue backbone gràce à <code>this.panels</code>.</p>
+<p>Cet objet vous donne accès aux fonction <code>open()</code> et <code>close</code> du panelManager.</p>
+<p>Si vous voulez plus d’informations. rendez-vous sur la documentation du panelManager.</p>
+<h2 id="Montage_de_tags_Riot"><a href="#Montage_de_tags_Riot" class="headerlink" title="Montage de tags Riot"></a>Montage de tags Riot</h2><p><em>Pour de plus amples informations concernant les tags, comment les créer, rangement, …, Veuillez vous rendre sur la documentation dédiée.</em></p>
+<p>De base, <em>riot</em> regarde le DOM de toute la page web pour créer nos tags et ne garde donc pas la notion de DOM limitée à notre vue courante Backbone. Afin de palier au problème, si vous voulez monter des tags dans votre vue Backbone, vous le pouvez grâce à la fonction <code>mountTags(params)</code>.</p>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'jumbotron'</span>
+});
+</code></pre>
+<blockquote>
+<p><strong>Attention</strong> : Vu que Riot fait la recherche sur le <code>el</code> de votre vue, pensez à ajouter le contenu au DOM avant l’appel de cette fonction. De même, pensez à précharger votre tag dans votre vue comme ceci :</p>
+</blockquote>
+<pre><code class="javascript highlight"><span class="keyword">var</span> _           = <span class="built_in">require</span>(<span class="string">'underscore'</span>),
+    View        = <span class="built_in">require</span>(<span class="string">'libs/backbone/views/base'</span>),
+    tpl         = <span class="built_in">require</span>(<span class="string">'tpl/index.html'</span>);
+
+<span class="comment">// préchargement des tags ici</span>
+<span class="built_in">require</span>(<span class="string">'components/examples/jumbotron.tag'</span>);
+
+<span class="built_in">module</span>.exports = View.extend({
+});
+</code></pre>
+<h2 id="C9v_E9nements"><a href="#C9v_E9nements" class="headerlink" title="Événements"></a>Événements</h2><h3 id="De_Vue"><a href="#De_Vue" class="headerlink" title="De Vue"></a>De Vue</h3><p>Les événements de vue sont renseignés dans les vues via l’attribut <code>events</code>. Ces événements sont des événements jQuery sur le <code>$el</code> de la vue uniquement (et de ses sous vues).</p>
+<p>L’objet <em>events</em> se sépare en deux parties :</p>
+<ul>
+<li><strong>Les Fields</strong> : Ce sont les événements jQuery</li>
+<li><strong>Les valeurs</strong> : Ce sont les noms des fonctions appelées et qui douvent <strong>impérativement</strong> être renseigner et exister dans votre vue.</li>
+</ul>
+<p>Le contexte des fonctions appelées par <em>events</em> (la variable <code>this</code>), correspond à votre vue.</p>
+<blockquote>
+<p>Events de vue</p>
+</blockquote>
+<pre><code class="javascript highlight">{
+  events : {
+    <span class="string">'submit form'</span>  : <span class="string">'validAction'</span>,
+    <span class="string">'click a#toto'</span> : <span class="string">'redirectAction'</span>
+  },
+  validAction : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
+    <span class="comment">// action du formulaire</span>
+  },
+  redirectAction : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
+    <span class="comment">// action de redirection</span>
+  }
+}
+</code></pre>
+<h3 id="Globaux"><a href="#Globaux" class="headerlink" title="Globaux"></a>Globaux</h3><p>Les événements globaux permettent d’effectuer des actions entre vos différentes vues. Par exemple, si une de vos vue finit l’envoie d’un formulaire, elle peut déclencher l’événement d’envoie avec la réponse en paramètre.</p>
+<p>Toutes les vues qui écoutent sur ce même événement vont exécuter <em>en même temps</em> la fonction rattachée.</p>
+<p>La liste des événements globaux sur lequel une vue écoute est renseignée dans l’attribut <code>globalEvents</code> et se présente comme les événements de vue :</p>
+<ul>
+<li><strong>Les Fields</strong> : Ce sont les noms des événements globaux.</li>
+<li><strong>Les valeurs</strong> : Ce sont les noms des fonctions appelées et qui douvent <strong>impérativement</strong> être renseigner et exister dans votre vue.</li>
+</ul>
+<p>Le contexte des fonctions appelées par <em>events</em> (la variable <code>this</code>), correspond à votre vue.</p>
+<blockquote>
+<p>Events globaux :</p>
+</blockquote>
+<pre><code class="javascript highlight">{
+  globalEvents : {
+      <span class="string">'submitForm'</span> : <span class="string">'submitAction'</span>,
+      <span class="string">'addElement'</span> : <span class="string">'addElementAction'</span>
+  },
+  submitAction : <span class="function"><span class="keyword">function</span> <span class="title">submitAction</span>(<span class="params"></span>) </span>{
+      <span class="built_in">console</span>.log(<span class="string">'submitAction'</span>);
+  },
+  addElementAction : <span class="function"><span class="keyword">function</span> <span class="title">addElementAction</span>(<span class="params">element</span>) </span>{
+    <span class="built_in">console</span>.log(element);
+  }
+}
+</code></pre>
+<blockquote>
+<p>Pour envoyer un événement global, vous devrez faire comme ceci :</p>
+</blockquote>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.global.trigger(<span class="string">'submitForm'</span>);
+<span class="keyword">this</span>.global.trigger(<span class="string">'addElement'</span> {
+  name : <span class="string">'foo'</span>
+});
+</code></pre>
+<h3 id="Tag_-_26gt_3B_View"><a href="#Tag_-_26gt_3B_View" class="headerlink" title="Tag -&gt; View"></a>Tag -&gt; View</h3><p>Nos vues Backbone peuvent directement capturer des événements Riot (si bien entendu ils en déclenchent) simplement de la même façon que les événements de vue et les événements globaux. Bien entendu, vous ne pouvez écouter sur une vue que les événements des tags qu’elle contient.</p>
+<p>La liste des événements de Tags de vue est renseignée dans l’attribut <code>tagEvents</code> et elle est séparée en deux niveaux. Au premier niveau on trouve un objet avec pour chaque field le nom du tag et, pour chaque tag, les événements correspondant à <code>evenement + selecteur CSS</code> :</p>
+<blockquote>
+<p>Events de tags :</p>
+</blockquote>
+<pre><code class="javascript highlight">{
+  tagEvents : {
+    jumbotron : {
+      <span class="string">'click #testId'</span> : <span class="string">'clickAction'</span>
+    }
+  },
+  clickAction : <span class="function"><span class="keyword">function</span> <span class="title">clickAction</span>(<span class="params">tag</span>) </span>{
+      tag.unmount();
+      <span class="built_in">console</span>.log(<span class="keyword">this</span>);
+  },
+}
+</code></pre>
+<p>Dans l’exemple ci dessus, lorsque l’on reçois l’événement <em>click</em> d’un tag <em>jumbotron</em> ayant l’ID <em>testId</em>, alors on effectue l’action <em>clickAction</em>.</p>
+<p>Les callback de ces événements ont au moins un paramètre qui correspond à l’objet du Tag concerné par l’événement. Le contexte des fonctions (la variable <code>this</code>), correspond à votre vue.</p>
+<h2 id="Stickit"><a href="#Stickit" class="headerlink" title="Stickit"></a>Stickit</h2><p>Nos vues backbone étendent toutes la bibliothèque Stickit développé par le New York Times. Sa documentation complète afin de rentrer plus en détail dans son fonctionnement se <a href="https://nytimes.github.io/backbone.stickit">trouve ici</a></p>
+<h3 id="Instanciation"><a href="#Instanciation" class="headerlink" title="Instanciation"></a>Instanciation</h3><p>Pour utiliser Stickit, vous avez plusieurs choix possibles entre : Le renseignement directement dans les propriétés de la vue ou en appel direct dans le code comme expliqué dans leur documentation.</p>
+<p><strong>À savoir</strong> : Dans nos vues, vous n’aurrez pas besoin de faire l’appel à la fonction <code>this.stickit()</code> à la fin de votre <em>render</em>. Il est fait automatiquement par nos vues juste après l’instanciation des tags Riot. De plus, vous n’êtes pas limités, dans les propriétés de la vue, au binding du model principal.</p>
+<h3 id="Mod_E8le_Principal"><a href="#Mod_E8le_Principal" class="headerlink" title="Modèle Principal"></a>Modèle Principal</h3><blockquote>
+<p>Pour le modèle principal (renseigné par <code>this.model</code>), les Bindings sont renseignés dans le field <code>bindings</code> comme ceci :</p>
+</blockquote>
+<pre><code class="javascript highlight">{
+    bindings : {
+        <span class="string">'#author'</span>: <span class="string">'author'</span>
+    }
+}
+</code></pre>
+<p>Ici, si le field <code>authors</code> de mon modèle est modifié, alors l’élément de ma vue avec l’identifiant <code>#authors</code> est mis à jour avec la nouvelle valeur.</p>
+<h3 id="Mod_E8les_compl_E9mentaires"><a href="#Mod_E8les_compl_E9mentaires" class="headerlink" title="Modèles complémentaires"></a>Modèles complémentaires</h3><blockquote>
+<p>Pour les modèles complémentaires (renseignés dans <code>this.models</code>), les Bindings sont renseignés dans le field <code>&lt;nomdumodel&gt;Bindings</code>. Ce qui nous donne :</p>
+</blockquote>
+<pre><code class="javascript highlight">{
+    userBindings : {
+        <span class="string">'#name'</span> : <span class="string">'name'</span>
+    },
+    moduleBindings : {
+        <span class="string">'#lock'</span> : <span class="string">'islocked'</span>
+    }
+    initialize : <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>{
+        <span class="keyword">this</span>.models.user    = options.user;
+        <span class="keyword">this</span>.models.module  = options.module;
+    }
+}
+</code></pre>
+<p>Ici, les bindins du modèle <code>user</code> sont renseignés dans le field <code>userBindings</code> et les bindings du modèle <code>module</code> sont renseignés dans le field <code>moduleBindings</code>.</p>
+<h2 id="Render"><a href="#Render" class="headerlink" title="Render"></a>Render</h2><blockquote>
+<p>appel pour l’affichage</p>
+</blockquote>
+<pre><code class="javascript highlight">$(<span class="string">'body'</span>).html(view.render().$el);
+</code></pre>
+<blockquote>
+<p>déclaration de la fonction</p>
+</blockquote>
+<pre><code class="javascript highlight">render : <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>{
+    <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(tpl, {
+        model : <span class="keyword">this</span>.model
+    }));
+
+    done();
+}
+</code></pre>
+<p>La fonction render renseignée dans la vue est maintenant asynchrone. En effet, au lieu de faire un <code>return this</code>, vous devrez exécuter le callback passé en paramètre.</p>
+<p><strong>Par contre</strong>, quand vous appellerez la méthode <code>render</code> dans un router ou pour l’affichage d’une sous vue, rien ne change. En effet lors de l’appel, plusieurs fonctions sont automatiquement appelées :</p>
+<ul>
+<li><strong>waitingRender</strong> : utilisée pour afficher le contenu de la vue pendant le chargement des données requises</li>
+<li><strong>beforeRender</strong> : utilisée pour faire des traitements avant le véritable render (chargement de données externes, …)</li>
+<li><strong>render</strong> : exécute la fonction render que vous avez défini dans votre vue</li>
+<li><strong>afterRender</strong> : utilisé pour faire des traitements après le render de la vue (chargement de scripts javascript, …)</li>
+</ul>
+<p>Et pour finir, chargement de backbone.stickit sur tous les models de la vue, montage des tags de base Riot et lancement de l’événement <code>DOMContentLoaded</code></p>
+
+          
+              <h1 id="Riot"><a href="#Riot" class="headerlink" title="Riot"></a>Riot</h1><p>Riot.JS est un petit framework permettantde crér des tags à la manière de Reat.JS afin de réutiliser très facilement des composants complexes.</p>
+<p>La documentation complète (et en français) <a href="http://riotjs.com/fr/api/">se trouve ici</a></p>
+<h2 id="Organisation"><a href="#Organisation" class="headerlink" title="Organisation"></a>Organisation</h2><p>Les tags de Riot sont rangés dans le répertoire <em>js/components</em> et sont rangés par rapport aux modules les utilisant (ou <em>common</em> pour les composants communs).</p>
+<h2 id="Structuration"><a href="#Structuration" class="headerlink" title="Structuration"></a>Structuration</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">tag-name</span>&gt;</span>
+  <span class="comment">&lt;!-- contenu HTML du tag --&gt;</span>
+
+  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">
+    <span class="comment">// script rattaché aux tags</span>
+  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">tag-name</span>&gt;</span>
+</code></pre>
+<p>Les tags sont définis dans le noeud <code>tag-name</code> qui sera à remplacer par le nom de votre tag (par exemble : <code>colorpicker</code>, <code>datepicker</code>, …) et il est divisé à l’intérieur en deux grandes parties :</p>
+<ul>
+<li><strong>Le HTML</strong> : C’est en réalité le <em>template*</em> du contenu de votre tag. Vouis pouvez très bien appeler un sous tag à cet endroit là comme vous le feriez ailleurs.</li>
+<li><strong>Le Javascript</strong> : C’est toute la partie traitement de votre tag. C’est aussi ici que vous pourrez faire les appels à <code>require()</code> pour charger les dépendances.</li>
+</ul>
+<p><strong>Attention</strong> : Les alias de Browserify pour le require ne marchent pas du tout ici.</p>
+
+          
+              <h1 id="Composants_de_base"><a href="#Composants_de_base" class="headerlink" title="Composants de base"></a>Composants de base</h1><p>Vous trouverez ici la liste complète ainsi que le fonctionnement de tous les composants de base RiotJS.</p>
+<h2 id="Chips"><a href="#Chips" class="headerlink" title="Chips"></a>Chips</h2><p>Génère un composant chips définit par materialize. Est aussi utilisé si vous voulez créer des tags.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">chips</span> <span class="attr">content</span>=<span class="string">"Chip d'exemple"</span>&gt;</span><span class="tag">&lt;/<span class="name">chips</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'chips'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>Contenu de la chip. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>-</td>
+</tr>
+<tr>
+<td>img</td>
+<td>url d’image de la chip affiché en cerclé à gauche</td>
+<td>-</td>
+</tr>
+<tr>
+<td>close</td>
+<td>Si présent, affiche une croix à droite pour pouvoir supprimer la chip</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>close</td>
+<td>Appelé lors du clic sur le bouton close de la chip</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Empty"><a href="#Empty" class="headerlink" title="Empty"></a>Empty</h2><p>Génère une empty view avec icône + texte. Utilisé pour les vues liste si aucun élément disponible</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">empty</span> <span class="attr">material</span>=<span class="string">"true"</span> <span class="attr">data-icon</span>=<span class="string">"list"</span> <span class="attr">data-message</span>=<span class="string">"tasksEmpty"</span>&gt;</span><span class="tag">&lt;/<span class="name">empty</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'empty'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>material</td>
+<td>Si renseigné, on passe par les icônes material</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dataIcon</td>
+<td>nom de l’icône (ou sa classe si non material)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dataMessage</td>
+<td>Message affiché. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Ce composant est monté automatiquement si vous étendez une vue basée sur celle de base fournit par cette library.</aside>
+
+<h2 id="Raw"><a href="#Raw" class="headerlink" title="Raw"></a>Raw</h2><p>Génère une vue contenant du code HTML. Ce composant est surtout utilisé pour gérer le rendu html d’une variable dans un autre composant RiotJS personnalisé.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">raw</span> <span class="attr">content</span>=<span class="string">"contenuHtmlouPas"</span> /&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'raw'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>Contenu de l’objet Raw. Si il contient de l’HTML, sera affiché avec le bon formattage.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="I18n"><a href="#I18n" class="headerlink" title="I18n"></a>I18n</h2><p>Permet de traduire un texte, mot, phrase dans la langue courante à partir d’un mot clé. Le système de traduction passe par la classe i18n du projet utilisant en arrière plan la library globalize.</p>
+<p>À noter que le tag se trouve moins personnalisable que la fonction de traduction fournie par la classe <code>i18n</code>. Si vous voulez plus de choix, veuillez ne pas utiliser le tag.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">i18n</span> <span class="attr">word</span>=<span class="string">"welcome"</span> /&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'i18n'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>word</td>
+<td>mot clé à traduire par rapport à vos fichiers json de globalize</td>
+<td>-</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>Permet de traduire dans une autre locale que la locale courante</td>
+<td>-</td>
+</tr>
+<tr>
+<td>var-<nom variable=""></nom></td>
+<td>Variables à insérer dans la traduction comme par exemple une quantité, un nom, une heure, …</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Pour les variables, vous devrez les passer comme ceci si par exemple votre phrase à traduire a besoin de la variable <code>quantity</code> :</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">i18n</span> <span class="attr">word</span>=<span class="string">"cartItem"</span> <span class="attr">var-quantity</span>=<span class="string">"2"</span> /&gt;</span>
+</code></pre>
+<aside class="notice">Ce composant est monté automatiquement si vous étendez une vue basée sur celle de base fournit par cette library.</aside>
+          
+              <h1 id="Composants_loaders"><a href="#Composants_loaders" class="headerlink" title="Composants loaders"></a>Composants loaders</h1><p>Les composants loaders permettent d’afficher un loader à l’écran. Barre de progression, spinner, barre de loading indéterminé, …</p>
+<h2 id="Spinner"><a href="#Spinner" class="headerlink" title="Spinner"></a>Spinner</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">spinner</span>
+    <span class="attr">size</span>=<span class="string">"button"</span>
+    <span class="attr">color</span>=<span class="string">"spinner-grey-only"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">spinner</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'spinner'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>Taille du spinner parmi <code>button</code>, <code>small</code> et <code>big</code></td>
+<td>small</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Couleur du spinner parmi <code>spinner-green-only</code>, <code>spinner-red-only</code>, <code>spinner-blue-only</code>, <code>spinner-yellow-only</code> et <code>spinner-grey-only</code></td>
+<td>spinner-green-only</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Progress"><a href="#Progress" class="headerlink" title="Progress"></a>Progress</h2><p>Génère une progressBar faisant, selon les cas, soit une progression standard, soit une progression indéterminée.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-progress</span>&gt;</span><span class="tag">&lt;/<span class="name">material-progress</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-progress'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isdeterminate</td>
+<td>Si présent, alors la progressBar est de type déterminé</td>
+<td>-</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>Permet de dire à combien de % se situe la progressBar. Ne marche que si isdeterminate est renseigné</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Voici les événements que vous pouvez lancer depuis le javascript gràce à la fonction <code>trigger</code> :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>progress</code></td>
+<td>Permet de changer le pourcentage de la progressBar</td>
+</tr>
+</tbody>
+</table>
+
+          
+              <h1 id="Composants_formulaire"><a href="#Composants_formulaire" class="headerlink" title="Composants formulaire"></a>Composants formulaire</h1><p>Tous les composants de formulaires utilisent l’apparence Material UI définie par <em>materialize-css</em>.<br>De base, si vous utilisez ces composants Riot dans une vue Backbone étendant <code>backbone-goomeo/js/libs/backbone/views/base.form</code>, alors vous aurez automatiquement de chargés les composants <code>material-input</code> et <code>material-textarea</code></p>
+<aside class="notice">La plupart des composants de formulaire ont des paramètres supplémentaires afin de permettre leur validation par la bibliothèque <em>ParsleyJS</em>.<br>Pour cela, vous devrez juste ajouter en lieu et place de <code>data-parsley-&lt;suite&gt;</code> les attribut <code>parsley-&lt;suite&gt;</code> sur les composants concernés.</aside>
+
+<aside class="notice">Pour les paramètres composés avec un <code>-</code>, si vous passez par le javascript, vous devrez le convertir en camelcase. Exemple : pour <code>data-id</code>, passez <code>dataId</code>.</aside>
+
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-input</span>
+    <span class="attr">col</span>=<span class="string">"s6"</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-input</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-input'</span>
+});
+</code></pre>
+<p>Input de base généré avec le label associé.</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Type de l’input</td>
+<td>text</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>nom de l’icon du material design afin de le rajouté en préfixe</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>is-active</td>
+<td>ajoute la classe <code>active</code> au label associé</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>name</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Textarea"><a href="#Textarea" class="headerlink" title="Textarea"></a>Textarea</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-textarea</span>
+    <span class="attr">col</span>=<span class="string">"s6"</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-textarea</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-textarea'</span>
+});
+</code></pre>
+<p>Textarea de base généré avec le label associé.</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>nom de l’icon du material design afin de le rajouté en préfixe</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>is-active</td>
+<td>ajoute la classe <code>active</code> au label associé</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>name</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Checkbox"><a href="#Checkbox" class="headerlink" title="Checkbox"></a>Checkbox</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-checkbox</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    <span class="attr">label</span>=<span class="string">"Choix 1"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-checkbox</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-checkbox'</span>
+});
+</code></pre>
+<p>Checkbox de base généré avec le label associé.</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>-</td>
+</tr>
+<tr>
+<td>isfilled</td>
+<td>Si présent rajoute la classe <code>filled-in</code> à la checkbox</td>
+<td>-</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>Si présent, rajoute l’attribut <code>checked</code> à la checkbox</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Radio"><a href="#Radio" class="headerlink" title="Radio"></a>Radio</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-radio</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    <span class="attr">label</span>=<span class="string">"Choix 1"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-radio</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-radio'</span>
+});
+</code></pre>
+<p>Radio de base généré avec le label associé.</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>-</td>
+</tr>
+<tr>
+<td>isgap</td>
+<td>Si présent rajoute la classe <code>with-gap</code> à la radio</td>
+<td>-</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>Si présent, rajoute l’attribut <code>checked</code> à la radio</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-select</span>
+    <span class="attr">col</span>=<span class="string">"s6"</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    <span class="attr">default</span>=<span class="string">"Choose item please"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-select</span>&gt;</span>
+</code></pre>
+<pre><code class="js highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-select'</span>,
+    options : {
+        items : [
+            { value : <span class="number">1</span>, name : <span class="string">"Choice One"</span> },
+            { value : <span class="number">2</span>, name : <span class="string">"Choice Two"</span> }
+        ]
+    }
+});
+</code></pre>
+<p>Select de base avec les éléments passés en Javascript</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>Si présent, le select est un multiselect</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>choice</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Option par défaut des selects affichée en première position sans aucune valeur associée</td>
+<td>-</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+<tr>
+<td>items</td>
+<td>Tableau d’éléments</td>
+<td>[ ]</td>
+</tr>
+<tr>
+<td>items[ ].name</td>
+<td>libellé d’un élément</td>
+<td>-</td>
+</tr>
+<tr>
+<td>items[ ].value</td>
+<td>valeur d’un élément</td>
+<td>-</td>
+</tr>
+<tr>
+<td>items[ ].selected</td>
+<td>Si présent, alors lélément est sélectionné</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-switch</span>
+    <span class="attr">data-id</span>=<span class="string">"name"</span>
+    <span class="attr">data-name</span>=<span class="string">"name"</span>
+    <span class="attr">on</span>=<span class="string">"Label de droite"</span>
+    <span class="attr">off</span>=<span class="string">"Label de gauche"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-checkbox</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-switch'</span>
+});
+</code></pre>
+<p>Switch de base.</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>Si présent, rajoute l’attribut <code>checked</code> à l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>on</td>
+<td>libellé du label positionné à droite (switch checked). Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>on</td>
+</tr>
+<tr>
+<td>off</td>
+<td>libellé du label positionné à gauche (switch non checked). Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>off</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Colorpicker"><a href="#Colorpicker" class="headerlink" title="Colorpicker"></a>Colorpicker</h2><p>Génère un colorpicker avec le label de base. Pour le colorpicker, on utilise la library jquery <em>Spectrum</em> qui permet d’avoir un colorpicker complet et léger.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">colorpicker</span>
+    <span class="attr">col</span>=<span class="string">"s6"</span>
+    <span class="attr">data-id</span>=<span class="string">"color"</span>
+    <span class="attr">data-name</span>=<span class="string">"color"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">colorpicker</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'colorpicker'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>color</td>
+<td>couleur renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>color</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+<tr>
+<td>spectrum</td>
+<td>Configuration spectrum. Merci de voir la <a href="https://bgrins.github.io/spectrum/">documentation de Spectrum</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<p>Voici la configuration de base de spectrum : </p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>showInitial</td>
+<td>Permet d’afficher la couleur de base en entrant dans le colorpicker et la nouvelle couleur</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showInput</td>
+<td>Affiche l’input de couleur afin de rentrer le code rgba, hex, hex8, …</td>
+<td>true</td>
+</tr>
+<tr>
+<td>preferredFormat</td>
+<td>Format d’affichage de la réponse dans l’input</td>
+<td>hex</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change.spectrum</code></td>
+<td>appelé quand la couleur de spectrum a été validée</td>
+</tr>
+<tr>
+<td><code>show.spectrum</code></td>
+<td>appelé lors de l’affichage du composant spectrum</td>
+</tr>
+<tr>
+<td><code>hide.spectrum</code></td>
+<td>appelé lors du masquage du composant spectrum</td>
+</tr>
+<tr>
+<td><code>beforeShow.spectrum</code></td>
+<td>appelé après l’affichage de spectrum</td>
+</tr>
+<tr>
+<td><code>dragstart.spectrum</code></td>
+<td>appelé quand on bouge le curseur de couleur dans spectrum</td>
+</tr>
+<tr>
+<td><code>dragstop.spectrum</code></td>
+<td>appelé quand on relache le curseur de couleur dans spectrum</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Si vous activez l’alpha, la couleur est affichée en utilisant le format <em>hex8</em> en lieu et place de <em>hex</em>.</aside>
+
+
+<h2 id="Datepicker"><a href="#Datepicker" class="headerlink" title="Datepicker"></a>Datepicker</h2><p>Génère un datepicker avec le label de base. Pour le datepicker, on utilise la library jquery <em>pickadate</em> modifiée par l’équire de <em>materialize-css</em>.<br>Cette library permet d’avoir un datepicker entièrement configurable.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-datepicker</span>
+    <span class="attr">col</span>=<span class="string">"s6"</span>
+    <span class="attr">data-id</span>=<span class="string">"date"</span>
+    <span class="attr">data-name</span>=<span class="string">"date"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    <span class="attr">icon</span>=<span class="string">"event"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-datepicker</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-datepicker'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>date renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>date</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>nom de l’icon du material design afin de le rajouté en préfixe</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>datepicker</td>
+<td>Configuration du datepicker. Merci de voir la <a href="http://amsul.ca/pickadate.js/">documentation de pickadate</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<p>Voici la configuration de base de datepicker :</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>container</td>
+<td>Emplacement de la fenêtre du datepicker dans le DOM html. Doit être un sélecteur CSS valide.</td>
+<td>body</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>datepicker:open</code></td>
+<td>Appelé lors de l’ouverture du datepicker</td>
+</tr>
+<tr>
+<td><code>datepicker:close</code></td>
+<td>Appelé lors de la fermeture du datepicker</td>
+</tr>
+<tr>
+<td><code>datepicker:render</code></td>
+<td>Appelé lors de l’affichage du datepicker</td>
+</tr>
+<tr>
+<td><code>datepicker:start</code></td>
+<td>Appelé lors de l’initialisation du datepicker</td>
+</tr>
+<tr>
+<td><code>datepicker:stop</code></td>
+<td>Appelé lors de la destruction du datepicker</td>
+</tr>
+<tr>
+<td><code>datepicker:set</code></td>
+<td>Appelé lors du passage d’une valeur</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Pour le moment ce n’est pas encore fait, mais les noms des mois, jours, boutons seront automatiquement traduit selon la locale de l’application.</aside>
+
+<h2 id="Slider"><a href="#Slider" class="headerlink" title="Slider"></a>Slider</h2><p>Génère un slider basé sur l’input HTML5 range.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-slider</span>
+    <span class="attr">data-id</span>=<span class="string">"date"</span>
+    <span class="attr">data-name</span>=<span class="string">"date"</span>
+    <span class="attr">parsley-required</span>=<span class="string">"true"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-slider</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-slider'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>date renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné, disable l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>min</td>
+<td>Valeur minimale du slider</td>
+<td>0</td>
+</tr>
+<tr>
+<td>max</td>
+<td>Valeur maximale du slider</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<h2 id="NoUiSlider"><a href="#NoUiSlider" class="headerlink" title="NoUiSlider"></a>NoUiSlider</h2><p>Génère un slider plus complet en utilisant la library <em>noUiSlider</em>.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-nouislider</span>&gt;</span><span class="tag">&lt;/<span class="name">material-nouislider</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-nouislider'</span>,
+    options : {
+        slider : {
+            start: [<span class="number">0</span>, <span class="number">100</span>],
+            connect: <span class="literal">true</span>,
+            step: <span class="number">1</span>,
+            range: {
+                <span class="string">'min'</span>: <span class="number">0</span>,
+                <span class="string">'max'</span>: <span class="number">100</span>
+            }
+        }
+    }
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slider</td>
+<td>Options de noUiSlider. Merci de voir la <a href="http://refreshless.com/nouislider">documentation de nouislider</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la configuration de base de nouislider :</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>Valeurs de départ du slider</td>
+<td>[0, 100]</td>
+</tr>
+<tr>
+<td>step</td>
+<td>De combien en combien bouge la valeur du slide</td>
+<td>1</td>
+</tr>
+<tr>
+<td>range</td>
+<td>Valeur min/max du slider</td>
+<td>{ min : 0, max : 100 }</td>
+</tr>
+<tr>
+<td>format</td>
+<td>Transformation de la valeur du slider. Par défaut, on supprime les décipales des valeurs du slider</td>
+<td>{ to : function, from : function }</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nouislider:update</code></td>
+<td>Appelée quand la valeur du slider change. Retourne un tableau des valeurs (left et right) ainsi que le curseur qui bouge (si c’est celui de gauche ou droite).</td>
+</tr>
+<tr>
+<td><code>nouislider:slide</code></td>
+<td>Appelée quand on fait bouger le slider</td>
+</tr>
+<tr>
+<td><code>nouislider:set</code></td>
+<td>Appelée quand on modifie une valeur manuellement du slider via la méthode <code>set()</code></td>
+</tr>
+<tr>
+<td><code>nouislider:change</code></td>
+<td>Appelé quand la valeur du slide a changée</td>
+</tr>
+<tr>
+<td><code>nouislider:start</code></td>
+<td>Appelée lors de la construction du slider</td>
+</tr>
+<tr>
+<td><code>nouislider:end</code></td>
+<td>Appelée lors de la destruction du slider</td>
+</tr>
+<tr>
+<td><code>nouislider:hover</code></td>
+<td>Appelé lors du survol de la souris. Passe en paramètre la valeur du slider à cet endroit.</td>
+</tr>
+</tbody>
+</table>
+<p>Voici les fonctions accéssibles depuis le tag côté javascript :</p>
+<table>
+<thead>
+<tr>
+<th>fonction</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get</code></td>
+<td>Permet de récupérer la valeur du slider.  Merci de voir la <a href="http://refreshless.com/nouislider">documentation de nouislider</a></td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>Permet de modifier la valeur du slider. Merci de voir la <a href="http://refreshless.com/nouislider">documentation de nouislider</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Pending"><a href="#Pending" class="headerlink" title="Pending"></a>Pending</h2><p>Génère un bouton gérant un état de loading dans le style de <em>Ladda-Button</em>. Ce composant est utilisé pour mettre en attente l’utilisateur lors de la validation du formulaire, …</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">btn-pending</span> <span class="attr">data-id</span>=<span class="string">"validate"</span>&gt;</span><span class="tag">&lt;/<span class="name">btn-pending</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'btn-pending'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>Couleur du bouton d’après celles de materialoze-css</td>
+<td>green</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Type de bouton</td>
+<td>submit</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>ID du bouton</td>
+<td>submit</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>validate</td>
+</tr>
+</tbody>
+</table>
+<p>Voici les événements que vous pouvez lancer depuis le javascript gràce à la fonction <code>trigger</code> :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Met le bouton dans l’état de loading. Dans ce cas le bouton est disabled et n’est plus clickable</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>Met le bouton dans son fonctionnement normal. Le bouton est clickable.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Rating"><a href="#Rating" class="headerlink" title="Rating"></a>Rating</h2><p>Génère un élément rating permettant de donner son avis entre une et x étoiles.</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">rating</span>&gt;</span><span class="tag">&lt;/<span class="name">rating</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'rating'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>num</td>
+<td>Nombre d’étoiles voulues</td>
+<td>5</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>rating</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+<tr>
+<td>no-star-label</td>
+<td>Si renseigné, n’affiche pas le numéro des étoiles</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td>Appelée lorsque vous changez la valeur du rating. Retourne la nouvelle valeur</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Survey"><a href="#Survey" class="headerlink" title="Survey"></a>Survey</h2><p>Génère un élément survey permettant de donner sune note de 1 à 10. 1 étant la pire note et 10 la mieux .</p>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">survey</span>&gt;</span><span class="tag">&lt;/<span class="name">survey</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'survey'</span>
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>rating</td>
+</tr>
+<tr>
+<td>no-label</td>
+<td>Si renseigné, l’input n’aura pas de label</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<p>Voici la liste des événements que vous pouvez capturer dans votre vue :</p>
+<table>
+<thead>
+<tr>
+<th>événement</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td>Appelée lorsque vous changez la valeur du rating. Retourne la nouvelle valeur</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Lang_Input"><a href="#Lang_Input" class="headerlink" title="Lang Input"></a>Lang Input</h2><p>Génère plusieurs input en fonction des langues passées en paramètre. Ces input permettent de remplir un champ traduit au sein de votre projet.</p>
+<blockquote>
+<p>Format du champ traduit</p>
+</blockquote>
+<pre><code class="json highlight">{
+  "<span class="attr">fr</span>" : <span class="string">"Titre francais"</span>,
+  "<span class="attr">en</span>" : <span class="string">"titre en"</span>
+}
+</code></pre>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-input-lang</span>
+    <span class="attr">id</span>=<span class="string">"name"</span>
+    <span class="attr">name</span>=<span class="string">"name"</span>
+    <span class="attr">col</span>=<span class="string">"m6"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-input-lang</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-input-lang'</span>,
+    options : {
+        langs : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
+    }
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>name</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné alors tous les input du composant sont désactivés.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>is-active</td>
+<td>Si renseigné, les label ont la classe <code>active</code> de renseigné.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+
+<h2 id="Lang_Textarea"><a href="#Lang_Textarea" class="headerlink" title="Lang Textarea"></a>Lang Textarea</h2><p>Génère plusieurs textarea en fonction des langues passées en paramètre. Ces textarea permettent de remplir un champ traduit au sein de votre projet.</p>
+<blockquote>
+<p>Format du champ traduit</p>
+</blockquote>
+<pre><code class="json highlight">{
+  "<span class="attr">fr</span>" : <span class="string">"Titre francais"</span>,
+  "<span class="attr">en</span>" : <span class="string">"titre en"</span>
+}
+</code></pre>
+<pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-textarea-lang</span>
+    <span class="attr">id</span>=<span class="string">"name"</span>
+    <span class="attr">name</span>=<span class="string">"name"</span>
+    <span class="attr">col</span>=<span class="string">"m6"</span>
+    &gt;</span><span class="tag">&lt;/<span class="name">material-textarea-lang</span>&gt;</span>
+</code></pre>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
+    tag : <span class="string">'material-textarea-lang'</span>,
+    options : {
+        langs : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
+    }
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col</td>
+<td>Si renseigné, permet de définir la colonne associée au grid système</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-id</td>
+<td>Identifiant de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>data-name</td>
+<td>Nom de l’input</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>valeur renseignée de base</td>
+<td>-</td>
+</tr>
+<tr>
+<td>label</td>
+<td>libellé du label. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>name</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Si renseigné alors tous les input du composant sont désactivés.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>is-active</td>
+<td>Si renseigné, les label ont la classe <code>active</code> de renseigné.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
+          
+              <h1 id="Modals"><a href="#Modals" class="headerlink" title="Modals"></a>Modals</h1><p>Voici la collection de toutes les modals disponibles au sein de la library.</p>
+<p>La plupart des modals sont des vues Backbone afin de simplifier la gestion des événements et la personnalisation de chacune d’elles.</p>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><p>Modale utilisée pour la suppression d’éléments. Vous pouvez choisir entre une suppression 1 et 2 facteurs. La suppression à 2 facteurs demandant de remplir un input avant suppression.</p>
+<pre><code class="javascript highlight"><span class="keyword">var</span> deleteModal = <span class="built_in">require</span>(<span class="string">'backbone-goomeo/js/modules/common/modals/delete'</span>);
+
+<span class="comment">// ...</span>
+<span class="keyword">this</span>.modal.open({
+  view : <span class="keyword">this</span>.createSubView(<span class="string">'modal:delete'</span>, deleteModal, {
+      hasDoubleVerif      : <span class="literal">true</span>,
+      validateCallback    : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+          <span class="keyword">this</span>.model.destroy();
+          <span class="keyword">this</span>.toasts.success({ message : <span class="string">'Tâche supprimée avec succès.'</span> });
+          <span class="keyword">this</span>.dispose();
+      }.bind(<span class="keyword">this</span>)
+  })
+});
+<span class="comment">// ...</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>Message du dialog. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>deleteMessage</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Titre du dialog. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>deleteTitle</td>
+</tr>
+<tr>
+<td>accept</td>
+<td>String</td>
+<td>Texte du bouton de validation. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>cancel</td>
+<td>String</td>
+<td>Texte du bouton d’annulation. Si le libellé est un code de traduction, il sera automatiquement traduit</td>
+<td>cancel</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>String</td>
+<td>Classe d’îcone pour l’afficher à gauche du texte de la modal</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>labelDoubleVerif</td>
+<td>String</td>
+<td>Label utilisé sir la bouble vérification est activée</td>
+<td>deleteDoubleVerif</td>
+</tr>
+<tr>
+<td>hasDoubleVerif</td>
+<td>Boolean</td>
+<td>True : Double vérification activée. Il y a un input avec KO. Pour que la modale soit confirmée il faut le remplacer par OK.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>validateCallback</td>
+<td>Function</td>
+<td>Fonction appelée lors de la confirmation de la modale</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cancelCallback</td>
+<td>Function</td>
+<td>Fonction appelée lors de l’annulation de la modale</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+          
+              <h1 id="API_-_EventManager"><a href="#API_-_EventManager" class="headerlink" title="API - EventManager"></a>API - EventManager</h1><p>L’eventManager est l’objet de centralisation de tous les événements globaux. Cette classe étend uniquement Backbone.Events.</p>
+
+          
+              <h1 id="API_-_ViewManager"><a href="#API_-_ViewManager" class="headerlink" title="API - ViewManager"></a>API - ViewManager</h1><p>Le view Manager est la classe utilisée pour gérer la création de nouvelles vues et la suppression des vues existantes.</p>
+<h2 id="create_28name_2C_view_2C__5Boptions_5D_29"><a href="#create_28name_2C_view_2C__5Boptions_5D_29" class="headerlink" title="create(name, view, [options])"></a>create(name, view, [options])</h2><p>Créer une nouvelle vue Backbone et l’ajoute à la collection des vues.</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Nom de la vue. Fait office d’ID et doit être unique</td>
+<td>-</td>
+</tr>
+<tr>
+<td>view</td>
+<td>Vue Backbone non instanciée</td>
+<td>-</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Options à passer à la vue lors de l’instanciation. Ce sont ceux que vous retrouverez dans la fonction <code>initialize</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning"><strong>Attention</strong> : Si vous créez une vue avec un nom utilisé par une autre, alors l’ancienne vue est purement et simplement supprimée.</aside>
+
+<h2 id="get_28name_29"><a href="#get_28name_29" class="headerlink" title="get(name)"></a>get(name)</h2><p>Récupère une vue à partir de son nom. Si la vue n’existe pas, retourne <code>false</code></p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>le nom de la vue</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="disposeAll_28_5Bwithout_5D_29"><a href="#disposeAll_28_5Bwithout_5D_29" class="headerlink" title="disposeAll([without])"></a>disposeAll([without])</h2><p>Supprime toutes les vues sauf celles passées en paramètre</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>without</td>
+<td>Tableau de noms de vues à ne pas supprimer</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dispose_28name_29"><a href="#dispose_28name_29" class="headerlink" title="dispose(name)"></a>dispose(name)</h2><p>upprime la vue passée en paramètre, ses événements ainsi que toutes ses sous-vues et leurs événements</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>le nom de la vue</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exist_28name_29"><a href="#exist_28name_29" class="headerlink" title="exist(name)"></a>exist(name)</h2><p>Test si la vue passé en paramètre existe.</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>le nom de la vue</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+          
+              <h1 id="API_-_PanelManager"><a href="#API_-_PanelManager" class="headerlink" title="API - PanelManager"></a>API - PanelManager</h1><p>Le panel manager gère la gestion du panneau latéral servant à contenir un formulaire ou des informations complémentaires.</p>
+<p>Ce pannel se situe du côté droite de l’écran et, selon la résulution de lécran et la taille désirée, vous pouvez avoir un panneau couvrant entre 30 et 100% de l’écran.</p>
+<h2 id="Tailles_disponibles"><a href="#Tailles_disponibles" class="headerlink" title="Tailles disponibles"></a>Tailles disponibles</h2><p>Voici les classes disponibles ainsi que la taille qu’elles représentent :</p>
+<table>
+<thead>
+<tr>
+<th>classe</th>
+<th>taille</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>low</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>low-high</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>medium-high</td>
+<td>80%</td>
+</tr>
+<tr>
+<td>high</td>
+<td>90%</td>
+</tr>
+<tr>
+<td>max</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning"><strong>Attention</strong> : Ces tailles sont indiquées pour les écrans d’une résolution suppérieure ou égale à 992px</aside>
+
+<h2 id="open_28params_29"><a href="#open_28params_29" class="headerlink" title="open(params)"></a>open(params)</h2><p>Fonction appelée pour ouvrir un slidePannel</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.sizeClass</td>
+<td>Taille du panneau. Utilisez les classes notée au dessus</td>
+<td>medium</td>
+</tr>
+<tr>
+<td>params.view</td>
+<td>Vue Backbone instanciée. N’est pas obligatoire</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.html</td>
+<td>Contenu HTML à mettre dans le slidePanel. Se met à la place du param <code>view</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.closeOnClickOutside</td>
+<td>true : Le panel se ferme quand on clic en dehors.</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="close"><a href="#close" class="headerlink" title="close"></a>close</h2><p>Ferme le slidePanel</p>
+
+          
+              <h1 id="API_-_ModalManager"><a href="#API_-_ModalManager" class="headerlink" title="API - ModalManager"></a>API - ModalManager</h1><p>le modalManager gère la création et la fermeture de toutes les modales crées au sein du projet. </p>
+<aside class="notice">Vous êtes limités à une modale ouverte en simultané. Si vous essayez d’en ouvrir une autre, l’ancienne est fermée sans aucun préavis.</aside>
+
+<h2 id="open_28params_29"><a href="#open_28params_29" class="headerlink" title="open(params)"></a>open(params)</h2><p>Permet de crér une modale à partir d’HTML ou d’une vue backbone.</p>
+<p><strong>Atention</strong> : Popur marcher en html vous devez avoir la structure totale d’une modal.<br>Pour les vue, la classe de votre vue doit être celle de base de la modal.</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params.html</td>
+<td>code html de votre modal</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.view</td>
+<td>Vue backbone instanciée</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.options</td>
+<td>Options de la fonction modal fournie par <a href="http://materializecss.com/modals.html">materialize-css</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="close_28params_29"><a href="#close_28params_29" class="headerlink" title="close(params)"></a>close(params)</h2><table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params.name</td>
+<td>Nom de la vue backbone associée pour qu’elle soit détruite</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.options</td>
+<td>Options de la fonction modal fournie par <a href="http://materializecss.com/modals.html">materialize-css</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+          
+              <h1 id="TemplatesManager"><a href="#TemplatesManager" class="headerlink" title="TemplatesManager"></a>TemplatesManager</h1><p>Classe servant à compiler les templates et à récupérer directement ceux qui l’ont été.</p>
+<h2 id="compile_28template_29"><a href="#compile_28template_29" class="headerlink" title="compile(template)"></a>compile(template)</h2><p>Compile le template passé en paramètre et retourne la fonction généré par <code>_.template()</code>.<br>Si le template passé a déjà été compilé, retourne directement le résultat de <code>_.template</code> stocké en mémoire.</p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template</td>
+<td>Contenu du template à compiler</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remove_28template_29"><a href="#remove_28template_29" class="headerlink" title="remove(template)"></a>remove(template)</h2><p>Supprime le template passé en paramètre de la mémoire du templateManager pour permettre une nouvelle compilation de zéro au prochain appel de <code>compile()</code></p>
+<table>
+<thead>
+<tr>
+<th>parametre</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template</td>
+<td>Contenu du template à supprimer</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+          
+              <h1 id="API_-_View__3A_Base"><a href="#API_-_View__3A_Base" class="headerlink" title="API - View : Base"></a>API - View : Base</h1><p>La vue Base permet de rajouter plusieurs fonctions à Backbone.JS parmis :</p>
+<ul>
+<li>renseignement dans votre vue des events globaux à la manière des events de DOM</li>
+<li>renseignement des modification du dom à partir de tous les models de votre vue (via baxkbone.stickit)</li>
+<li>renseignement des events des composants riot à la manière des events de DOM</li>
+<li>montage de tags riot à partir du DOM de votre vue</li>
+<li>utilisation des toasts de materialize-css plus facilement</li>
+<li>création des sous vues permettant automatiquement leur suppression si la vue parente est supprimée</li>
+</ul>
+<h2 id="createSubView_28name_2C_view_2C_options_29"><a href="#createSubView_28name_2C_view_2C_options_29" class="headerlink" title="createSubView(name, view, options)"></a>createSubView(name, view, options)</h2><p>Permet de créer une sous vue et de la rattacher directement à cette vue-ci.</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Nom de la vue. Attention si le nom existe déjà, l’ancienne vue est supprimée</td>
+<td>-</td>
+</tr>
+<tr>
+<td>view</td>
+<td>Backbone.View</td>
+<td>Vue Backbone non initialisée</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[options]</td>
+<td>object</td>
+<td>Options passées à la vue Backbone et que vous pouvez retrouver dans la fonction <code>initialize</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="template_28template_2C_params_29"><a href="#template_28template_2C_params_29" class="headerlink" title="template(template, params)"></a>template(template, params)</h2><p>Permet de compiler un template en fonction des paramètres passés et retourne un string du template compilé.</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template</td>
+<td>string</td>
+<td>Template à compiler.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Paramètres du template</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>De base, les templates faits à partir d’ici ont les paramètres suivants :</p>
+<ul>
+<li><strong>moment</strong> : Objet moment afin de facilement manipuler les dates</li>
+</ul>
+<h2 id="dispose_28_29"><a href="#dispose_28_29" class="headerlink" title="dispose()"></a>dispose()</h2><p>Supprime la vue et tout ce qui s’y rapporte en événements et en tags</p>
+<h2 id="mountTags_28params_29"><a href="#mountTags_28params_29" class="headerlink" title="mountTags(params)"></a>mountTags(params)</h2><p>Permet de monter des tags RIOT dans notre vue et de rattacher tous les événements renseignés</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.tag</td>
+<td>string</td>
+<td>nom du tag à monter</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.selector]</td>
+<td>string</td>
+<td>Selecteur CSS valide (ex : ‘div#monid &gt; span’)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.domNode]</td>
+<td>domNode</td>
+<td>Node DOM qui sera remplacée par le tag à charger</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.options]</td>
+<td>object</td>
+<td>Options du tag</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Retourne un tableau de tags Riot.</p>
+<h2 id="unmountAllTags_28_29"><a href="#unmountAllTags_28_29" class="headerlink" title="unmountAllTags()"></a>unmountAllTags()</h2><p>Supprime tous les tags Riot de notre Vue</p>
+<h2 id="waitingRender_28callback_29"><a href="#waitingRender_28callback_29" class="headerlink" title="waitingRender(callback)"></a>waitingRender(callback)</h2><p>Fonction appelée avant beforeRender pour afficher du contenu pendant l’exécution de cette fonction (chargement, une emptyView, …). Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="beforeRender_28callback_29"><a href="#beforeRender_28callback_29" class="headerlink" title="beforeRender(callback)"></a>beforeRender(callback)</h2><p>Fonction appelée juste avant l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="render_28callback_29"><a href="#render_28callback_29" class="headerlink" title="render(callback)"></a>render(callback)</h2><p>Fonction appelée pour afficher le rendu final de votre vue. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="afterRender_28callback_29"><a href="#afterRender_28callback_29" class="headerlink" title="afterRender(callback)"></a>afterRender(callback)</h2><p>Fonction appelée juste après l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="prerequireAction_28_29"><a href="#prerequireAction_28_29" class="headerlink" title="prerequireAction()"></a>prerequireAction()</h2><p>Fonction appelée juste après Initialize et servant à charger des données externes (données de models, collections, …)</p>
+<h2 id="global"><a href="#global" class="headerlink" title="global"></a>global</h2><p>Objet permettant de gérer tous les événements globaux de votre vue. Cet objet est composé des mêmes fonctions que Backbone.Events.</p>
+<h2 id="panels"><a href="#panels" class="headerlink" title="panels"></a>panels</h2><p>Objet permettant de manipuler le slidePanel au travers du PanelManager. Utilise les fonctions <code>open</code> et <code>close</code>.</p>
+<h2 id="modal"><a href="#modal" class="headerlink" title="modal"></a>modal</h2><p>Objet permettant de manipuler les modals au travers du ModalManager. Utilise les fonctions <code>open</code> et <code>close</code>.</p>
+<h2 id="toasts-show_28params_29"><a href="#toasts-show_28params_29" class="headerlink" title="toasts.show(params)"></a>toasts.show(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée.</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.message</td>
+<td>string ou jqueryObject</td>
+<td>Message du toast, l’HTML est accepté mais devra impérativement être un objet jQuery</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.duration]</td>
+<td>number</td>
+<td>Temps d’affichage du toast en milliseconde</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>[params.style]</td>
+<td>string</td>
+<td>Classe de personnalisation pour le toast. De base seul la classe <code>rounded</code> est disponible mais vous pouvez créer les votres.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.callback]</td>
+<td>function</td>
+<td>Fonction appelée après l’affichage du toast</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="toasts-success_28params_29"><a href="#toasts-success_28params_29" class="headerlink" title="toasts.success(params)"></a>toasts.success(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de succès (avec l’icône à gauche)</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.message</td>
+<td>string</td>
+<td>Message du toast, l’HTML est accepté mais devra impérativement être un objet jQuery</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.duration]</td>
+<td>number</td>
+<td>Temps d’affichage du toast en milliseconde</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>[params.style]</td>
+<td>string</td>
+<td>Classe de personnalisation pour le toast. De base seul la classe <code>rounded</code> est disponible mais vous pouvez créer les votres.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.callback]</td>
+<td>function</td>
+<td>Fonction appelée après l’affichage du toast</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="toasts-error_28params_29"><a href="#toasts-error_28params_29" class="headerlink" title="toasts.error(params)"></a>toasts.error(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’erreur (avec l’icône à gauche)</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.message</td>
+<td>string</td>
+<td>Message du toast, l’HTML est accepté mais devra impérativement être un objet jQuery</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.duration]</td>
+<td>number</td>
+<td>Temps d’affichage du toast en milliseconde</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>[params.style]</td>
+<td>string</td>
+<td>Classe de personnalisation pour le toast. De base seul la classe <code>rounded</code> est disponible mais vous pouvez créer les votres.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.callback]</td>
+<td>function</td>
+<td>Fonction appelée après l’affichage du toast</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="toasts-info_28params_29"><a href="#toasts-info_28params_29" class="headerlink" title="toasts.info(params)"></a>toasts.info(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’information (avec l’icône à gauche)</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.message</td>
+<td>string</td>
+<td>Message du toast, l’HTML est accepté mais devra impérativement être un objet jQuery</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.duration]</td>
+<td>number</td>
+<td>Temps d’affichage du toast en milliseconde</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>[params.style]</td>
+<td>string</td>
+<td>Classe de personnalisation pour le toast. De base seul la classe <code>rounded</code> est disponible mais vous pouvez créer les votres.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.callback]</td>
+<td>function</td>
+<td>Fonction appelée après l’affichage du toast</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="toasts-warn_28params_29"><a href="#toasts-warn_28params_29" class="headerlink" title="toasts.warn(params)"></a>toasts.warn(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de warning (avec l’icône à gauche)</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>type</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Function params</td>
+<td>-</td>
+</tr>
+<tr>
+<td>params.message</td>
+<td>string</td>
+<td>Message du toast, l’HTML est accepté mais devra impérativement être un objet jQuery</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.duration]</td>
+<td>number</td>
+<td>Temps d’affichage du toast en milliseconde</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>[params.style]</td>
+<td>string</td>
+<td>Classe de personnalisation pour le toast. De base seul la classe <code>rounded</code> est disponible mais vous pouvez créer les votres.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>[params.callback]</td>
+<td>function</td>
+<td>Fonction appelée après l’affichage du toast</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      </div>
+      <div class="dark-box">
+        
+          <div class="lang-selector">
+            
+                <a href="#" data-language-name="javascript">javascript</a>
+            
+                <a href="#" data-language-name="html">html</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
