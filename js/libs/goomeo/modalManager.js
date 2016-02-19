@@ -45,20 +45,22 @@ module.exports = {
         }
 
         if (params.view instanceof Backbone.View) {
+            params.view.once('render:finish', function () {
+                if (_.isFunction(params.options.complete)) {
+                    params.options.complete = _.wrap(params.options.complete, function (complete) {
+                        complete();
+                        params.view.dispose();
+                    });
+                } else {
+                    params.options.complete = function () {
+                        params.view.dispose();
+                    };
+                }
+
+                $('body .modal').openModal(params.options);
+            });
+
             $('body').append(params.view.render().$el);
-
-            if (_.isFunction(params.options.complete)) {
-                params.options.complete = _.wrap(params.options.complete, function (complete) {
-                    complete();
-                    params.view.dispose();
-                });
-            } else {
-                params.options.complete = function () {
-                    params.view.dispose();
-                };
-            }
-
-            $('body .modal').openModal(params.options);
         }
     },
     /**

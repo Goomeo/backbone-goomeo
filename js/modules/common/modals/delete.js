@@ -63,9 +63,6 @@ module.exports = View.extend({
                 if (_.isFunction(this.validateCallback)) {
                     this.validateCallback();
                 }
-                this.modal.close({
-                    name : this.name
-                });
             }
             return;
         }
@@ -73,8 +70,5 @@ module.exports = View.extend({
         if (_.isFunction(this.validateCallback)) {
             this.validateCallback();
         }
-        this.modal.close({
-            name : this.name
-        });
     }
 });

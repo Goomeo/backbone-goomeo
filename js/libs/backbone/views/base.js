@@ -40,10 +40,34 @@ module.exports = Backbone.View.extend({
 
         this.render = _.wrap(this.render, function wrapRender(render) {
             async.series([
-                this.waitingRender,
-                this.beforeRender,
-                render,
-                this.afterRender
+                function (done) {
+                    this.waitingRender(function () {
+                        this.trigger('render:waiting');
+                        this.global.trigger(this.name + ':render:waiting');
+                        done();
+                    }.bind(this));
+                },
+                function (done) {
+                    this.beforeRender(function () {
+                        this.trigger('render:before');
+                        this.global.trigger(this.name + ':render:before');
+                        done();
+                    }.bind(this));
+                },
+                function (done) {
+                    render(function () {
+                        this.trigger('render');
+                        this.global.trigger(this.name + ':render');
+                        done();
+                    }.bind(this));
+                },
+                function (done) {
+                    this.afterRender(function () {
+                        this.trigger('render:after');
+                        this.global.trigger(this.name + ':render:after');
+                        done();
+                    }.bind(this));
+                }
             ], function () {
                 this._mountBasicTags();
                 this._initStickit();
@@ -54,6 +78,9 @@ module.exports = Backbone.View.extend({
                         delay : 50
                     });
                 }
+
+                this.trigger('render:finish');
+                this.global.trigger(this.name + ':render:finish');
             }.bind(this));
 
             return this;
