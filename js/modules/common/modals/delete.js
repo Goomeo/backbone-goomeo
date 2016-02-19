@@ -23,7 +23,7 @@ module.exports = View.extend({
         this.validateCallback   = options.validateCallback || function () {};
         this.cancelCallback     = options.cancelCallback || function () {};
     },
-    render : function render() {
+    render : function render(done) {
         this.$el.html(this.template(tpl, {
             message             : this.message,
             title               : this.title,
@@ -44,12 +44,15 @@ module.exports = View.extend({
                 .removeClass('modal-close');
         }
 
-        return this;
+        done();
     },
     cancelAction : function cancelAction() {
         if (_.isFunction(this.cancelCallback)) {
             this.cancelCallback();
         }
+        this.modal.close({
+            name : this.name
+        });
     },
     acceptAction : function acceptAction(evt) {
         if (this.hasDoubleVerif === true) {
@@ -60,9 +63,6 @@ module.exports = View.extend({
                 if (_.isFunction(this.validateCallback)) {
                     this.validateCallback();
                 }
-                this.modal.close({
-                    name : this.name
-                });
             }
             return;
         }

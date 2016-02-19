@@ -1,0 +1,26 @@
+rating {
+  .input-field label {
+    left: 0;
+  }
+
+  .rating-content {
+    padding-top: 19px;
+    height: 60px;
+
+    span {
+      text-align: center;
+      width: 30px;
+      margin-right: 2px;
+
+      label {
+        position: inherit;
+      }
+    }
+
+  }
+
+  .material-icons {
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}

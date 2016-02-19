@@ -3,35 +3,23 @@
 
     <script>
         var _       = require('underscore'),
-            lang    = require('../libs/lang'),
-            config;
+                _str    = require('underscore.string'),
+                lang    = require('../libs/lang'),
+                config  = {
+                    variables : {}
+                };
 
-        _.each(opts, function (item, key) {
-            var current = key.split('_');
+        _.each(this.opts, function (item, key) {
+            if (_str.startsWith(key, 'var')) {
+                var tempoKey = _str.underscored(key).split('_')[1];
 
-            if (current.length <= 1) {
-                return;
-            }
-
-            if (current[0] == 'var' && !_.isUndefined(current[1])) {
-                var index = parseInt(current[1]);
-                if (!_.isNaN(index)) {
-                    // par index
-                    if (!config) {
-                        config = [];
-                    }
-
-                    config.splice(current[1], 0, item);
-                } else {
-                    // variables nommées
-                    if (!config) {
-                        config = {};
-                    }
-
-                    config[current[1]] = item;
-                }
+                config.variables[tempoKey] = item;
             }
         });
+
+        if (this.opts.locale) {
+            config.locale = this.opts.locale;
+        }
 
         this.lang = lang.i18n(opts.word, config);
     </script>

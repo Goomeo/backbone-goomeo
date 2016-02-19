@@ -1,15 +1,17 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    Backbone        = require('backbone'),
-    Materialize     = global.Materialize,
-    moment          = require('moment'),
-    riot            = require('riot'),
-    viewManager     = require('../viewManager'),
-    eventManager    = require('../eventManager'),
-    panelManager    = require('../../goomeo/panelManager'),
-    modalManager    = require('../../goomeo/modalManager');
+var $                   = require('jquery'),
+    _                   = require('underscore'),
+    async               = require('async'),
+    Backbone            = require('backbone'),
+    Materialize         = global.Materialize,
+    moment              = require('moment'),
+    riot                = require('riot'),
+    viewManager         = require('../viewManager'),
+    eventManager        = require('../eventManager'),
+    templatesManager    = require('../templatesManager'),
+    panelManager        = require('../../goomeo/panelManager'),
+    modalManager        = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -26,39 +28,62 @@ module.exports = Backbone.View.extend({
     constructor : function constructor(options) {
         Backbone.View.apply(this, arguments);
 
-        _.bindAll(this, 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
+        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
-        this.models         = options.models || {};
-        this.collections    = options.collections || {};
-        this.subviews       = {};
-        this.name           = options.name;
-        this.tags           = {};
+        this.models             = options.models || {};
+        this.collections        = options.collections || {};
+        this.subviews           = {};
+        this.name               = options.name;
+        this.tags               = {};
 
         this._initGlobalEvents();
 
         this.render = _.wrap(this.render, function wrapRender(render) {
-            this.beforeRender();
-            render.call(this);
-            this.afterRender();
-            this._mountBasicTags();
-            this._initStickit();
-            this._domContentLoaded();
+            async.series([
+                function (done) {
+                    this.waitingRender(function () {
+                        this.trigger('render:waiting');
+                        this.global.trigger(this.name + ':render:waiting');
+                        done();
+                    }.bind(this));
+                }.bind(this),
+                function (done) {
+                    this.beforeRender(function () {
+                        this.trigger('render:before');
+                        this.global.trigger(this.name + ':render:before');
+                        done();
+                    }.bind(this));
+                }.bind(this),
+                function (done) {
+                    render(function () {
+                        this.trigger('render');
+                        this.global.trigger(this.name + ':render');
+                        done();
+                    }.bind(this));
+                }.bind(this),
+                function (done) {
+                    this.afterRender(function () {
+                        this.trigger('render:after');
+                        this.global.trigger(this.name + ':render:after');
+                        done();
+                    }.bind(this));
+                }.bind(this)
+            ], function () {
+                this._mountBasicTags();
+                this._initStickit();
+                this._domContentLoaded();
 
-            if (_.isFunction($.fn.tooltip)) {
-                this.$('[data-tooltip]').tooltip({
-                    delay : 50
-                });
-            }
+                if (_.isFunction($.fn.tooltip)) {
+                    this.$('[data-tooltip]').tooltip({
+                        delay : 50
+                    });
+                }
 
-
+                this.trigger('render:finish');
+                this.global.trigger(this.name + ':render:finish');
+            }.bind(this));
 
             return this;
-        }.bind(this));
-
-        this.initialize = _.wrap(this.initialize, function wrapInitialize(initialize) {
-            _.bindAll(this, 'render');
-            initialize();
-            this.prerequireAction();
         }.bind(this));
     },
     global : {
@@ -168,13 +193,11 @@ module.exports = Backbone.View.extend({
      * @return  {string}                                Template compilé
      */
     template : function template(template, params) {
-        var compile = _.template(template);
+        var compile = templatesManager.compile(template);
 
-        if (!params) {
-            params = {};
-        }
-
-        params.moment = moment;
+        params = _.extend({}, params, {
+            moment : moment
+        });
 
         return compile(params);
     },
@@ -362,7 +385,7 @@ module.exports = Backbone.View.extend({
     },
     // fonctions de base vides
     render              : function render() {},
-    beforeRender        : function beforeRender() {},
-    afterRender         : function afterRender() {},
-    prerequireAction    : function prerequireAction() {}
+    beforeRender        : function beforeRender(callback) { callback(); },
+    afterRender         : function afterRender(callback) { callback(); },
+    waitingRender       : function waitingRender(callback) { callback(); }
 });

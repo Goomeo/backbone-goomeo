@@ -1,0 +1,25 @@
+survey {
+  .input-field label {
+    left: 0;
+  }
+
+  .survey-content {
+    height: 60px;
+
+    .btn {
+      @extend .z-depth-0;
+      margin: 2px;
+      padding: 0 0.8rem;
+      background-color: color('grey', 'lighten-2');
+      color: color('grey', 'darken-3');
+
+      &:hover, &:active {
+        background-color: color('grey', 'base');
+      }
+
+      &.active {
+        background-color: $primary-color;
+      }
+    }
+  }
+}

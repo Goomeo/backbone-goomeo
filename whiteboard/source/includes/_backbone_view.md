@@ -252,3 +252,34 @@ Ici, si le field `authors` de mon modèle est modifié, alors l'élément de ma 
 ```
 
 Ici, les bindins du modèle `user` sont renseignés dans le field `userBindings` et les bindings du modèle `module` sont renseignés dans le field `moduleBindings`.
+
+## Render
+
+> appel pour l'affichage
+
+```javascript
+$('body').html(view.render().$el);
+```
+
+> déclaration de la fonction
+
+```javascript
+render : function (done) {
+    this.$el.html(this.template(tpl, {
+        model : this.model
+    }));
+
+    done();
+}
+```
+
+La fonction render renseignée dans la vue est maintenant asynchrone. En effet, au lieu de faire un `return this`, vous devrez exécuter le callback passé en paramètre.
+
+**Par contre**, quand vous appellerez la méthode `render` dans un router ou pour l'affichage d'une sous vue, rien ne change. En effet lors de l'appel, plusieurs fonctions sont automatiquement appelées :
+
+- **waitingRender** : utilisée pour afficher le contenu de la vue pendant le chargement des données requises
+- **beforeRender** : utilisée pour faire des traitements avant le véritable render (chargement de données externes, ...)
+- **render** : exécute la fonction render que vous avez défini dans votre vue
+- **afterRender** : utilisé pour faire des traitements après le render de la vue (chargement de scripts javascript, ...)
+
+Et pour finir, chargement de backbone.stickit sur tous les models de la vue, montage des tags de base Riot et lancement de l'événement `DOMContentLoaded`
