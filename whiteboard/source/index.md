@@ -22,6 +22,7 @@ includes:
   - api_viewManager
   - api_panelManager
   - api_modalManager
+  - api_templatesManager
   - api_view_base
 
 search: true

@@ -23,7 +23,7 @@ module.exports = {
     },
     /**
      * Supprime le template passé en paramètre de la mémoire du templateManager pour permettre une nouvelle
-     * compilation de zéro au prochain appel de `compile()
+     * compilation de zéro au prochain appel de `compile()`
      *
      * @param {string}              template                Template à compiler
      */
