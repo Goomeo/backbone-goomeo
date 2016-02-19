@@ -46,28 +46,28 @@ module.exports = Backbone.View.extend({
                         this.global.trigger(this.name + ':render:waiting');
                         done();
                     }.bind(this));
-                },
+                }.bind(this),
                 function (done) {
                     this.beforeRender(function () {
                         this.trigger('render:before');
                         this.global.trigger(this.name + ':render:before');
                         done();
                     }.bind(this));
-                },
+                }.bind(this),
                 function (done) {
                     render(function () {
                         this.trigger('render');
                         this.global.trigger(this.name + ':render');
                         done();
                     }.bind(this));
-                },
+                }.bind(this),
                 function (done) {
                     this.afterRender(function () {
                         this.trigger('render:after');
                         this.global.trigger(this.name + ':render:after');
                         done();
                     }.bind(this));
-                }
+                }.bind(this)
             ], function () {
                 this._mountBasicTags();
                 this._initStickit();
