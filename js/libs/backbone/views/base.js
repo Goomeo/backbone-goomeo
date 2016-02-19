@@ -1,17 +1,17 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    async           = require('async'),
-    Backbone        = require('backbone'),
-    Materialize     = global.Materialize,
-    moment          = require('moment'),
-    riot            = require('riot'),
-    viewManager     = require('../viewManager'),
-    eventManager    = require('../eventManager'),
-    panelManager    = require('../../goomeo/panelManager'),
-    modalManager    = require('../../goomeo/modalManager'),
-    stringFunctions = require('../../goomeo/stringFunctions');
+var $                   = require('jquery'),
+    _                   = require('underscore'),
+    async               = require('async'),
+    Backbone            = require('backbone'),
+    Materialize         = global.Materialize,
+    moment              = require('moment'),
+    riot                = require('riot'),
+    viewManager         = require('../viewManager'),
+    eventManager        = require('../eventManager'),
+    templatesManager    = require('../templatesManager'),
+    panelManager        = require('../../goomeo/panelManager'),
+    modalManager        = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -35,7 +35,6 @@ module.exports = Backbone.View.extend({
         this.subviews           = {};
         this.name               = options.name;
         this.tags               = {};
-        this.compiledTemplates  = {};
 
         this._initGlobalEvents();
 
@@ -167,17 +166,13 @@ module.exports = Backbone.View.extend({
      * @return  {string}                                Template compilé
      */
     template : function template(template, params) {
-        var hash = stringFunctions.hashCode(template);
-
-        if (!this.compiledTemplates[hash]) {
-            this.compiledTemplates[hash] = _.template(template);
-        }
+        var compile = templatesManager.compile(template);
 
         params = _.extend({}, params, {
             moment : moment
         });
 
-        return this.compiledTemplates[hash](params);
+        return compile(params);
     },
     /**
      * Supprime la vue et tout ce qui s'y rapporte en événements et en tags
