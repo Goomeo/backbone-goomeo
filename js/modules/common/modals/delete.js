@@ -23,7 +23,7 @@ module.exports = View.extend({
         this.validateCallback   = options.validateCallback || function () {};
         this.cancelCallback     = options.cancelCallback || function () {};
     },
-    render : function render() {
+    render : function render(done) {
         this.$el.html(this.template(tpl, {
             message             : this.message,
             title               : this.title,
@@ -44,7 +44,7 @@ module.exports = View.extend({
                 .removeClass('modal-close');
         }
 
-        return this;
+        done();
     },
     cancelAction : function cancelAction() {
         if (_.isFunction(this.cancelCallback)) {
