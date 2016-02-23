@@ -10,7 +10,7 @@ module.exports = {
     getLogger : function getLogger() {
         var logger = log.getLogger(this.name || 'Router');
 
-        loglevelMessagePrefix(log, {
+        loglevelMessagePrefix(logger, {
             staticPrefixes : [ this.name || 'Router' ]
         });
 

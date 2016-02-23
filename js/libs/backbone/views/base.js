@@ -391,7 +391,7 @@ module.exports = Backbone.View.extend({
     getLogger : function getLogger() {
         var logger = log.getLogger(this.name);
 
-        loglevelMessagePrefix(log, {
+        loglevelMessagePrefix(logger, {
             staticPrefixes : [ this.name ]
         });
 
