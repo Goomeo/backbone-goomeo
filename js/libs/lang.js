@@ -18,11 +18,11 @@ module.exports = {
             this.config = config;
         }
 
-        var locale  = this.getLocale();
-
-        this._initGlobalize(locale);
+        this._initGlobalize();
         this._initMoment();
         this._initParsley();
+
+        var locale  = this.getLocale();
 
         moment.locale(locale);
         window.Parsley.setLocale(locale);
@@ -56,15 +56,9 @@ module.exports = {
         var newLocale       = locale,
             currentLocale   = localStorage.getItem('locale');
 
-        console.log(currentLocale);
-
         if (!_.contains(this.config.locale.availables, locale)) {
             newLocale = 'en';
         }
-
-        console.log(newLocale);
-
-        console.log(moment, this.globalize);
 
         if (newLocale != currentLocale) {
             moment.locale(newLocale);
