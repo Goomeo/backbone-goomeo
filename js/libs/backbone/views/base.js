@@ -221,11 +221,15 @@ module.exports = Backbone.View.extend({
             delete this.collections;
         }
         if (this.models) {
+            _.each(this.models, function (model) {
+                this.unstickit(model);
+            }, this);
             delete this.models;
         }
 
         viewManager.remove(this.name);
 
+        this.unstickit();
         this.undelegateEvents();
         this.unbind();
         this.unmountAllTags();
