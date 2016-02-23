@@ -69,43 +69,7 @@ module.exports = {
         if (this.exist(name)) {
             var view = this.get(name);
 
-            eventManager.trigger('view:before:dispose:' + name);
-
-            if (typeof view.subviews != 'undefined') {
-                _.each(view.subviews, function (view) {
-                    if (typeof view == 'string') {
-                        this.dispose(view);
-                    }else {
-                        this.dispose(view.name);
-                    }
-                }, this);
-            }
-
-            if (view.model) {
-                view.model.off(null, null, view);
-            }
-            if (view.collection) {
-                view.collection.off(null, null, view);
-            }
-
-            if (view.collections) {
-                _.each(view.collections, function (collection) {
-                    collection.off(null, null, view);
-                });
-                delete view.collections;
-            }
-            if (view.models) {
-                _.each(view.models, function (model) {
-                    model.off(null, null, view);
-                });
-                delete view.models;
-            }
-
             view.dispose();
-
-            delete this.backboneMapArray[name];
-
-            eventManager.trigger('view:after:dispose:' + name);
         }
     },
     /**
@@ -116,5 +80,15 @@ module.exports = {
      */
     exist : function exist(name) {
         return this.backboneMapArray[name] instanceof Backbone.View;
+    },
+    /**
+     * Supprime une entrée du tableau des vues existantes
+     *
+     * @param   {string}        name                    Nom de la vue à trouver.
+     */
+    remove : function remove(name) {
+        if (this.exist(name)) {
+            delete this.backboneMapArray[name];
+        }
     }
 };

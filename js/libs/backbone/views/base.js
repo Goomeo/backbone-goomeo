@@ -207,6 +207,25 @@ module.exports = Backbone.View.extend({
      * Supprime la vue et tout ce qui s'y rapporte en événements et en tags
      */
     dispose : function dispose() {
+        eventManager.trigger('view:before:dispose:' + this.name);
+
+        if (typeof this.subviews != 'undefined') {
+            _.each(this.subviews, function (view) {
+                if (view instanceof Backbone.View) {
+                    view.dispose();
+                }
+            }, this);
+        }
+
+        if (this.collections) {
+            delete this.collections;
+        }
+        if (this.models) {
+            delete this.models;
+        }
+
+        viewManager.remove(this.name);
+
         this.undelegateEvents();
         this.unbind();
         this.unmountAllTags();
@@ -215,6 +234,8 @@ module.exports = Backbone.View.extend({
         $(this.el).remove();
         this.remove();
         Backbone.View.prototype.remove.call(this);
+
+        eventManager.trigger('view:after:dispose:' + name);
     },
     /**
      * Permet de monter des tags RIOT dans notre vue
