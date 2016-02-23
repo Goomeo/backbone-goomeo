@@ -14,7 +14,6 @@
         });
 
         this.on('update', function (options) {
-            console.log('update', options);
             if (options && options.progress) {
                 this.progress = options.progress;
             }
