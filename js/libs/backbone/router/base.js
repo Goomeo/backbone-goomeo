@@ -8,12 +8,14 @@ module.exports = {
      * Permet de récupérer le logger de la vue
      */
     getLogger : function getLogger() {
-        var logger = log.getLogger(this.name || 'Router');
+        if (!this._logger) {
+            this._logger = log.getLogger(this.name);
 
-        loglevelMessagePrefix(logger, {
-            staticPrefixes : [ this.name || 'Router' ]
-        });
+            loglevelMessagePrefix(this._logger, {
+                staticPrefixes : [ this.name ]
+            });
+        }
 
-        return logger;
+        return this._logger;
     }
 };

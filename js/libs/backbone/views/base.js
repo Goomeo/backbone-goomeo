@@ -389,13 +389,15 @@ module.exports = Backbone.View.extend({
      * Permet de récupérer le logger de la vue
      */
     getLogger : function getLogger() {
-        var logger = log.getLogger(this.name);
+        if (!this._logger) {
+            this._logger = log.getLogger(this.name);
 
-        loglevelMessagePrefix(logger, {
-            staticPrefixes : [ this.name ]
-        });
+            loglevelMessagePrefix(this._logger, {
+                staticPrefixes : [ this.name ]
+            });
+        }
 
-        return logger;
+        return this._logger;
     },
     // fonctions de base vides
     render              : function render() {},
