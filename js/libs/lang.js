@@ -18,11 +18,15 @@ module.exports = {
             this.config = config;
         }
 
+        console.log('before getLocale');
         var locale  = this.getLocale();
+        console.log('after getLocale');
 
         this._initGlobalize(locale);
         this._initMoment();
         this._initParsley();
+
+        console.log('after initOthers');
 
         moment.locale(locale);
         window.Parsley.setLocale(locale);
@@ -34,7 +38,7 @@ module.exports = {
             staticPrefixes : [ 'i18n' ]
         });
     },
-    _initGlobalize : function initGlobalize(locale) {
+    _initGlobalize : function initGlobalize() {
         // loading globalize files
         this.globalize = Globalize;
         this.globalize.load(
