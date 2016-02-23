@@ -56,9 +56,15 @@ module.exports = {
         var newLocale       = locale,
             currentLocale   = localStorage.getItem('locale');
 
+        console.log(currentLocale);
+
         if (!_.contains(this.config.locale.availables, locale)) {
             newLocale = 'en';
         }
+
+        console.log(newLocale);
+
+        console.log(moment, this.globalize);
 
         if (newLocale != currentLocale) {
             moment.locale(newLocale);
@@ -71,13 +77,10 @@ module.exports = {
         }
     },
     getLocale : function getLocale() {
-        console.log(this.config);
-
         var defaultLocale = this.config.locale.default,
             navigatorLang = (navigator.language || navigator.browserLanguage || navigator.userLanguage || navigator.systemLanguage).substring(0, 2),
             currentLocale = localStorage.getItem('locale');
 
-        console.log('changeLocale');
         if (_.isEmpty(currentLocale)) {
             this.changeLocale(navigatorLang);
             return;
