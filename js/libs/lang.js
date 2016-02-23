@@ -24,6 +24,8 @@ module.exports = {
 
         var locale  = this.getLocale();
 
+        console.log(locale);
+
         moment.locale(locale);
         window.Parsley.setLocale(locale);
         this.globalize.locale(locale);
