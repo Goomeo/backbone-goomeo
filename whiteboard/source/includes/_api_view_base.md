@@ -145,3 +145,7 @@ Permet d'afficher un élément Toast à partir des paramètres d'entrée pour le
 | [params.duration] | number                    | Temps d'affichage du toast en milliseconde                                                | 3000      |
 | [params.style]    | string                    | Classe de personnalisation pour le toast. De base seul la classe `rounded` est disponible mais vous pouvez créer les votres. | - |
 | [params.callback] | function                  | Fonction appelée après l'affichage du toast                                               | - |
+
+## getLogger()
+
+Permet de récupérer le logger rattaché à la vue courante. à utiliser à la place et comme l'objet `console`.

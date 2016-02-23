@@ -15,20 +15,16 @@ module.exports = {
      * @return {object}                             Instance de la vue Backbone
      */
     create           : function create(name, View, options) {
-        //if (!(View instanceof Backbone.View)) {
-        //    throw new Error('The view is not a correct Backbone.View Object.');
-        //}
-
         if (this.backboneMapArray[name] instanceof Backbone.View) {
             this.dispose(name);
         }
 
-        options                 = options || {};
-        options.name            = name;
-        var view                = new View(options);
+        options                     = options || {};
+        options.name                = name;
+        var view                    = new View(options);
 
-        view.name               = name;
-        this.backboneMapArray[name]  = view;
+        view.name                   = name;
+        this.backboneMapArray[name] = view;
 
         eventManager.trigger('view:after:create:' + name);
 
