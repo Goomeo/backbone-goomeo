@@ -1,17 +1,19 @@
 'use strict';
 
-var $                   = require('jquery'),
-    _                   = require('underscore'),
-    async               = require('async'),
-    Backbone            = require('backbone'),
-    Materialize         = global.Materialize,
-    moment              = require('moment'),
-    riot                = require('riot'),
-    viewManager         = require('../viewManager'),
-    eventManager        = require('../eventManager'),
-    templatesManager    = require('../templatesManager'),
-    panelManager        = require('../../goomeo/panelManager'),
-    modalManager        = require('../../goomeo/modalManager');
+var $                       = require('jquery'),
+    _                       = require('underscore'),
+    async                   = require('async'),
+    Backbone                = require('backbone'),
+    log                     = require('loglevel'),
+    loglevelMessagePrefix   = require('loglevel-message-prefix'),
+    Materialize             = global.Materialize,
+    moment                  = require('moment'),
+    riot                    = require('riot'),
+    viewManager             = require('../viewManager'),
+    eventManager            = require('../eventManager'),
+    templatesManager        = require('../templatesManager'),
+    panelManager            = require('../../goomeo/panelManager'),
+    modalManager            = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -382,6 +384,18 @@ module.exports = Backbone.View.extend({
 
         domContentLoadedEvent.initEvent("DOMContentLoaded", true, true);
         window.document.dispatchEvent(domContentLoadedEvent);
+    },
+    /**
+     * Permet de récupérer le logger de la vue
+     */
+    getLogger : function getLogger() {
+        var logger = log.getLogger(this.name);
+
+        loglevelMessagePrefix(log, {
+            staticPrefixes : [ this.name ]
+        });
+
+        return logger;
     },
     // fonctions de base vides
     render              : function render() {},
