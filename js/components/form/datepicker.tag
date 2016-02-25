@@ -27,8 +27,6 @@
         }
 
         this.on('mount', function () {
-            console.log(_.extend({}, defaultOptions, this.opts.datepicker));
-
             var $datePicker = $('.datepicker', this.root).pickadate(_.extend({}, defaultOptions, this.opts.datepicker));
 
             this.datePicker  = $datePicker.pickadate('picker');
