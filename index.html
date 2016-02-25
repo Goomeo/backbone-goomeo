@@ -221,6 +221,68 @@ global.jQuery = <span class="built_in">require</span>(<span class="string">'jQue
 </code></pre><p>Ceci va permettre à browserify de convertir le code du fichier en code compatible <em>CommonJS</em> et de créer un alias pour le récupérer via la commande <code>require()</code>.</p>
 
           
+              <h1 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h1><p>Le logger sert à réaliser du log de différents levels au sein de l’application.</p>
+<p>Ces logs sont disponibles en 5 niveaux :</p>
+<table>
+<thead>
+<tr>
+<th>level</th>
+<th>code</th>
+<th>fonction</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>TRACE</td>
+<td>trace()</td>
+<td>Permet d’afficher toute sorte d’informations</td>
+</tr>
+<tr>
+<td>1</td>
+<td>DEBUG</td>
+<td>debug()</td>
+<td>Permet de logger des informations dites de debug</td>
+</tr>
+<tr>
+<td>2</td>
+<td>INFO</td>
+<td>info()</td>
+<td>Permet d’afficher des messages d’information</td>
+</tr>
+<tr>
+<td>3</td>
+<td>WARN</td>
+<td>warn()</td>
+<td>Permet d’afficher des messages d’erreurs non bloquantes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ERROR</td>
+<td>error()</td>
+<td>Permet d’afficher des messages d’erreurs critiques ou bloquantes</td>
+</tr>
+</tbody>
+</table>
+<p>Pour utiliser facilement ces noiveaux de log et savoir lesquels afficher en fonction de notre environnement, nous utilisons la library <code>loglevel</code> ainsi que son extension <code>loglevel-message-prefix</code> pour avoir un préfixe d’erreur propre.</p>
+<h2 id="Initialisation"><a href="#Initialisation" class="headerlink" title="Initialisation"></a>Initialisation</h2><p>Si vous voulez créer votre propre logger, voici la marche à suivre :</p>
+<pre><code class="javascript highlight"><span class="keyword">var</span> log                     = <span class="built_in">require</span>(<span class="string">'loglevel'</span>),
+    loglevelMessagePrefix   = <span class="built_in">require</span>(<span class="string">'loglevel-message-prefix'</span>);
+
+<span class="keyword">var</span> logger = log.getLogger(<span class="string">'unnompourlerendreunique'</span>);
+
+loglevelMessagePrefix(<span class="keyword">this</span>._logger, {
+    staticPrefixes : [ <span class="string">'unnompourlerendreunique'</span> ]
+});
+
+<span class="comment">// ensuite vous pouvez utiliser logger comme vous voulez</span>
+logger.info(<span class="string">'test info'</span>);
+</code></pre>
+<aside class="warning"><strong>Attention</strong> : Si vous faites une fonction pour automatiser ces lignes, ne faites pas x fois l’appel de <code>loglevelMessagePrefix</code> sur le même logger sinon vous aurez plusieurs fois le préfixe d’affiché.</aside>
+
+
+          
               <h1 id="Vues_Backbone"><a href="#Vues_Backbone" class="headerlink" title="Vues Backbone"></a>Vues Backbone</h1><p>Les vues Backbone du projet ne devront pas étendre <code>Backbone.View</code>. En effet, nous avons créer une classe de base afin d’ajouter un nombre de fonctions utiles permettant d’améliorer le développement.</p>
 <p>La classe de base se trouve dans <em>/js/libs/backbone/views/base.js</em>. Si vous voulez éttendre cette vue pour avoir d’autres vues de base réutilisables, vous devrez les créer dans le répertoire <em>/js/libs/backbone/views</em></p>
 <h2 id="Organisation"><a href="#Organisation" class="headerlink" title="Organisation"></a>Organisation</h2><p>Toute la partie javascript sera rangée dans le répertoire <code>js</code> et toute la partie HTML sera rangée dans le répertoire <code>tpl</code>.</p>
@@ -2182,7 +2244,7 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="TemplatesManager"><a href="#TemplatesManager" class="headerlink" title="TemplatesManager"></a>TemplatesManager</h1><p>Classe servant à compiler les templates et à récupérer directement ceux qui l’ont été.</p>
+              <h1 id="API_-_TemplatesManager"><a href="#API_-_TemplatesManager" class="headerlink" title="API - TemplatesManager"></a>API - TemplatesManager</h1><p>Classe servant à compiler les templates et à récupérer directement ceux qui l’ont été.</p>
 <h2 id="compile_28template_29"><a href="#compile_28template_29" class="headerlink" title="compile(template)"></a>compile(template)</h2><p>Compile le template passé en paramètre et retourne la fonction généré par <code>_.template()</code>.<br>Si le template passé a déjà été compilé, retourne directement le résultat de <code>_.template</code> stocké en mémoire.</p>
 <table>
 <thead>
@@ -2557,6 +2619,10 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
+<h2 id="getLogger_28_29"><a href="#getLogger_28_29" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché à la vue courante. à utiliser à la place et comme l’objet <code>console</code>.</p>
+
+          
+              <h1 id="API_Router"><a href="#API_Router" class="headerlink" title="API Router"></a>API Router</h1><h2 id="getLogger_28_29"><a href="#getLogger_28_29" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché au routeur courant. à utiliser à la place et comme l’objet <code>console</code>.</p>
 
           
         
