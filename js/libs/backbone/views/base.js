@@ -1,17 +1,19 @@
 'use strict';
 
-var $                   = require('jquery'),
-    _                   = require('underscore'),
-    async               = require('async'),
-    Backbone            = require('backbone'),
-    Materialize         = global.Materialize,
-    moment              = require('moment'),
-    riot                = require('riot'),
-    viewManager         = require('../viewManager'),
-    eventManager        = require('../eventManager'),
-    templatesManager    = require('../templatesManager'),
-    panelManager        = require('../../goomeo/panelManager'),
-    modalManager        = require('../../goomeo/modalManager');
+var $                       = require('jquery'),
+    _                       = require('underscore'),
+    async                   = require('async'),
+    Backbone                = require('backbone'),
+    log                     = require('loglevel'),
+    loglevelMessagePrefix   = require('loglevel-message-prefix'),
+    Materialize             = global.Materialize,
+    moment                  = require('moment'),
+    riot                    = require('riot'),
+    viewManager             = require('../viewManager'),
+    eventManager            = require('../eventManager'),
+    templatesManager        = require('../templatesManager'),
+    panelManager            = require('../../goomeo/panelManager'),
+    modalManager            = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -205,6 +207,29 @@ module.exports = Backbone.View.extend({
      * Supprime la vue et tout ce qui s'y rapporte en événements et en tags
      */
     dispose : function dispose() {
+        eventManager.trigger('view:before:dispose:' + this.name);
+
+        if (typeof this.subviews != 'undefined') {
+            _.each(this.subviews, function (view) {
+                if (view instanceof Backbone.View) {
+                    view.dispose();
+                }
+            }, this);
+        }
+
+        if (this.collections) {
+            delete this.collections;
+        }
+        if (this.models) {
+            _.each(this.models, function (model) {
+                this.unstickit(model);
+            }, this);
+            delete this.models;
+        }
+
+        viewManager.remove(this.name);
+
+        this.unstickit();
         this.undelegateEvents();
         this.unbind();
         this.unmountAllTags();
@@ -213,6 +238,8 @@ module.exports = Backbone.View.extend({
         $(this.el).remove();
         this.remove();
         Backbone.View.prototype.remove.call(this);
+
+        eventManager.trigger('view:after:dispose:' + name);
     },
     /**
      * Permet de monter des tags RIOT dans notre vue
@@ -382,6 +409,20 @@ module.exports = Backbone.View.extend({
 
         domContentLoadedEvent.initEvent("DOMContentLoaded", true, true);
         window.document.dispatchEvent(domContentLoadedEvent);
+    },
+    /**
+     * Permet de récupérer le logger de la vue
+     */
+    getLogger : function getLogger() {
+        if (!this._logger) {
+            this._logger = log.getLogger(this.name);
+
+            loglevelMessagePrefix(this._logger, {
+                staticPrefixes : [ this.name ]
+            });
+        }
+
+        return this._logger;
     },
     // fonctions de base vides
     render              : function render() {},

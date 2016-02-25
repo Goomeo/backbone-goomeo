@@ -1,4 +1,4 @@
-# TemplatesManager
+# API - TemplatesManager
 
 Classe servant à compiler les templates et à récupérer directement ceux qui l'ont été.
 

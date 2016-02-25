@@ -2,7 +2,7 @@
     <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
         <div class="rating-content valign-wrapper">
             <span each="{ v, i in num }" onclick="{ click }">
-                <i class="material-icons">{ parent.value >= i + 1 ? 'star' : 'star_border' }</i>
+                <i class="material-icons { parent.value >= i + 1 ? 'star' : 'star_border' }">{ parent.value >= i + 1 ? 'star' : 'star_border' }</i>
                 <br/>
                 <label if="{ !parent.opts.noStarLabel }">{ i + 1 }</label>
             </span>

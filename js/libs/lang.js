@@ -1,8 +1,10 @@
 'use strict';
 
-var _           = require('underscore'),
-    Globalize   = require('globalize'),
-    moment      = require('moment');
+var _                       = require('underscore'),
+    Globalize               = require('globalize'),
+    moment                  = require('moment'),
+    log                     = require('loglevel'),
+    loglevelMessagePrefix   = require('loglevel-message-prefix');
 
 module.exports = {
     config : {
@@ -16,17 +18,23 @@ module.exports = {
             this.config = config;
         }
 
-        var locale  = this.getLocale();
-
-        this._initGlobalize(locale);
+        this._initGlobalize();
         this._initMoment();
         this._initParsley();
+
+        var locale  = this.getLocale();
 
         moment.locale(locale);
         window.Parsley.setLocale(locale);
         this.globalize.locale(locale);
+
+        this._logger = log.getLogger('i18n');
+
+        loglevelMessagePrefix(this._logger, {
+            staticPrefixes : [ 'i18n' ]
+        });
     },
-    _initGlobalize : function initGlobalize(locale) {
+    _initGlobalize : function initGlobalize() {
         // loading globalize files
         this.globalize = Globalize;
         this.globalize.load(
@@ -156,9 +164,9 @@ module.exports = {
             return msgFormatter();
         } catch (err) {
             if (err.code == 'E_MISSING_MESSAGE') {
-                console.warn('No traduction for : ' + keyword);
+                this._logger.warn('No traduction for : ' + keyword);
             } else {
-                console.warn('Error translating : ' + keyword);
+                this._logger.warn('Error translating : ' + keyword);
             }
         }
 

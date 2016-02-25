@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - browserify
   - jquery
+  - logger
   - backbone_view
   - riot
   - components
@@ -24,6 +25,7 @@ includes:
   - api_modalManager
   - api_templatesManager
   - api_view_base
+  - api_router
 
 search: true
 ---

@@ -1,6 +1,6 @@
 <material-datepicker>
     <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
-        <i if="{ opts.icon }" class="material-icons prefix">{ opts.icon }</i>
+        <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.icon }</i>
         <input id="{ opts.dataId }"
                name="{ opts.dataName }"
                type="date"
