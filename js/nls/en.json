@@ -1,5 +1,5 @@
 {
-    "en" : {
+    "en": {
         "monthsFull": "January, February, March, April, May, June, July, August, September, October, November, December",
         "monthsShort": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
         "weekdaysFull": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
@@ -7,12 +7,29 @@
         "today": "Today",
         "clear": "Clear",
         "close": "Close",
-        "firstDay" : 0,
         "format": "d mmmm, yyyy",
         "formatSubmit": "yyyy/mm/dd",
         "labelMonthNext": "Next month",
         "labelMonthPrev": "Previous month",
         "labelMonthSelect": "Select a month",
-        "labelYearSelect": "Select a year"
+        "labelYearSelect": "Select a year",
+        "validatorMulti": "This value is required.",
+        "name": "Name",
+        "date": "Date",
+        "color": "Color",
+        "validate": "Submit",
+        "global": "Global",
+        "colorpickerChooseColor": "Click to select a color.",
+        "content": "Content",
+        "rating": "Rating",
+        "choice": "Choice",
+        "survey": "Survey",
+        "on": "ON",
+        "off": "OFF",
+        "deleteMessage": "Are you sure you want to delete this item?",
+        "deleteTitle": "Delete",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "deleteDoubleVerif": "You have to change KO to OK to confirm complete removal."
     }
 }

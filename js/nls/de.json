@@ -1,5 +1,5 @@
 {
-    "de" : {
+    "de": {
         "monthsFull": "Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember",
         "monthsShort": "Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez",
         "weekdaysFull": "Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag",
@@ -7,12 +7,29 @@
         "today": "Heute",
         "clear": "Löschen",
         "close": "Schließen",
-        "firstDay": 1,
         "format": "dddd, dd. mmmm yyyy",
         "formatSubmit": "yyyy/mm/dd",
         "labelMonthNext": "Nächsten Monat",
-        "labelMonthPrev": "Vorheriger Monat",
-        "labelMonthSelect": "Wähle einen Monat",
-        "labelYearSelect": "Wählen Sie ein Jahr"
+        "labelMonthPrev": "Vormonat",
+        "labelMonthSelect": "Wählen Sie einen Monat",
+        "labelYearSelect": "Wählen Sie ein Jahr",
+        "validatorMulti": "Diese Eingabe ist erforderlich.",
+        "name": "Name",
+        "date": "Datum",
+        "color": "Farbe",
+        "validate": "Validieren",
+        "global": "Global",
+        "colorpickerChooseColor": "Hier klicken, um eine Farbe auszuwählen.",
+        "content": "Inhalt",
+        "rating": "Bewertung",
+        "choice": "Wahl",
+        "survey": "Untersuchung",
+        "on": "WEITER",
+        "off": "AUS",
+        "deleteMessage": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
+        "deleteTitle": "Löschen",
+        "delete": "Löschen",
+        "cancel": "Abbrechen",
+        "deleteDoubleVerif": "Sie müssen \"KO\" in \"OK\" ändern, um die unwiderufliche Löschung zu bestätigen."
     }
 }
