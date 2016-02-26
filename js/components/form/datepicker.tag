@@ -33,8 +33,6 @@
                 "labelYearSelect"   : lang.i18n('labelYearSelect')
             };
 
-        console.log(defaultOptions);
-
         this.mixin(parsleyMixin);
 
         if (this.opts.value) {
