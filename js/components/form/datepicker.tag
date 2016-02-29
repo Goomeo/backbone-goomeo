@@ -14,11 +14,24 @@
 
     <script>
         var $               = require('jquery'),
-                _               = require('underscore'),
-                parsleyMixin    = require('../../libs/riot/mixins/parsley'),
-                defaultOptions  = {
-                    container       : 'body'
-                };
+            _               = require('underscore'),
+            lang            = require('../../libs/lang'),
+            parsleyMixin    = require('../../libs/riot/mixins/parsley'),
+            defaultOptions  = {
+                container           : 'body',
+                "monthsFull"        : lang.i18n('monthsFull').split(', '),
+                "monthsShort"       : lang.i18n('monthsShort').split(', '),
+                "weekdaysFull"      : lang.i18n('weekdaysFull').split(', '),
+                "weekdaysShort"     : lang.i18n('weekdaysShort').split(', '),
+                "today"             : lang.i18n('today'),
+                "clear"             : lang.i18n('clear'),
+                "close"             : lang.i18n('close'),
+                "format"            : lang.i18n('format'),
+                "labelMonthNext"    : lang.i18n('labelMonthNext'),
+                "labelMonthPrev"    : lang.i18n('labelMonthPrev'),
+                "labelMonthSelect"  : lang.i18n('labelMonthSelect'),
+                "labelYearSelect"   : lang.i18n('labelYearSelect')
+            };
 
         this.mixin(parsleyMixin);
 
