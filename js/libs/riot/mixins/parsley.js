@@ -22,7 +22,7 @@ module.exports = {
 
         this.on('mount', function mount() {
             _.each(this.parsley, function each(rule, key) {
-                $('input, select', this.root).attr('data-parsley-' + key, rule);
+                $('input, select, textarea', this.root).attr('data-parsley-' + key, rule);
             }, this);
         });
     }
