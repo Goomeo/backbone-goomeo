@@ -12,6 +12,8 @@
     <script>
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
+        this.mixin(parsleyMixin);
+
         if (this.opts.value && this.opts.value.length > 0) {
             this.opts.isActive = true;
         }
