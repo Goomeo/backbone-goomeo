@@ -40,17 +40,7 @@
 @import "../node_modules/materialize-css/sass/components/date_picker/default.time.scss";
 
 // Override
-@import 'override/reset';
-@import 'override/button';
-@import 'override/loaders';
-@import 'override/parsley';
-@import 'override/modal';
+@import 'override/override';
 
 // Goomeo Components
-@import 'components/empty';
-@import 'components/slide-panel';
-@import 'components/forms';
-@import 'components/buttons';
-@import 'components/colorpicker';
-@import 'components/rating';
-@import 'components/survey';
+@import 'components/components';
