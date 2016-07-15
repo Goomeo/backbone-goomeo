@@ -1,19 +1,20 @@
 'use strict';
 
-var $                       = require('jquery'),
-    _                       = require('underscore'),
-    async                   = require('async'),
-    Backbone                = require('backbone'),
-    log                     = require('loglevel'),
-    loglevelMessagePrefix   = require('loglevel-message-prefix'),
-    Materialize             = global.Materialize,
-    moment                  = require('moment'),
-    riot                    = require('riot'),
-    viewManager             = require('../viewManager'),
-    eventManager            = require('../eventManager'),
-    templatesManager        = require('../templatesManager'),
-    panelManager            = require('../../goomeo/panelManager'),
-    modalManager            = require('../../goomeo/modalManager');
+const $                         = require('jquery');
+const _                         = require('underscore');
+const async                     = require('async');
+const Backbone                  = require('backbone');
+const functions                 = require('../functions');
+const log                       = require('loglevel');
+const loglevelMessagePrefix     = require('loglevel-message-prefix');
+const Materialize               = global.Materialize;
+const moment                    = require('moment');
+const riot                      = require('riot');
+const viewManager               = require('../viewManager');
+const eventManager              = require('../eventManager');
+const templatesManager          = require('../templatesManager');
+const panelManager              = require('../../goomeo/panelManager');
+const modalManager              = require('../../goomeo/modalManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -26,7 +27,9 @@ require('../../../components/loaders/spinner.tag');
 
 Backbone.$ = $;
 
-module.exports = Backbone.View.extend({
+var View = Backbone.View.extend(functions);
+
+module.exports = View.extend({
     constructor : function constructor(options) {
         Backbone.View.apply(this, arguments);
 

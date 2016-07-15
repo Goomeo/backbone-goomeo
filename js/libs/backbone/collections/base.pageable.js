@@ -1,7 +1,7 @@
 'use strict';
 
-var PageableCollection  = require('backbone.paginator'),
-    base                = require('./base');
+const PageableCollection  = require('backbone.paginator');
+const base                = require('./base');
 
 var Collection = PageableCollection.extend(base);
 

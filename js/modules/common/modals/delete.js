@@ -1,8 +1,8 @@
 'use strict';
 
-var _               = require('underscore'),
-    View            = require('backbone-goomeo/js/libs/backbone/views/base'),
-    tpl             = require('../../../tpl/common/modals/delete.html');
+const _               = require('underscore');
+const View            = require('backbone-goomeo/js/libs/backbone/views/base');
+const tpl             = require('../../../tpl/common/modals/delete.html');
 
 require('backbone-goomeo/js/components/form/input.tag');
 

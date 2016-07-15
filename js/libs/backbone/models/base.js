@@ -1,7 +1,8 @@
 'use strict';
 
-var Backbone = require('backbone');
+const Backbone  = require('backbone');
+const functions = require('../functions');
 
-module.exports = Backbone.Model.extend({
+var Model       = Backbone.Model.extend({});
 
-});
+module.exports  = Model.extend(functions);

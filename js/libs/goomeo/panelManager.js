@@ -1,10 +1,10 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    Backbone        = require('backbone'),
-    eventManager    = require('../backbone/eventManager'),
-    viewManager     = require('../backbone/viewManager');
+const $                 = require('jquery');
+const _                 = require('underscore');
+const Backbone          = require('backbone');
+const eventManager      = require('../backbone/eventManager');
+const viewManager       = require('../backbone/viewManager');
 
 module.exports = _.extend({
     defaultParams : {

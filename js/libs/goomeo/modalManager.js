@@ -1,9 +1,9 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    Backbone        = require('backbone'),
-    viewManager     = require('backbone-goomeo/js/libs/backbone/viewManager');
+const $             = require('jquery');
+const _             = require('underscore');
+const Backbone      = require('backbone');
+const viewManager   = require('backbone-goomeo/js/libs/backbone/viewManager');
 
 module.exports = {
     defaultParams : {

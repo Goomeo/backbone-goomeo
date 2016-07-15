@@ -1,7 +1,7 @@
 'use strict';
 
-var _       = require('underscore'),
-    langs   = require('../lang');
+const _       = require('underscore');
+const langs   = require('../lang');
 
 module.exports = function validator(ParsleyValidator, config) {
     var validator = ParsleyValidator.addValidator('multi', function multi(value, requirement) {

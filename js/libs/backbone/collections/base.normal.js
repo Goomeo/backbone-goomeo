@@ -1,7 +1,7 @@
 'use strict';
 
-var Backbone = require('backbone'),
-    base     = require('./base');
+const Backbone  = require('backbone');
+const base      = require('./base');
 
 var Collection = Backbone.Collection.extend(base);
 

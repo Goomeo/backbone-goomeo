@@ -1,10 +1,10 @@
 'use strict';
 
-var _                       = require('underscore'),
-    Globalize               = require('globalize'),
-    moment                  = require('moment'),
-    log                     = require('loglevel'),
-    loglevelMessagePrefix   = require('loglevel-message-prefix');
+const _                       = require('underscore');
+const Globalize               = require('globalize');
+const moment                  = require('moment');
+const log                     = require('loglevel');
+const loglevelMessagePrefix   = require('loglevel-message-prefix');
 
 module.exports = {
     config : {

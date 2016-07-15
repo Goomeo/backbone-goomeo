@@ -1,8 +1,8 @@
 'use strict';
 
-var _       = require('underscore'),
-    $       = require('jquery'),
-    _str    = require('underscore.string');
+const $       = require('jquery');
+const _       = require('underscore');
+const _str    = require('underscore.string');
 
 module.exports = {
     init : function init() {

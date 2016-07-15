@@ -1,6 +1,6 @@
 'use strict';
 
-var BaseView = require('./base');
+const BaseView = require('./base');
 
 require('../../../components/form/input.tag');
 require('../../../components/form/textarea.tag');

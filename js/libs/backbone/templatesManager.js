@@ -1,7 +1,7 @@
 'use strict';
 
-var _               = require('underscore'),
-    stringFunctions = require('../goomeo/stringFunctions');
+const _                 = require('underscore');
+const stringFunctions   = require('../goomeo/stringFunctions');
 
 module.exports = {
     templates   : {},

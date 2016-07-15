@@ -47,7 +47,8 @@
         "browser": true,
         "amd": true,
         "jquery": true,
-        "node": true
+        "node": true,
+        "es6" : true
     },
     "globals": {
         "backboneMapArray": false,
