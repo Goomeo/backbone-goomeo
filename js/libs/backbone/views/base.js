@@ -428,5 +428,39 @@ module.exports = Backbone.View.extend({
     render              : function render() {},
     beforeRender        : function beforeRender(callback) { callback(); },
     afterRender         : function afterRender(callback) { callback(); },
-    waitingRender       : function waitingRender(callback) { callback(); }
+    waitingRender       : function waitingRender(callback) { callback(); },
+    /**
+     * Permet de naviguer sur une autre route Backbone tout en rajoutant la langue de navigation
+     *
+     * @param {string}              fragment            Route Backbone
+     * @param {boolean|object}      options             See Backbone.history.navigate options.
+     * @returns {Backbone.View}                         Current View instance
+     */
+    navigateWithLang : function navigateWithLang(fragment, options) {
+        var lang = Lang.getLocale();
+
+        if (lang && fragment && fragment.length > 0) {
+            if (!_str.startsWith(fragment, lang + '/')) {
+                if (_str.startsWith(fragment, '/')) {
+                    fragment = lang + fragment;
+                } else {
+                    fragment = lang + '/' + fragment;
+                }
+            }
+        }
+
+        Backbone.history.navigate(fragment, options);
+        return this;
+    },
+    /**
+     * Permet de naviguer sur une autre route Backbone
+     *
+     * @param {string}              fragment            Route Backbone
+     * @param {boolean|object}      options             See Backbone.history.navigate options.
+     * @returns {Backbone.View}                         Current View instance
+     */
+    navigate : function navigate(fragment, options) {
+        Backbone.history.navigate(fragment, options);
+        return this;
+    }
 });
