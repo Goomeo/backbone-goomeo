@@ -1,6 +1,9 @@
 'use strict';
 
-const _     = require('underscore');
+const _         = require('underscore');
+const _str      = require('underscore.string');
+const Backbone  = require('backbone');
+const Lang      = require('../lang');
 
 /**
  * Functions to use the HTML5 LocalStorage
@@ -165,9 +168,52 @@ const objectToUrlQuery = function objectToUrlQuery(obj, prefix) {
     return str.join('&');
 };
 
+/**
+ * Functions to navigate from route to another
+ *
+ * @type {{navigateWithLang: Function, navigate: Function}}
+ */
+const navigation = {
+    /**
+     * Permet de naviguer sur une autre route Backbone tout en rajoutant la langue de navigation
+     *
+     * @param {string}              fragment            Route Backbone
+     * @param {boolean|object}      options             See Backbone.history.navigate options.
+     * @returns {Backbone.View}                         Current View instance
+     */
+    navigateWithLang : function navigateWithLang(fragment, options) {
+        var lang = Lang.getLocale();
+
+        if (lang && fragment && fragment.length > 0) {
+            if (!_str.startsWith(fragment, lang + '/')) {
+                if (_str.startsWith(fragment, '/')) {
+                    fragment = lang + fragment;
+                } else {
+                    fragment = lang + '/' + fragment;
+                }
+            }
+        }
+
+        Backbone.history.navigate(fragment, options);
+        return this;
+    },
+    /**
+     * Permet de naviguer sur une autre route Backbone
+     *
+     * @param {string}              fragment            Route Backbone
+     * @param {boolean|object}      options             See Backbone.history.navigate options.
+     * @returns {Backbone.View}                         Current View instance
+     */
+    navigate : function navigate(fragment, options) {
+        Backbone.history.navigate(fragment, options);
+        return this;
+    }
+};
+
 module.exports = {
     localstorage        : localstorage,
     json                : json,
     encrypt             : encrypt,
-    objectToUrlQuery    : objectToUrlQuery
+    objectToUrlQuery    : objectToUrlQuery,
+    navigation          : navigation
 }
