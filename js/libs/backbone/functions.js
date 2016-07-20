@@ -216,4 +216,4 @@ module.exports = {
     encrypt             : encrypt,
     objectToUrlQuery    : objectToUrlQuery,
     navigation          : navigation
-}
+};

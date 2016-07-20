@@ -31,8 +31,6 @@ var View = Backbone.View.extend(functions);
 
 module.exports = View.extend({
     constructor : function constructor(options) {
-        Backbone.View.apply(this, arguments);
-
         _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
         this.models             = options.models || {};
@@ -90,6 +88,8 @@ module.exports = View.extend({
 
             return this;
         }.bind(this));
+
+        Backbone.View.apply(this, arguments);
     },
     global : {
         on : function on() {
