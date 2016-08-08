@@ -52,7 +52,7 @@ module.exports = {
     _initParsley    : function initParsley() {},
     _initMainData   : function initMainData() {},
     _initMessages   : function initMessages() {},
-    changeLocale : function changeLocale(locale) {
+    changeLocale    : function changeLocale(locale) {
         var newLocale       = locale,
             currentLocale   = localStorage.getItem('locale');
 
