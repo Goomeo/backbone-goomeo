@@ -22,12 +22,9 @@ module.exports = _.extend({
      * @param {string}          [params.html]                       Contenu HTML
      * @param {boolean}         params.closeOnClickOutside          True : ferme le panel quand on clic en dehors. (default : False)
      *
-     * max          -> 100%
-     * high         -> 90%;
-     * medium-high  -> 80%
-     * low-high     -> 70%
-     * medium       -> 50%
-     * low          -> 30%
+     * full         -> 100%
+     * medium       -> 2/3
+     * low          -> 1/3
      */
     open : function open(params) {
         params = _.extend({}, this.defaultParams, params);
