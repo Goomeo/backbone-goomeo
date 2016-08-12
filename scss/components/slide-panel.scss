@@ -2,106 +2,55 @@
   padding :  50px 5px 4px 15px;
 }
 
-@-webkit-keyframes slide-widthMax{
-  0% { left : 100% }
-  100% { left : 0; }
+@-webkit-keyframes slide-width-full{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-full-left; }
 }
-@keyframes slide-widthMax{
-  0% { left : 100% }
-  100% { left : 0; }
+@keyframes slide-width-full{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-full-left; }
 }
-@-webkit-keyframes slide-widthMax-close{
-  0% { left : 0 }
-  100% { left : 100%; }
+@-webkit-keyframes slide-width-full-close{
+  0% { left : $slidepanel-full-left; }
+  100% { left : $slidepanel-full-size; }
 }
-@keyframes slide-widthMax-close{
-  0% { left : 0 }
-  100% { left : 100%; }
-}
-
-@-webkit-keyframes slide-widthHigh{
-  0% { left : 100% }
-  100% { left : 10%; }
-}
-@keyframes slide-widthHigh{
-  0% { left : 100% }
-  100% { left : 10%; }
-}
-@-webkit-keyframes slide-widthHigh-close{
-  0% { left : 10% }
-  100% { left : 100%; }
-}
-@keyframes slide-widthHigh-close{
-  0% { left : 10% }
-  100% { left : 100%; }
+@keyframes slide-width-full-close{
+  0% { left : $slidepanel-full-left; }
+  100% { left : $slidepanel-full-size; }
 }
 
-@-webkit-keyframes slide-widthMediumHigh{
-  0% { left : 100% }
-  100% { left : 20%; }
+@-webkit-keyframes slide-width-medium{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-medium-left; }
 }
-@keyframes slide-widthMediumHigh{
-  0% { left : 100% }
-  100% { left : 20%; }
+@keyframes slide-width-medium{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-medium-left; }
 }
-@-webkit-keyframes slide-widthMediumHigh-close{
-  0% { left : 20% }
-  100% { left : 100%; }
+@-webkit-keyframes slide-width-medium-close{
+  0% { left : $slidepanel-medium-left; }
+  100% { left : $slidepanel-full-size; }
 }
-@keyframes slide-widthMediumHigh-close{
-  0% { left : 20% }
-  100% { left : 100%; }
-}
-
-@-webkit-keyframes slide-widthLowHigh{
-  0% { left : 100% }
-  100% { left : 30%; }
-}
-@keyframes slide-widthLowHigh{
-  0% { left : 100% }
-  100% { left : 30%; }
-}
-@-webkit-keyframes slide-widthLowHigh-close{
-  0% { left : 30% }
-  100% { left : 100%; }
-}
-@keyframes slide-widthLowHigh-close{
-  0% { left : 30% }
-  100% { left : 100%; }
+@keyframes slide-width-medium-close{
+  0% { left : $slidepanel-medium-left; }
+  100% { left : $slidepanel-full-size; }
 }
 
-@-webkit-keyframes slide-widthMedium{
-  0% { left : 100% }
-  100% { left : 50%; }
+@-webkit-keyframes slide-width-small{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-small-left; }
 }
-@keyframes slide-widthMedium{
-  0% { left : 100% }
-  100% { left : 50%; }
+@keyframes slide-width-small{
+  0% { left : $slidepanel-full-size; }
+  100% { left : $slidepanel-small-left; }
 }
-@-webkit-keyframes slide-widthMedium-close{
-  0% { left : 50% }
-  100% { left : 100%; }
+@-webkit-keyframes slide-width-small-close{
+  0% { left : $slidepanel-small-left; }
+  100% { left : $slidepanel-full-size; }
 }
-@keyframes slide-widthMedium-close{
-  0% { left : 50% }
-  100% { left : 100%; }
-}
-
-@-webkit-keyframes slide-widthLow{
-  0% { left : 100% }
-  100% { left : 70%; }
-}
-@keyframes slide-widthLow{
-  0% { left : 100% }
-  100% { left : 70%; }
-}
-@-webkit-keyframes slide-widthLow-close{
-  0% { left : 70% }
-  100% { left : 100%; }
-}
-@keyframes slide-widthLow-close{
-  0% { left : 70% }
-  100% { left : 100%; }
+@keyframes slide-width-small-close{
+  0% { left : $slidepanel-small-left; }
+  100% { left : $slidepanel-full-size; }
 }
 
 
@@ -121,6 +70,7 @@
     background-color: $slidepanel-topbar-background-color;
     color: $slidepanel-topbar-text-color;
     padding-left: $slidepanel-topbar-padding-left;
+    font-weight: $slidepanel-topbar-font-weight;
 
     .actions{
       float: right;
@@ -128,103 +78,49 @@
     }
   }
 
-  //&.resize{
-  //  .transition(all, 0.5s, ease);
-  //}
-
-  &.max{
-    width : 100%;
+  &.full{
+    width : $slidepanel-full-size;
     &.animate-open{
-      animation : slide-widthMax 0.1s;
-      -webkit-animation : slide-widthMax 0.1s;
+      animation : slide-width-full 0.1s;
+      -webkit-animation : slide-width-full 0.1s;
     }
     &.animate-close{
-      animation : slide-widthMax-close 0.1s;
-      -webkit-animation : slide-widthMax-close 0.1s;
+      animation : slide-width-full-close 0.1s;
+      -webkit-animation : slide-width-full-close 0.1s;
     }
     &.isOpen{
-      left : 0;
-    }
-  }
-
-  &.high{
-    width : 90%;
-    &.animate-open{
-      animation : slide-widthHigh 0.1s;
-      -webkit-animation : slide-widthHigh 0.1s;
-    }
-    &.animate-close{
-      animation : slide-widthHigh-close 0.1s;
-      -webkit-animation : slide-widthHigh-close 0.1s;
-    }
-    &.isOpen{
-      left : 10%;
-    }
-  }
-
-  &.medium-high{
-    width : 80%;
-    &.animate-open{
-      animation : slide-widthMediumHigh 0.1s;
-      -webkit-animation : slide-widthMediumHigh 0.1s;
-    }
-    &.animate-close{
-      animation : slide-widthMediumHigh-close 0.1s;
-      -webkit-animation : slide-widthMediumHigh-close 0.1s;
-    }
-    &.isOpen{
-      left : 20%;
-    }
-  }
-
-  &.low-high{
-    width : 70%;
-    &.animate-open{
-      animation : slide-widthLowHigh 0.1s;
-      -webkit-animation : slide-widthLowHigh 0.1s;
-    }
-    &.animate-close{
-      animation : slide-widthLowHigh-close 0.1s;
-      -webkit-animation : slide-widthLowHigh-close 0.1s;
-    }
-    &.isOpen{
-      left : 30%;
+      left : $slidepanel-full-left;
     }
   }
 
   &.medium{
-    width : 50%;
+    width : $slidepanel-medium-size;
     &.animate-open{
-      animation : slide-widthMedium 0.1s;
-      -webkit-animation : slide-widthMedium 0.1s;
+      animation : slide-width-medium 0.1s;
+      -webkit-animation : slide-width-medium 0.1s;
     }
     &.animate-close{
-      animation : slide-widthMedium-close 0.1s;
-      -webkit-animation : slide-widthMedium-close 0.1s;
+      animation : slide-width-medium-close 0.1s;
+      -webkit-animation : slide-width-medium-close 0.1s;
     }
     &.isOpen{
-      left : 50%;
+      left : $slidepanel-medium-left;
     }
   }
 
-  &.low{
-    width : 30%;
+  &.small{
+    width : $slidepanel-small-size;
     &.animate-open{
-      animation : slide-widthLow 0.1s;
-      -webkit-animation : slide-widthLow 0.1s;
+      animation : slide-width-small 0.1s;
+      -webkit-animation : slide-width-small 0.1s;
     }
     &.animate-close{
-      animation : slide-widthLow-close 0.1s;
-      -webkit-animation : slide-widthLow-close 0.1s;
+      animation : slide-width-small-close 0.1s;
+      -webkit-animation : slide-width-small-close 0.1s;
     }
     &.isOpen{
-      left : 70%;
+      left : $slidepanel-small-left;
     }
-  }
-
-  &.full{
-    width : 100%;
-    left: 0 !important;
   }
 
   .subpanel{
