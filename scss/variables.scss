@@ -36,7 +36,14 @@ $parsley-color                                                  : color('red', '
 
 // modal
 $modal-small-padding                                            : 15px;
-$modal-smapp-title-size                                         : 2rem;
+$modal-title-font-size                                          : 22px;
+$modal-title-font-color                                         : color('g-grey', 'lighten-1');
+$modal-title-font-weight                                        : $roboto-thin;
+$modal-content-font-size                                        : 12px;
+$modal-content-font-weight                                      : $roboto-regular;
+$modal-content-font-color                                       : color('g-deep-blue', 'base');
+$modal-overlay-color                                            : color('g-deep-blue', 'base');
+$modal-overlay-opacity                                          : 0.7;
 
 $btn-control-bar-height                                         : $slidepanel-bottom-buttons-height;
 $btn-control-save-base-color                                    : color('teal', 'accent-4');

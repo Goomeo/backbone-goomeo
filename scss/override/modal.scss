@@ -1,11 +1,21 @@
 .modal {
+  h1,h2,h3,h4 {
+    margin-top: 0;
+    font-weight: $modal-title-font-weight;
+    font-size: $modal-title-font-size;
+    color: $modal-title-font-color;
+  }
+
+  .modal-content {
+    font-weight: $modal-content-font-weight;
+    font-size: $modal-content-font-size;
+    color: $modal-content-font-color;
+  }
+
   &.small {
     width: 25%;
     .modal-content {
       padding: $modal-small-padding;
-    }
-    h4 {
-      font-size: $modal-smapp-title-size;
     }
 
     @media #{$medium-and-down} {
@@ -21,3 +31,7 @@
   }
 }
 
+.lean-overlay {
+  background-color: $modal-overlay-color;
+  opacity: $modal-overlay-opacity;
+}
