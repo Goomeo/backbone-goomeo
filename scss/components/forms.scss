@@ -23,39 +23,6 @@ form.gform {
   }
 }
 
-.panel-form {
-  height: 100%;
-  form {
-    height: 100%;
-    position: relative;
-
-    .form-content {
-      padding: 5px 10px;
-      overflow: auto;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 75px;
-    }
-
-    .form-validate {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 75px;
-      padding: 0 15px;
-
-      @extend .valign-wrapper;
-
-      & > * {
-        @extend .valign;
-      }
-    }
-  }
-}
-
 // composants
 material-checkbox + material-checkbox, material-radio + material-radio {
   margin-left: 10px;
