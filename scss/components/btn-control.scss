@@ -11,6 +11,7 @@
     line-height: $slidepanel-bottom-buttons-height;
     height: 100%;
     width: 100%;
+    transition: all .1s linear;
 
     // quatres elements
     &:nth-child(1):nth-last-child(4),
@@ -34,6 +35,34 @@
     &:nth-child(2):nth-last-child(1) {
       float: left;
       width: percentage(1/2);
+    }
+
+    &.btn-control-cancel {
+      background-color: $btn-control-cancel-base-color;
+      &:hover {
+        background-color: $btn-control-cancel-hover-color;
+      }
+    }
+
+    &.btn-control-save {
+      background-color: $btn-control-save-base-color;
+      &:hover {
+        background-color: $btn-control-save-hover-color;
+      }
+    }
+
+    &.btn-control-delete {
+      background-color: $btn-control-delete-base-color;
+      &:hover {
+        background-color: $btn-control-delete-hover-color;
+      }
+    }
+
+    &.btn-control-savequit {
+      background-color: $btn-control-savequit-base-color;
+      &:hover {
+        background-color: $btn-control-savequit-hover-color;
+      }
     }
   }
 }

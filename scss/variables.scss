@@ -39,3 +39,11 @@ $modal-small-padding                                            : 15px;
 $modal-smapp-title-size                                         : 2rem;
 
 $btn-control-bar-height                                         : $slidepanel-bottom-buttons-height;
+$btn-control-save-base-color                                    : color('teal', 'accent-4');
+$btn-control-save-hover-color                                   : color('teal', 'accent-3');
+$btn-control-cancel-base-color                                  : color('grey', 'lighten-1');
+$btn-control-cancel-hover-color                                 : color('grey', 'base');
+$btn-control-delete-base-color                                  : color('red', 'lighten-1');
+$btn-control-delete-hover-color                                 : color('red', 'base');
+$btn-control-savequit-base-color                                : color('cyan', 'darken-1');
+$btn-control-savequit-hover-color                               : color('cyan', 'darken-2');
