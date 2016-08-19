@@ -2,9 +2,6 @@
     <h4><i18n word="<%- title %>"></i18n></h4>
     <div class="container-fluid">
         <p class="valign-wrapper">
-            <% if (icon) { %>
-            <i class="material-icons modal-icon"><%- icon %></i>
-            <% } %>
             <i18n class="valign" word="<%- message %>"></i18n>
         </p>
         <% if (hasDoubleVerif) { %>
@@ -21,6 +18,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a class="cancel modal-action modal-close waves-effect btn-flat"><i18n word="<%- cancel %>"></i18n></a>
-    <a class="accept modal-action modal-close waves-effect waves-green btn-flat"><i18n word="<%- accept %>"></i18n></a>
+    <a class="cancel btn-control-cancel modal-action modal-close waves-effect btn-flat"><i18n word="<%- cancel %>"></i18n></a>
+    <a class="accept btn-control-delete modal-action modal-close waves-effect waves-green btn-flat"><i18n word="<%- accept %>"></i18n></a>
 </div>

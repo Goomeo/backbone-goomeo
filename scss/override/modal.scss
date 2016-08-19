@@ -29,6 +29,10 @@
       width: 80%;
     }
   }
+
+  .modal-footer {
+    @extend .btn-control;
+  }
 }
 
 .lean-overlay {
