@@ -76,11 +76,11 @@ module.exports = {
             currentLocale = localStorage.getItem('locale');
 
         if (_.isEmpty(currentLocale)) {
-            this.changeLocale(navigatorLang);
+            this.changeLocale(_.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale);
             return;
         }
 
-        return _.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale;
+        return currentLocale;
     },
     /**
      * Traduit le mot clé passé en paramètre en utilisant globalize. Compatible pluralize, numberFormat, ...
