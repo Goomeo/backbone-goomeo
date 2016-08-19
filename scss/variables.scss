@@ -46,6 +46,8 @@ $modal-overlay-color                                            : color('g-deep-
 $modal-overlay-opacity                                          : 0.7;
 
 $btn-control-bar-height                                         : $slidepanel-bottom-buttons-height;
+$btn-control-font-weight                                        : $roboto-light;
+$btn-control-font-size                                          : 12px;
 $btn-control-save-base-color                                    : color('teal', 'accent-4');
 $btn-control-save-hover-color                                   : color('teal', 'base');
 $btn-control-cancel-base-color                                  : color('grey', 'lighten-1');
