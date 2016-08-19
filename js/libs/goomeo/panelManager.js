@@ -111,7 +111,7 @@ module.exports = _.extend({
         }
     },
     _initPanel : function initPanel(params) {
-        var $title      = $('<a href="#" class="slidepanel-close back-button" ><i class="material-icons">close</i></a>'),
+        var $title      = $('<a href="#" class="slidepanel-close back-button waves-effect waves-light" ><i class="material-icons">close</i></a>'),
             $content    = $('<div class="slidepanel-content"></div>'),
             $panel      = $('<div class="slidepanels z-depth-3"></div>'),
             $fade       = $('<div class="slidepanel-fade animated"></div>'),

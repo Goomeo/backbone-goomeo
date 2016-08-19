@@ -12,17 +12,18 @@ $slidepanel-topbar-height                                       : 30px;
 $slidepanel-topbar-line-height                                  : $slidepanel-topbar-height;
 $slidepanel-topbar-background-color                             : color('g-deep-blue', 'base');
 $slidepanel-topbar-text-color                                   : color('shades', 'white');
-$slidepanel-topbar-hover-color                                  : color('g-deep-blue', 'lighten-2');
-$slidepanel-topbar-padding-left                                 : 30px;
+$slidepanel-topbar-padding-left                                 : 45px;
 $slidepanel-topbar-font-size                                    : 12px;
-$slidepanel-topbar-font-weight                                  : $roboto-regular;
+$slidepanel-topbar-font-weight                                  : $roboto-medium;
 $slidepanel-full-size                                           : 100%;
 $slidepanel-full-left                                           : 0;
 $slidepanel-medium-size                                         : percentage(2/3);
 $slidepanel-medium-left                                         : percentage(1/3);
 $slidepanel-small-size                                          : percentage(1/3);
 $slidepanel-small-left                                          : percentage(2/3);
-
+$slidepanel-close-background-color                              : color('g-deep-blue', 'lighten-2');
+$slidepanel-close-hover-background-color                        : color('g-deep-blue', 'lighten-4');
+$slidepanel-bottom-buttons-height                               : 54px;
 
 // empty
 $empty-icon-size                                                : 10rem;
@@ -35,4 +36,21 @@ $parsley-color                                                  : color('red', '
 
 // modal
 $modal-small-padding                                            : 15px;
-$modal-smapp-title-size                                         : 2rem;
+$modal-title-font-size                                          : 22px;
+$modal-title-font-color                                         : color('g-grey', 'lighten-1');
+$modal-title-font-weight                                        : $roboto-thin;
+$modal-content-font-size                                        : 12px;
+$modal-content-font-weight                                      : $roboto-regular;
+$modal-content-font-color                                       : color('g-deep-blue', 'base');
+$modal-overlay-color                                            : color('g-deep-blue', 'base');
+$modal-overlay-opacity                                          : 0.7;
+
+$btn-control-bar-height                                         : $slidepanel-bottom-buttons-height;
+$btn-control-save-base-color                                    : color('teal', 'accent-4');
+$btn-control-save-hover-color                                   : color('teal', 'base');
+$btn-control-cancel-base-color                                  : color('grey', 'lighten-1');
+$btn-control-cancel-hover-color                                 : color('grey', 'base');
+$btn-control-delete-base-color                                  : color('red', 'lighten-1');
+$btn-control-delete-hover-color                                 : color('red', 'base');
+$btn-control-savequit-base-color                                : color('cyan', 'darken-1');
+$btn-control-savequit-hover-color                               : color('cyan', 'darken-2');

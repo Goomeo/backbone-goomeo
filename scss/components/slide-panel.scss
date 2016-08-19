@@ -185,15 +185,15 @@
     line-height: $slidepanel-topbar-line-height;
     text-align: center;
     vertical-align: middle;
-    background-color: transparent!important;
-    border: none!important;
+    background-color: $slidepanel-close-background-color;
+    border: none;
 
     i {
       line-height: $slidepanel-topbar-line-height;
     }
 
     &:hover {
-      color: color('blue-grey', 'base');
+      background-color: $slidepanel-close-hover-background-color;
     }
   }
 
@@ -232,4 +232,31 @@
   z-index: 999;
   background-color: $slidepanel-fade-background-color;
   opacity: $slidepanel-fade-opacity;
+}
+
+.panel-form {
+  height: 100%;
+  form {
+    height: 100%;
+    position: relative;
+
+    .form-content {
+      padding: 5px 10px;
+      overflow: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: $slidepanel-bottom-buttons-height;
+    }
+
+    .form-validate {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: $slidepanel-bottom-buttons-height;
+      padding: 0;
+    }
+  }
 }
