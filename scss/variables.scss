@@ -37,7 +37,7 @@ $parsley-color                                                  : color('red', '
 // modal
 $modal-small-padding                                            : 15px;
 $modal-title-font-size                                          : 22px;
-$modal-title-font-color                                         : color('g-grey', 'base');
+$modal-title-font-color                                         : color('g-grey', 'darken-1');
 $modal-title-font-weight                                        : $roboto-thin;
 $modal-content-font-size                                        : 12px;
 $modal-content-font-weight                                      : $roboto-regular;
@@ -50,8 +50,8 @@ $btn-control-font-weight                                        : $roboto-light;
 $btn-control-font-size                                          : 14px;
 $btn-control-save-base-color                                    : color('teal', 'accent-4');
 $btn-control-save-hover-color                                   : color('teal', 'base');
-$btn-control-cancel-base-color                                  : color('g-grey', 'base');
-$btn-control-cancel-hover-color                                 : color('g-grey', 'darken-1');
+$btn-control-cancel-base-color                                  : color('g-grey', 'lighten-1');
+$btn-control-cancel-hover-color                                 : color('g-grey', 'base');
 $btn-control-delete-base-color                                  : color('red', 'lighten-1');
 $btn-control-delete-hover-color                                 : color('red', 'base');
 $btn-control-savequit-base-color                                : color('cyan', 'darken-1');
