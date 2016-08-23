@@ -3,12 +3,6 @@
             type="{ opts.type || 'button' }" id="{ opts.dataId || 'button' }"
             disabled="{ disabled }">
         <i if="{ opts.icon }" class="material-icons { opts.iconSide || 'left' } { opts.icon }">{ opts.icon }</i>
-
-        <div hide="true" id="wordDiv"><yield /></div>
-        <i18n word="{ this.word || 'validate' }" />
+        <i18n word="{ root._innerHTML || 'validate' }" />
     </button>
-
-    <script>
-        this.word = this.wordDiv.innerHtml;
-    </script>
 </btn>
