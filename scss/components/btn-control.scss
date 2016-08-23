@@ -1,6 +1,7 @@
 .btn-control-bar {
   height : $btn-control-bar-height;
   position: relative;
+  padding: 0;
 
   .btn-control {
     border: none;
@@ -11,7 +12,10 @@
     line-height: $slidepanel-bottom-buttons-height;
     height: 100%;
     width: 100%;
+    border-radius: 0;
     transition: all .1s linear;
+    font-weight: $btn-control-font-weight;
+    font-size: $btn-control-font-size;
 
     // quatres elements
     &:nth-child(1):nth-last-child(4),

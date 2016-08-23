@@ -1,4 +1,6 @@
 .modal {
+  border-radius: 0;
+
   h1,h2,h3,h4 {
     margin-top: 0;
     font-weight: $modal-title-font-weight;
@@ -10,6 +12,7 @@
     font-weight: $modal-content-font-weight;
     font-size: $modal-content-font-size;
     color: $modal-content-font-color;
+    padding: 15px 15px 5px;
   }
 
   &.small {
@@ -28,6 +31,10 @@
     @media #{$medium-and-down} {
       width: 80%;
     }
+  }
+
+  .modal-footer {
+    padding: 0;
   }
 }
 
