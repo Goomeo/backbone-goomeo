@@ -46,9 +46,9 @@
     @each $color_name, $color in $colors {
       @if $color_name != 'shades' {
         &.#{$color_name} {
-          background-color: color($color_name, $colors-control-base-level);
+          background-color: color($color_name, $colors-control-base-level) !important;
           &:hover {
-            background-color: color($color_name, $colors-control-hover-level);
+            background-color: color($color_name, $colors-control-hover-level) !important;
           }
         }
       }
