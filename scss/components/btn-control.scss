@@ -4,6 +4,8 @@
   padding: 0;
 
   .btn-control {
+    @extend .truncate;
+
     border: none;
     color: color('shades', 'white');
     text-align: center;
@@ -41,31 +43,14 @@
       width: percentage(1/2);
     }
 
-    &.btn-control-cancel {
-      background-color: $btn-control-cancel-base-color;
-      &:hover {
-        background-color: $btn-control-cancel-hover-color;
-      }
-    }
-
-    &.btn-control-save {
-      background-color: $btn-control-save-base-color;
-      &:hover {
-        background-color: $btn-control-save-hover-color;
-      }
-    }
-
-    &.btn-control-delete {
-      background-color: $btn-control-delete-base-color;
-      &:hover {
-        background-color: $btn-control-delete-hover-color;
-      }
-    }
-
-    &.btn-control-savequit {
-      background-color: $btn-control-savequit-base-color;
-      &:hover {
-        background-color: $btn-control-savequit-hover-color;
+    @each $color_name, $color in $colors {
+      @if $color_name != 'shades' {
+        &.#{$color_name} {
+          background-color: color($color_name, $colors-control-base-level);
+          &:hover {
+            background-color: color($color_name, $colors-control-hover-level);
+          }
+        }
       }
     }
   }
