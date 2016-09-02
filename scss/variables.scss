@@ -51,3 +51,11 @@ $btn-control-font-size                                          : 14px;
 
 $colors-control-base-level                                      : 'lighten-1';
 $colors-control-hover-level                                     : 'base';
+
+$form-fieldset-background-color                                 : color('shades', 'white');
+$form-fieldset-font-size                                        : 12px;
+$form-fieldset-font-weight                                      : $roboto-regular;
+$form-fieldset-font-color                                       : color('g-deep-blue', 'base');
+$form-legend-font-size                                          : 12px;
+$form-legend-font-weight                                        : $roboto-medium;
+$form-legend-font-color                                         : color('g-blue-grey', 'darken-1');

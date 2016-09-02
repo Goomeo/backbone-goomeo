@@ -1,24 +1,24 @@
 form.gform {
-  fieldset {
-    position: relative;
-    margin-top: 30px;
-    border: none;
-    border-top: 1px solid color('grey', 'lighten-1');
-    padding: 10px;
+  .form-content {
+    fieldset {
+      position: relative;
+      margin: 30px 30px 0;
+      padding: 0;
+      border: none;
+      background-color: $form-fieldset-background-color;
+      font-size: $form-fieldset-font-size;
+      font-weight: $form-fieldset-font-weight;
+      color: $form-fieldset-font-color;
 
-    legend {
-      padding-left: 10px;
-      padding-right: 10px;
-      font-weight: 100;
-      font-size: 11pt;
-      letter-spacing: .02em;
-      line-height: 20px;
-      color: color('grey', 'darken-2');
-      position: absolute;
-      top: -25px;
-      left: -8px;
-      text-transform: uppercase;
-      border-bottom: none;
+      legend {
+        position: absolute;
+        left: 0;
+        top: -20px;
+
+        font-size: $form-legend-font-size;
+        font-weight: $form-legend-font-weight;
+        color: $form-legend-font-color;
+      }
     }
   }
 }
