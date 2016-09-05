@@ -46,6 +46,7 @@
             noUiSlider.create(this.slider, this.options);
 
             this.slider.noUiSlider.on('update', function (values, handle) {
+                console.log(values, handle);
                 this.trigger('nouislider:update', values, handle);
             }.bind(this));
 
@@ -69,6 +70,7 @@
                 this.trigger('nouislider:end');
             }.bind(this));
             this.slider.noUiSlider.on('hover', function (value) {
+                console.log(value);
                 this.trigger('nouislider:hover', value);
             }.bind(this));
         });

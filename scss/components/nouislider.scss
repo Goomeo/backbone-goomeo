@@ -4,6 +4,7 @@ material-nouislider {
 
   .slider-wrapper {
     flex: 1;
+    margin: 10px 15px 0 10px;
   }
 
   material-input {
@@ -11,6 +12,10 @@ material-nouislider {
 
     .input-field {
       margin: 0;
+
+      input {
+        margin-bottom: 5px;
+      }
     }
   }
 }
