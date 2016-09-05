@@ -4,6 +4,7 @@
         data-name="{ opts.dataName || 'slider' }[]"
         value="{ sliderParams.start[0] }"
         no-label="true"
+        data-type="number"
         name="slider-start"
     ></material-input>
     <div class="slider-wrapper"></div>
@@ -11,6 +12,7 @@
         data-name="{ opts.dataName || 'slider' }[]"
         value="{ sliderParams.start.length > 1 ? sliderParams.start[1] : sliderParams.start[0] }"
         no-label="true"
+        data-type="number"
         name="slider-end"
     ></material-input>
 
@@ -84,16 +86,15 @@
             }.bind(this));
 
             if (this.type == 'multiple') {
-                $('input:first', this.root).on('change', function (value) {
-                    console.log(this);
-                    this.slider.set([ value, null ]);
+                $('input:first', this.root).on('keypress', function (value) {
+                    this.slider.noUiSlider.set([ value, null ]);
                 }.bind(this));
-                $('input:last', this.root).on('change', function (value) {
-                    this.slider.set([ null, value ]);
+                $('input:last', this.root).on('keypress', function (value) {
+                    this.slider.noUiSlider.set([ null, value ]);
                 }.bind(this));
             } else if (this.type == 'simple') {
-                $('input', this.root).on('change', function (value) {
-                    this.slider.set(value);
+                $('input', this.root).on('keypress', function (value) {
+                    this.slider.noUiSlider.set(value);
                 }.bind(this));
             }
         });
