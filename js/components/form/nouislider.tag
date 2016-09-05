@@ -86,7 +86,7 @@
             }.bind(this));
 
             if (this.type == 'multiple') {
-                $('input:first', this.root).on('keydown', function (e) {
+                $('input:first', this.root).on('keyup', function (e) {
                     console.log($(e.currentTarget).val());
                     this.slider.noUiSlider.set([ $(e.currentTarget).val(), null ]);
                 }.bind(this));
