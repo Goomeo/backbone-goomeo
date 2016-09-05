@@ -7,5 +7,5 @@ label {
 }
 
 [type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
-  font-size: initial;
+  font-size: inherit;
 }
