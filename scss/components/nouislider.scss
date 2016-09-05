@@ -6,4 +6,11 @@ material-nouislider {
     flex: 1;
   }
 
+  material-input {
+    width: 30px;
+
+    .input-field {
+      margin: 0;
+    }
+  }
 }

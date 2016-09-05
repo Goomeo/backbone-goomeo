@@ -2,13 +2,13 @@
     <material-input
         if="{ type == 'multiple' }"
         data-name="{ opts.dataName + '[]' }"
-        value="options.start[0]"
+        value="{ options.start[0] }"
         no-label="true"
     ></material-input>
     <div class="slider-wrapper"></div>
     <material-input
         data-name="{ opts.dataName + '[]' }"
-        value="{ type }"
+        value="{ this.options.start.length > 1 ? options.start[1] : options.start[0] }"
         no-label="true"
     ></material-input>
 
