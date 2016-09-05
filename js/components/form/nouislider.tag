@@ -13,11 +13,9 @@
     ></material-input>
 
     <script>
-        var _           = require('underscore'),
-            noUiSlider  = require('materialize-css/extras/noUiSlider/nouislider');
-
-        this.on('mount', function () {
-            var defaultOptions = {
+        var _               = require('underscore'),
+            noUiSlider      = require('materialize-css/extras/noUiSlider/nouislider'),
+            defaultOptions  = {
                 start: [ 0, 100 ],
                 step: 1,
                 range: {
@@ -34,16 +32,18 @@
                 }
             };
 
-            this.options    = _.extend({}, defaultOptions, this.opts.slider);
-            this.slider     = this.root.querySelector('.slider-wrapper');
+        this.options    = _.extend({}, defaultOptions, this.opts.slider);
+
+        if (this.options.start.length > 1) {
+            this.type = "multiple"
+        } else {
+            this.type = "simple"
+        }
+
+        this.on('mount', function () {
+            this.slider = this.root.querySelector('.slider-wrapper');
 
             noUiSlider.create(this.slider, this.options);
-
-            if (this.options.start.length > 1) {
-                this.type = "multiple"
-            } else {
-                this.type = "simple"
-            }
 
             this.slider.noUiSlider.on('update', function (values, handle) {
                 this.trigger('nouislider:update', values, handle);
