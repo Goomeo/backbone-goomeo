@@ -16,6 +16,13 @@
 
     .row {
       margin-bottom: 0;
+
+      .col:first-of-type {
+        padding-left: 0;
+      }
+      .col:last-of-type {
+        padding-right: 0;
+      }
     }
   }
 
