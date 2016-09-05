@@ -7,7 +7,7 @@
     <div class="slider-wrapper"></div>
     <material-input
             data-name="{ opts.dataName + '[]' }"
-            value="this.options.start.length > 1 ? options.start[1] : options.start[0]"
+            value="{ this.options.start.length > 1 ? options.start[1] : options.start[0] }"
     ></material-input>
 
     <script>
