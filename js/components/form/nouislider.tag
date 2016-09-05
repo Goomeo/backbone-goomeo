@@ -4,12 +4,14 @@
         data-name="{ opts.dataName || 'slider' }[]"
         value="{ sliderParams.start[0] }"
         no-label="true"
+        name="slider-start"
     ></material-input>
     <div class="slider-wrapper"></div>
     <material-input
         data-name="{ opts.dataName || 'slider' }[]"
         value="{ sliderParams.start.length > 1 ? sliderParams.start[1] : sliderParams.start[0] }"
         no-label="true"
+        name="slider-end"
     ></material-input>
 
     <script>
@@ -81,7 +83,9 @@
                 this.trigger('nouislider:hover', value);
             }.bind(this));
 
-            console.log(this.tags["material-input"]);
+            console.log(this.tags, _.keys(this.tags));
+
+
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('change', function (value) {
