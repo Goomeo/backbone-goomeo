@@ -86,15 +86,15 @@
             }.bind(this));
 
             if (this.type == 'multiple') {
-                $('input:first', this.root).on('keypress', function (value) {
-                    this.slider.noUiSlider.set([ value, null ]);
+                $('input:first', this.root).on('keypress', function (e) {
+                    this.slider.noUiSlider.set([ $(e.currentTarget).val(), null ]);
                 }.bind(this));
-                $('input:last', this.root).on('keypress', function (value) {
-                    this.slider.noUiSlider.set([ null, value ]);
+                $('input:last', this.root).on('keypress', function (e) {
+                    this.slider.noUiSlider.set([ null, $(e.currentTarget).val() ]);
                 }.bind(this));
             } else if (this.type == 'simple') {
-                $('input', this.root).on('keypress', function (value) {
-                    this.slider.noUiSlider.set(value);
+                $('input', this.root).on('keypress', function (e) {
+                    this.slider.noUiSlider.set($(e.currentTarget).val());
                 }.bind(this));
             }
         });
