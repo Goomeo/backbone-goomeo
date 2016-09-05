@@ -2,18 +2,19 @@
     <material-input
         if="{ type == 'multiple' }"
         data-name="{ opts.dataName || 'slider' }[]"
-        value="{ options.start[0] }"
+        value="{ sliderParams.start[0] }"
         no-label="true"
     ></material-input>
     <div class="slider-wrapper"></div>
     <material-input
         data-name="{ opts.dataName || 'slider' }[]"
-        value="{ this.options.start.length > 1 ? options.start[1] : options.start[0] }"
+        value="{ sliderParams.start.length > 1 ? sliderParams.start[1] : sliderParams.start[0] }"
         no-label="true"
     ></material-input>
 
     <script>
         var _               = require('underscore'),
+            $               = require('jquery'),
             noUiSlider      = require('materialize-css/extras/noUiSlider/nouislider'),
             defaultOptions  = {
                 start: [ 0, 100 ],
@@ -32,9 +33,9 @@
                 }
             };
 
-        this.options    = _.extend({}, defaultOptions, this.opts.slider);
+        this.sliderParams  = _.extend({}, defaultOptions, this.opts.slider);
 
-        if (this.options.start.length > 1) {
+        if (this.sliderParams.start.length > 1) {
             this.type = "multiple"
         } else {
             this.type = "simple"
@@ -43,7 +44,7 @@
         this.on('mount', function () {
             this.slider = this.root.querySelector('.slider-wrapper');
 
-            noUiSlider.create(this.slider, this.options);
+            noUiSlider.create(this.slider, this.sliderParams);
 
             this.slider.noUiSlider.on('update', function (values, handle) {
                 var inputsList = this.root.querySelectorAll('input');
@@ -79,6 +80,19 @@
             this.slider.noUiSlider.on('hover', function (value) {
                 this.trigger('nouislider:hover', value);
             }.bind(this));
+
+            if (this.type == 'multiple') {
+                $('input:first', this.root).on('change', function (value) {
+                    this.slider.set([ value, null ]);
+                }.bind(this));
+                $('input:last', this.root).on('change', function (value) {
+                    this.slider.set([ null, value ]);
+                }.bind(this));
+            } else if (this.type == 'simple') {
+                $('input', this.root).on('change', function (value) {
+                    this.slider.set(value);
+                }.bind(this));
+            }
         });
 
         this.get = function get() {
