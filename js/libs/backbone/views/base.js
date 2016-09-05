@@ -75,6 +75,7 @@ module.exports = View.extend({
                 this._mountBasicTags();
                 this._initStickit();
                 this._domContentLoaded();
+                this.mountCustomTags();
 
                 if (_.isFunction($.fn.tooltip)) {
                     this.$('[data-tooltip]').tooltip({
@@ -431,5 +432,6 @@ module.exports = View.extend({
     render              : function render() {},
     beforeRender        : function beforeRender(callback) { callback(); },
     afterRender         : function afterRender(callback) { callback(); },
-    waitingRender       : function waitingRender(callback) { callback(); }
+    waitingRender       : function waitingRender(callback) { callback(); },
+    mountCustomTags     : function mountCustomTags() {}
 });
