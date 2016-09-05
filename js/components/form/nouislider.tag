@@ -83,12 +83,9 @@
                 this.trigger('nouislider:hover', value);
             }.bind(this));
 
-            console.log(this.tags, _.keys(this.tags));
-
-
-
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('change', function (value) {
+                    console.log(this);
                     this.slider.set([ value, null ]);
                 }.bind(this));
                 $('input:last', this.root).on('change', function (value) {

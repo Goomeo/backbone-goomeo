@@ -65,6 +65,7 @@ module.exports = View.extend({
                     }.bind(this));
                 }.bind(this),
                 function (done) {
+                    this._mountBasicTags();
                     this.afterRender(function () {
                         this.trigger('render:after');
                         this.global.trigger(this.name + ':render:after');
@@ -72,10 +73,8 @@ module.exports = View.extend({
                     }.bind(this));
                 }.bind(this)
             ], function () {
-                this._mountBasicTags();
                 this._initStickit();
                 this._domContentLoaded();
-                this.mountCustomTags();
 
                 if (_.isFunction($.fn.tooltip)) {
                     this.$('[data-tooltip]').tooltip({
@@ -432,6 +431,5 @@ module.exports = View.extend({
     render              : function render() {},
     beforeRender        : function beforeRender(callback) { callback(); },
     afterRender         : function afterRender(callback) { callback(); },
-    waitingRender       : function waitingRender(callback) { callback(); },
-    mountCustomTags     : function mountCustomTags() {}
+    waitingRender       : function waitingRender(callback) { callback(); }
 });
