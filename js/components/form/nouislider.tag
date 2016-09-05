@@ -87,14 +87,22 @@
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('keyup', function (e) {
-                    console.log($(e.currentTarget).val());
+                    e.preventDefault();
+                    e.stopPropagation();
+
                     this.slider.noUiSlider.set([ $(e.currentTarget).val(), null ]);
                 }.bind(this));
-                $('input:last', this.root).on('keydown', function (e) {
+                $('input:last', this.root).on('keyup', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
                     this.slider.noUiSlider.set([ null, $(e.currentTarget).val() ]);
                 }.bind(this));
             } else if (this.type == 'simple') {
-                $('input', this.root).on('keydown', function (e) {
+                $('input', this.root).on('keyup', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
                     this.slider.noUiSlider.set($(e.currentTarget).val());
                 }.bind(this));
             }
