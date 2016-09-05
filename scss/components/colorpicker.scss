@@ -1,6 +1,10 @@
 colorpicker {
+  .input-field {
+    margin-top: 0;
+  }
+
   .chip {
-    margin-top: 20px;
+    //margin-top: 20px;
     cursor: pointer;
 
     .color-container {
