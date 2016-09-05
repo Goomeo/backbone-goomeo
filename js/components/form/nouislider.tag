@@ -1,13 +1,13 @@
 <material-nouislider>
     <material-input
         if="{ type == 'multiple' }"
-        data-name="{ opts.dataName + '[]' }"
+        data-name="{ opts.dataName || 'slider' }[]"
         value="{ options.start[0] }"
         no-label="true"
     ></material-input>
     <div class="slider-wrapper"></div>
     <material-input
-        data-name="{ opts.dataName + '[]' }"
+        data-name="{ opts.dataName || 'slider' }[]"
         value="{ this.options.start.length > 1 ? options.start[1] : options.start[0] }"
         no-label="true"
     ></material-input>
