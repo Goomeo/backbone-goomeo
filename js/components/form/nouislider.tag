@@ -1,5 +1,14 @@
 <material-nouislider>
+    <material-input
+        if="{ type == 'multiple' }"
+        data-name="{ opts.dataName + '[]' }"
+        value="options.start[0]"
+    ></material-input>
     <div class="slider-wrapper"></div>
+    <material-input
+            data-name="{ opts.dataName + '[]' }"
+            value="this.options.start.length > 1 ? options.start[1] : options.start[0]"
+    ></material-input>
 
     <script>
         var _           = require('underscore'),
@@ -7,7 +16,7 @@
 
         this.on('mount', function () {
             var defaultOptions = {
-                start: [0, 100],
+                start: [ 0, 100 ],
                 step: 1,
                 range: {
                     'min': 0,
@@ -23,7 +32,15 @@
                 }
             };
 
-            this.slider = noUiSlider.create(this.root.querySelector('.slider-wrapper'), _.extend({}, defaultOptions, this.opts.slider));
+            this.options = _.extend({}, defaultOptions, this.opts.slider);
+
+            this.slider = noUiSlider.create(this.root.querySelector('.slider-wrapper'), this.options);
+
+            if (this.options.start.length > 1) {
+                this.type = "multiple"
+            } else {
+                this.type = "simple"
+            }
 
             this.slider.noUiSlider.on('update', function (values, handle) {
                 this.trigger('nouislider:update', values, handle);
