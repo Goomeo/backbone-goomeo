@@ -87,6 +87,7 @@
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('keypress', function (e) {
+                    console.log($(e.currentTarget).val());
                     this.slider.noUiSlider.set([ $(e.currentTarget).val(), null ]);
                 }.bind(this));
                 $('input:last', this.root).on('keypress', function (e) {
