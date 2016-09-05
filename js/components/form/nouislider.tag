@@ -58,12 +58,6 @@
                 this.trigger('nouislider:update', values, handle);
             }.bind(this));
 
-            $('input:first', this.root).value = this.sliderParams.start[0];
-
-            if (this.type = "multiple") {
-                $('input:last', this.root).value = this.sliderParams.start[1];
-            }
-
             this.slider.noUiSlider.on('slide', function () {
                 this.trigger('nouislider:slide');
             }.bind(this));
@@ -86,6 +80,8 @@
             this.slider.noUiSlider.on('hover', function (value) {
                 this.trigger('nouislider:hover', value);
             }.bind(this));
+
+            console.log($('input:first', this.root));
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('change', function (value) {
