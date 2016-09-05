@@ -81,7 +81,7 @@
                 this.trigger('nouislider:hover', value);
             }.bind(this));
 
-            console.log($('input:first', this.root));
+            console.log(this);
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('change', function (value) {
