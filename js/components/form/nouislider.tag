@@ -81,7 +81,7 @@
                 this.trigger('nouislider:hover', value);
             }.bind(this));
 
-            console.log(this);
+            console.log(this.tags["material-input"]);
 
             if (this.type == 'multiple') {
                 $('input:first', this.root).on('change', function (value) {
