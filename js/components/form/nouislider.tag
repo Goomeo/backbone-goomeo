@@ -58,6 +58,12 @@
                 this.trigger('nouislider:update', values, handle);
             }.bind(this));
 
+            $('input:first', this.root).value = this.sliderParams.start[0];
+
+            if (this.type = "multiple") {
+                $('input:last', this.root).value = this.sliderParams.start[1];
+            }
+
             this.slider.noUiSlider.on('slide', function () {
                 this.trigger('nouislider:slide');
             }.bind(this));
