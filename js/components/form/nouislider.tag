@@ -34,9 +34,10 @@
                 }
             };
 
-            this.options = _.extend({}, defaultOptions, this.opts.slider);
+            this.options    = _.extend({}, defaultOptions, this.opts.slider);
+            this.slider     = this.root.querySelector('.slider-wrapper');
 
-            this.slider = noUiSlider.create(this.root.querySelector('.slider-wrapper'), this.options);
+            noUiSlider.create(this.slider, this.options);
 
             if (this.options.start.length > 1) {
                 this.type = "multiple"
