@@ -6,6 +6,7 @@
                type="{ opts.type || 'text' }"
                disabled="{ opts.disabled }"
                value="{ opts.value }"
+               placeholder="{ opts.placeholder }"
         >
         <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
     </div>
