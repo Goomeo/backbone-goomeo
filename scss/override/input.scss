@@ -21,4 +21,9 @@
       transform: translateY(-120%);
     }
   }
+
+  .prefix + input + label,
+  .prefix + textarea.materialize-textarea + label {
+    left: .75em;
+  }
 }
