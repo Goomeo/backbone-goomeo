@@ -110,16 +110,16 @@ module.exports = {
             }
 
             // format simple avec les variables passées en tableau ou en objet de type {clé : valeur ...)
-            //if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
-            //    var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
-            //
-            //    options = _.each(options, function (option, key) {
-            //        if (_.isNumber(option)) {
-            //            options[key] = numberFormatter(option);
-            //        }
-            //    });
-            //    return msgFormatter(options);
-            //}
+            if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
+               var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
+
+               options = _.each(options, function (option, key) {
+                   if (_.isNumber(option)) {
+                       options[key] = numberFormatter(option);
+                   }
+               });
+               return msgFormatter(options);
+            }
 
             // format avec options spécifiques
             if (options && options.variables) {
