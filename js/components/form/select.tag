@@ -6,7 +6,7 @@
             disabled="{ opts.disabled }"
             multiple="{ opts.multiple }"
             >
-            <option if="{ opts.default }" value="">{ opts.default }</option>
+            <option if="{ opts.default }" value="" disabled selected>{ opts.default }</option>
             <option each={ opts.items } value="{ value }" selected="{ selected }">{ name }</option>
         </select>
         <label if="{ !opts.noLabel }" for="{ opts.dataId }"><i18n word="{ opts.label || 'choice' }" /></label>
