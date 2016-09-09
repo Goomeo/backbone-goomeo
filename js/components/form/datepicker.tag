@@ -23,7 +23,7 @@
                 "monthsShort"       : lang.i18n('monthsShort').split(', '),
                 "weekdaysFull"      : lang.i18n('weekdaysFull').split(', '),
                 "weekdaysShort"     : lang.i18n('weekdaysShort').split(', '),
-                "today"             : lang.i18n('today'),
+                "today"             : '',
                 "clear"             : lang.i18n('clear'),
                 "close"             : lang.i18n('close'),
                 "format"            : lang.i18n('format'),
