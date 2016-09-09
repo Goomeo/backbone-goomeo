@@ -1,5 +1,5 @@
 <material-textarea>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.material ? '' : opts.icon }</i>
         <textarea id="{ opts.dataId }"
                name="{ opts.dataName }"

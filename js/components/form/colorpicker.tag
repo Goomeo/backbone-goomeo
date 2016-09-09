@@ -1,5 +1,5 @@
 <colorpicker>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <div class="chip">
             <span class="color-container material-icons palette" style="background-color: { backgroundColor || 'inherit' }; color: { textColor || 'inherit' };">palette</span>
             <span class="color-name">{ opts.color }<i18n if="{ !opts.color }" word="{ opts.libelle || 'colorpickerChooseColor' }" /></span>

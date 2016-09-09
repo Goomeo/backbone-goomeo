@@ -1,5 +1,5 @@
 <material-select>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <select
             id="{ opts.dataId }"
             name="{ opts.dataName }"
