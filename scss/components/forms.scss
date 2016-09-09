@@ -28,6 +28,17 @@ form.gform {
 }
 
 // composants
-material-checkbox + material-checkbox, material-radio + material-radio {
+material-checkbox + material-checkbox,
+material-radio + material-radio {
   margin-left: 10px;
+}
+
+material-input,
+material-datepicker,
+material-input-lang,
+material-textarea,
+material-textarea-lang,
+survey,
+rating {
+  display: block;
 }
