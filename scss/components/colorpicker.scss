@@ -63,12 +63,12 @@ colorpicker {
     .sp-button-container {
       .sp-cancel, .sp-choose {
         background-image: none;
-        background: color('green', 'base');
+        background: transparent;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 10px;
         line-height: 10px;
-        color: #fff;
+        color: color('g-deep-blue', 'base') !important;
         padding: 9px 11px;
         border-radius: 2px;
         text-align: center;
@@ -76,16 +76,18 @@ colorpicker {
         text-shadow: none;
         text-decoration: none;
         border: none;
+        height: 30px;
+        margin: 0 5px;
 
         &:hover {
           text-shadow: none;
           border: none;
-          background: color('green', 'lighten-1');
+          background: color('grey', 'lighten-1');
         }
 
         &:active {
           box-shadow: none;
-          background-color: color('green', 'darken-1');
+          background-color: color('grey', 'darken-1');
         }
       }
     }
