@@ -29,12 +29,23 @@ colorpicker {
 }
 
 .sp-container {
-  @extend .z-depth-2;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border: none;
-  background-color: color('shades', 'white');
 
   .sp-picker-container {
+    @extend .z-depth-2;
+
     border-left: none;
+    float: none;
+    margin: 10% auto 0;
+    padding: 12px;
+    height: 236px;
+    background-color: color('shades', 'white');
+
 
     .sp-input-container {
       .sp-input {
