@@ -61,8 +61,31 @@ colorpicker {
     }
 
     .sp-button-container {
-      .sp-choose, .sp-cancel {
-        @extend .btn-flat;
+      .sp-choose {
+        background-image: none;
+        background: color('green', 'base');
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 10px;
+        line-height: 10px;
+        color: #fff;
+        padding: 9px 11px;
+        border-radius: 2px;
+        text-align: center;
+        vertical-align: middle;
+        text-shadow: none;
+        border: none;
+
+        &:hover {
+          text-shadow: none;
+          border: none;
+          background: color('green', 'lighten-1');
+        }
+
+        &:active {
+          box-shadow: none;
+          background-color: color('green', 'darken-1');
+        }
       }
     }
   }
