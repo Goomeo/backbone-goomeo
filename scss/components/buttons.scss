@@ -4,6 +4,10 @@ btn-pending {
     height: 100%;
     background-color: transparent;
     border: none;
+
+    &:focus, &:hover, &:active {
+      background-color: transparent;
+    }
   }
 
   spinner {
