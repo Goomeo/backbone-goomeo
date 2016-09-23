@@ -1,5 +1,6 @@
 btn-pending {
   button {
+    position: relative;
     width: 100%;
     height: 100%;
     background-color: transparent;
@@ -11,7 +12,8 @@ btn-pending {
   }
 
   spinner {
-    float: left;
+    position: absolute;
+    left: 5px;
     height: 100%;
     margin-right: 10px;
     padding-top: 5px;
