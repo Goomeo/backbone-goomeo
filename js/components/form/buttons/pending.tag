@@ -1,6 +1,6 @@
 <btn-pending>
     <button
-            class="waves-effect waves-light btn { opts.color || 'green' }"
+            class="waves-effect waves-light"
             type="{ opts.type || 'submit' }"
             id="{ opts.dataId || 'submit' }"
             disabled="{ disabled }"
