@@ -222,19 +222,25 @@ module.exports = View.extend({
             }, this);
         }
 
+        if (this.model) {
+            this.model.unbindSockets();
+        }
+        if (this.collection) {
+            this.collection.unbindSockets();
+        }
         if (this.collections) {
-            delete this.collections;
+            _.each(this.collections, function (collection) {
+                collection.unbindSockets();
+            }, this);
         }
         if (this.models) {
             _.each(this.models, function (model) {
-                this.unstickit(model);
+                model.unbindSockets();
             }, this);
-            delete this.models;
         }
 
         viewManager.remove(this.name);
 
-        this.unstickit();
         this.undelegateEvents();
         this.unbind();
         this.unmountAllTags();
