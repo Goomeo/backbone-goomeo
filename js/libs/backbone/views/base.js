@@ -32,7 +32,7 @@ var View = Backbone.View.extend(functions);
 
 module.exports = View.extend({
     constructor : function constructor(options) {
-        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
+        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose', '_initSockets');
 
         this.models             = options.models || {};
         this.collections        = options.collections || {};
