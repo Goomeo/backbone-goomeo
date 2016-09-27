@@ -43,6 +43,7 @@
     "parsleyjs": "^2.4.3",
     "riot": "^2.5.0",
     "riot-mixin-pack": "^0.1.7",
+    "socket.io-client": "^1.4.8",
     "spectrum-colorpicker": "^1.8.0",
     "tinycolor2": "^1.4.1",
     "underscore": "^1.8.3",
