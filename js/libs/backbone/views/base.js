@@ -4,12 +4,13 @@ const $                         = require('jquery');
 const _                         = require('underscore');
 const async                     = require('async');
 const Backbone                  = require('backbone');
-const functions                 = require('../functions');
 const log                       = require('loglevel');
 const loglevelMessagePrefix     = require('loglevel-message-prefix');
 const Materialize               = global.Materialize;
 const moment                    = require('moment');
 const riot                      = require('riot');
+const io                        = require('socket.io-client');
+const functions                 = require('../functions');
 const viewManager               = require('../viewManager');
 const eventManager              = require('../eventManager');
 const templatesManager          = require('../templatesManager');
@@ -74,6 +75,7 @@ module.exports = View.extend({
                 }.bind(this)
             ], function () {
                 this._initStickit();
+                this._initSockets();
                 this._domContentLoaded();
 
                 if (_.isFunction($.fn.tooltip)) {
@@ -426,6 +428,40 @@ module.exports = View.extend({
         }
 
         return this._logger;
+    },
+    /**
+     * Permet d'initialiser les événements sockets propres à la vue
+     *
+     * @private
+     */
+    _initSockets : function initSockets() {
+        if (!this.socketEvents) {
+            return;
+        }
+
+        this._sockets = {};
+
+        if (this.socketEvents && !_.isEmpty(this.socket)) {
+            this._socket = io(this.socket);
+
+            _.each(this.socketEvents.default, function (funcName, event) {
+                if (_.isFunction(this[funcName])) {
+                    _.bindAll(this, funcName);
+                    this._socket.on(event, this[funcName]);
+                }
+            }, this);
+        }
+
+        _.each(this.sockets, function (url, socketName) {
+            this._sockets[socketName] = io(url);
+
+            _.each(this.socketEvents[socketName], function (funcName, event) {
+                if (_.isFunction(this[funcName])) {
+                    _.bindAll(this, funcName);
+                    this._sockets[socketName].on(event, this[funcName]);
+                }
+            }, this);
+        }, this);
     },
     // fonctions de base vides
     render              : function render() {},
