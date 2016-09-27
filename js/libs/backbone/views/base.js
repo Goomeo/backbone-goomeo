@@ -32,7 +32,7 @@ var View = Backbone.View.extend(functions);
 
 module.exports = View.extend({
     constructor : function constructor(options) {
-        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose', '_initSockets');
+        _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
         this.models             = options.models || {};
         this.collections        = options.collections || {};
@@ -41,6 +41,7 @@ module.exports = View.extend({
         this.tags               = {};
 
         this._initGlobalEvents();
+        this._initSockets();
 
         this.render = _.wrap(this.render, function wrapRender(render) {
             async.series([
@@ -75,7 +76,6 @@ module.exports = View.extend({
                 }.bind(this)
             ], function () {
                 this._initStickit();
-                this._initSockets();
                 this._domContentLoaded();
 
                 if (_.isFunction($.fn.tooltip)) {
