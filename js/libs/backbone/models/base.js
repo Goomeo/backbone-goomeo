@@ -14,7 +14,7 @@ module.exports  = Model.extend({
         Model.apply(this, arguments);
     },
     /**
-     * Permet d'initialiser les événements sockets propres à la vue
+     * Permet d'initialiser les événements sockets propres au model
      *
      * @private
      */
@@ -46,9 +46,11 @@ module.exports  = Model.extend({
         }, this);
     },
     /**
-     * Supprime tous les événements sockets de la vue
+     * Supprime tous les événements sockets du model
+     *
+     * @private
      */
-    unbindSockets : function unbindSocket() {
+    _unbindSockets : function unbindSocket() {
         if (this.socket) {
             this.socket.removeAllListeners();
             this.socket.disconnect();
