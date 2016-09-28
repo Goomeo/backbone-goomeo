@@ -119,27 +119,13 @@ module.exports = View.extend({
         };
     },
     global : {
-        on : function on(event, func, ctx) {
-            eventManager.on(event, func, ctx);
-        }.bind(this),
-        off : function off() {
-            eventManager.off.apply(this, arguments);
-        }.bind(this),
-        trigger : function trigger() {
-            eventManager.trigger.apply(this, arguments);
-        }.bind(this),
-        once : function once() {
-            eventManager.once.apply(this, arguments);
-        }.bind(this),
-        listenTo : function listenTo() {
-            eventManager.listenTo.apply(this, arguments);
-        }.bind(this),
-        stopListening : function stopListening() {
-            eventManager.stopListening.apply(this, arguments);
-        }.bind(this),
-        listenToOnce : function listenToOnce() {
-            eventManager.listenToOnce.apply(this, arguments);
-        }.bind(this)
+        on              : eventManager.on,
+        off             : eventManager.off,
+        trigger         : eventManager.trigger,
+        once            : eventManager.once,
+        listenTo        : eventManager.listenTo,
+        stopListening   : eventManager.stopListening,
+        listenToOnce    : eventManager.listenToOnce
     },
     panels : {
         open : function open() {
