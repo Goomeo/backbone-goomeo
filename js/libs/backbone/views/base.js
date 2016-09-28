@@ -94,31 +94,6 @@ module.exports = View.extend({
 
         Backbone.View.apply(this, arguments);
     },
-    _initGlobal : function initGlobal() {
-        this.global = {
-            on : function on() {
-                eventManager.on.apply(this, arguments);
-            }.bind(this),
-            off : function off() {
-                eventManager.off.apply(this, arguments);
-            }.bind(this),
-            trigger : function trigger() {
-                eventManager.trigger.apply(this, arguments);
-            }.bind(this),
-            once : function once() {
-                eventManager.once.apply(this, arguments);
-            }.bind(this),
-            listenTo : function listenTo() {
-                eventManager.listenTo.apply(this, arguments);
-            }.bind(this),
-            stopListening : function stopListening() {
-                eventManager.stopListening.apply(this, arguments);
-            }.bind(this),
-            listenToOnce : function listenToOnce() {
-                eventManager.listenToOnce.apply(this, arguments);
-            }.bind(this)
-        };
-    },
     panels : {
         open : function open() {
             panelManager.open.apply(panelManager, arguments);
