@@ -39,6 +39,7 @@ module.exports = View.extend({
         this.subviews           = {};
         this.name               = options.name;
         this.tags               = {};
+        this.global             = eventManager;
 
         this._initGlobalEvents();
         this._initSockets();
@@ -117,15 +118,6 @@ module.exports = View.extend({
                 eventManager.listenToOnce.apply(this, arguments);
             }.bind(this)
         };
-    },
-    global : {
-        on              : eventManager.on,
-        off             : eventManager.off,
-        trigger         : eventManager.trigger,
-        once            : eventManager.once,
-        listenTo        : eventManager.listenTo,
-        stopListening   : eventManager.stopListening,
-        listenToOnce    : eventManager.listenToOnce
     },
     panels : {
         open : function open() {
