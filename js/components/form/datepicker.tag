@@ -35,6 +35,11 @@
 
         this.mixin(parsleyMixin);
 
+        if (this.parent) {
+            this.opts               = this.opts.datepicker;
+            this.opts.datepicker    = this.opts.params
+        }
+
         if (this.opts.value) {
             this.opts.isActive = true;
         }
