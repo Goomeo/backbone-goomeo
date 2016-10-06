@@ -7,7 +7,6 @@ const eventManager      = require('../backbone/eventManager');
 const viewManager       = require('../backbone/viewManager');
 const offlineManager    = require('./offlineManager');
 const modalManager      = require('./modalManager');
-const networkModal      = require('backbone-goomeo/js/modules/common/modals/network');
 
 module.exports = _.extend({
     defaultParams : {
@@ -187,7 +186,7 @@ module.exports = _.extend({
     },
     _showNetworkModal : function showNetworkModal() {
         modalManager.open({
-            view : this.createSubView('modal:network', networkModal)
+            view : require('../../modules/common/modals/network')
         });
     }
 }, Backbone.Events);

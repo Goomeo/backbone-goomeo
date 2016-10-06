@@ -1,10 +1,10 @@
 'use strict';
 
 const _               = require('underscore');
-const View            = require('backbone-goomeo/js/libs/backbone/views/base');
+const View            = require('../../../libs/backbone/views/base');
 const tpl             = require('../../../tpl/common/modals/delete.html');
 
-require('backbone-goomeo/js/components/form/input.tag');
+require('../../../components/form/input.tag');
 
 module.exports = View.extend({
     events : {

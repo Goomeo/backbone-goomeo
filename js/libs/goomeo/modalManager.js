@@ -3,7 +3,7 @@
 const $             = require('jquery');
 const _             = require('underscore');
 const Backbone      = require('backbone');
-const viewManager   = require('backbone-goomeo/js/libs/backbone/viewManager');
+const viewManager   = require('../backbone/viewManager');
 
 module.exports = {
     defaultParams : {
