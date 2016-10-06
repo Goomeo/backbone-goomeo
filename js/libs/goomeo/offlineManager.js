@@ -1,23 +1,21 @@
 'use strict';
 
-const Offline       = require('offline-js/js/offline');
 const EventManager  = require('../backbone/eventManager');
 
+require('offline-js/js/offline');
 
 module.exports = {
     init : function init(params) {
-        console.log(Offline, window.Offline);
-
-        Offline.on('up', function () {
+        window.Offline.on('up', function () {
             EventManager.trigger('offline:up');
         });
-        Offline.on('down', function () {
+        window.Offline.on('down', function () {
             EventManager.trigger('offline:down');
         });
-        Offline.options = params;
-        Offline.check();
+        window.Offline.options = params;
+        window.Offline.check();
         setInterval(function () {
-            Offline.check();
+            window.Offline.check();
         }, 30000);
     }
 };
