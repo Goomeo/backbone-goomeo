@@ -40,6 +40,7 @@
     "moment": "^2.14.1",
     "moment-timezone": "^0.5.4",
     "nouislider": "^8.5.1",
+    "offline-js": "^0.7.18",
     "parsleyjs": "^2.4.3",
     "riot": "^2.5.0",
     "riot-mixin-pack": "^0.1.7",
