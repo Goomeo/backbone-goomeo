@@ -5,6 +5,9 @@ const _                 = require('underscore');
 const Backbone          = require('backbone');
 const eventManager      = require('../backbone/eventManager');
 const viewManager       = require('../backbone/viewManager');
+const offlineManager    = require('./offlineManager');
+const modalManager      = require('../../goomeo/modalManager');
+const networkModal      = require('../../modules/common/modals/network');
 
 module.exports = _.extend({
     defaultParams : {
@@ -21,6 +24,7 @@ module.exports = _.extend({
      * @param {Backbone.View}   [params.view]                       Instance de vue Backbone
      * @param {string}          [params.html]                       Contenu HTML
      * @param {boolean}         params.closeOnClickOutside          True : ferme le panel quand on clic en dehors. (default : False)
+     * @param {boolean}         params.keepConnection               True : Affiche le slidePanel même s'il n'y a pas de connexion réseau
      *
      * full         -> 100%
      * medium       -> 2/3
@@ -29,6 +33,12 @@ module.exports = _.extend({
     open : function open(params) {
         params = _.extend({}, this.defaultParams, params);
 
+        if (params.keepConnection !== true) {
+            if (offlineManager.getState() == 'down') {
+                this._showNetworkModal();
+                return;
+            }
+        }
 
         var $html       = $('html'),
             $panel      = $('.slidepanels');
@@ -174,5 +184,10 @@ module.exports = _.extend({
         }
 
         params.$panel.find('.top-bar .title').html(params.options.title);
+    },
+    _showNetworkModal : function showNetworkModal() {
+        modalManager.open({
+            view : this.createSubView('modal:network', networkModal)
+        });
     }
 }, Backbone.Events);
