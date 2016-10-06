@@ -7,7 +7,7 @@ const eventManager      = require('../backbone/eventManager');
 const viewManager       = require('../backbone/viewManager');
 const offlineManager    = require('./offlineManager');
 const modalManager      = require('./modalManager');
-const networkModal      = require('../../modules/common/modals/network');
+const networkModal      = require('backbone-goomeo/js/modules/common/modals/network');
 
 module.exports = _.extend({
     defaultParams : {

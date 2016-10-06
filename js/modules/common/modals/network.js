@@ -1,7 +1,7 @@
 'use strict';
 
 const _               = require('underscore');
-const View            = require('../../../libs/backbone/views/base');
+const View            = require('backbone-goomeo/js/libs/backbone/views/base');
 const tpl             = require('../../../tpl/common/modals/network.html');
 
 module.exports = View.extend({
