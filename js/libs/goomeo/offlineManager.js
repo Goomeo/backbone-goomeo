@@ -1,11 +1,13 @@
 'use strict';
 
-const Offline       = require('offline-js');
+const Offline       = require('offline-js/js/offline');
 const EventManager  = require('../backbone/eventManager');
 
 
 module.exports = {
     init : function init(params) {
+        console.log(Offline, window.Offline);
+
         Offline.on('up', function () {
             EventManager.trigger('offline:up');
         });
