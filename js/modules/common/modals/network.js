@@ -4,8 +4,6 @@ const _               = require('underscore');
 const View            = require('../../../libs/backbone/views/base');
 const tpl             = require('../../../tpl/common/modals/network.html');
 
-require('backbone-goomeo/js/components/form/input.tag');
-
 module.exports = View.extend({
     events : {
         'click .cancel' : 'cancelAction'
