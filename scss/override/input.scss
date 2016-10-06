@@ -14,6 +14,10 @@
   textarea.materialize-textarea {
     height: 2rem;
   }
+  textarea.materialize-textarea {
+    padding: .4rem 0 0 0;
+    min-height: 5rem;
+  }
   label {
     top: 0.6rem;
     left: 0;
