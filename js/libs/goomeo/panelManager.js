@@ -186,7 +186,7 @@ module.exports = _.extend({
     },
     _showNetworkModal : function showNetworkModal() {
         modalManager.open({
-            view : require('../../modules/common/modals/network')
+            view : this.createSubView('modal:network', require('../../modules/common/modals/network'))
         });
     }
 }, Backbone.Events);
