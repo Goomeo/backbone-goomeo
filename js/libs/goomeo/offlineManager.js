@@ -20,5 +20,9 @@ module.exports = {
     },
     getState : function getState() {
         return window.Offline.state;
+    },
+    checkState : function checkState() {
+        window.Offline.check();
+        return window.Offline.state;
     }
 };
