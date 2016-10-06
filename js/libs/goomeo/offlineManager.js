@@ -17,5 +17,8 @@ module.exports = {
         setInterval(function () {
             window.Offline.check();
         }, 30000);
+    },
+    getState : function getState() {
+        return window.Offline.state;
     }
 };
