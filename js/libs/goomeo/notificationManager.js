@@ -22,7 +22,7 @@ module.exports = {
      */
     show : function show(options) {
         let params          = _.extend({}, this.defaultParams, options);
-        let $notification   = $('<div class="goomeo-notification animated bounceInLeft"></div>');
+        let $notification   = $('<div class="goomeo-notification animated bounceInRight"></div>');
 
         this._close();
 
@@ -39,6 +39,7 @@ module.exports = {
         $('body').prepend($notification);
 
         setTimeout(() => {
+            console.log('here');
             this._close();
         }, params.time);
     },
@@ -46,6 +47,7 @@ module.exports = {
         let $notification = $('#goomeo-notification');
 
         $notification.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+            console.log('remove');
             $notification.remove();
         });
         $notification.addClass('animated bounceOutLeft');
