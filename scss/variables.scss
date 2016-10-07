@@ -62,3 +62,18 @@ $form-fieldset-font-color                                       : color('g-deep-
 $form-legend-font-size                                          : 12px;
 $form-legend-font-weight                                        : $roboto-medium;
 $form-legend-font-color                                         : color('g-blue-grey', 'darken-1');
+
+$notification-color                                             : 'g-grey';
+$notification-success-color                                     : 'green';
+$notification-error-color                                       : 'red';
+$notification-warning-color                                     : 'yellow';
+$notification-infos-color                                       : 'blue';
+$notification-pricipal-color-level                              : 'accent-4';
+$notification-background-color-level                            : 'lighten-5';
+$notification-text-color-level                                  : $notification-pricipal-color-level;
+$notification-width                                             : 380px;
+$notification-height                                            : 50px;
+$notification-font-weight                                       : $roboto-regular;
+$notification-top                                               : 40px;
+$notification-right                                             : 10px;
+$notification-border-left-width                                 : 5px;

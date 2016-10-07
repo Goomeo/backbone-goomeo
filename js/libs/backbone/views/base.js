@@ -16,6 +16,7 @@ const eventManager              = require('../eventManager');
 const templatesManager          = require('../templatesManager');
 const panelManager              = require('../../goomeo/panelManager');
 const modalManager              = require('../../goomeo/modalManager');
+const notificationManager       = require('../../goomeo/notificationManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -40,6 +41,7 @@ module.exports = View.extend({
         this.name               = options.name;
         this.tags               = {};
         this.global             = eventManager;
+        this.notice             = notificationManager.show;
 
         this._initGlobalEvents();
         this._initSockets();
