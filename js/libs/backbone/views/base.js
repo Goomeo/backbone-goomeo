@@ -41,7 +41,6 @@ module.exports = View.extend({
         this.name               = options.name;
         this.tags               = {};
         this.global             = eventManager;
-        this.notice             = notificationManager.show;
 
         this._initGlobalEvents();
         this._initSockets();
@@ -156,6 +155,9 @@ module.exports = View.extend({
         close : function close(params) {
             modalManager.close(params);
         }
+    },
+    notice : function notice(params) {
+        notificationManager.show(params);
     },
     /**
      * Permet de créer une sous vue et de la rattacher directement à cette vue-ci.

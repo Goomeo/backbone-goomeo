@@ -14,7 +14,7 @@ module.exports = {
      *
      * @param {object}      options                      Function params
      * @param {string}      options.message              Message à afficher, peut être la phrase directe ou un code i18n
-     * @param {string}      [options.type]               Type de notification (info,warn,success,error). Default : 'success'
+     * @param {string}      [options.type]               Type de notification (info,warning,success,error). Default : 'success'
      * @param {number}      [options.time]               Durée d'affichage de la notification en ms. Default : 5000
      * @param {object}      [options.action]             Action possible sur la notification
      * @param {string}      [options.action.label]       Label du bouton d'action,  peut être la phrase directe ou un code i18n
@@ -25,6 +25,10 @@ module.exports = {
         let $notification   = $('<div class="goomeo-notification animated bounceInLeft"></div>');
 
         this._close();
+
+        if (params.type) {
+            $notification.addClass(params.type);
+        }
 
         $notification.append('<div class="notification-content">'+ lang.i18n(params.message) +'</div>');
 
