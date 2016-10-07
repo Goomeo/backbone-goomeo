@@ -8,7 +8,6 @@
         "clear": "Clear",
         "close": "Close",
         "format": "d mmmm, yyyy",
-        "formatSubmit": "yyyy/mm/dd",
         "labelMonthNext": "Next month",
         "labelMonthPrev": "Previous month",
         "labelMonthSelect": "Select a month",
@@ -30,6 +29,7 @@
         "deleteTitle": "Delete",
         "delete": "Delete",
         "cancel": "Cancel",
-        "deleteDoubleVerif": "You have to change KO to OK to confirm complete removal."
+        "deleteDoubleVerif": "You have to change \"KO\" to \"OK\" to confirm complete removal.",
+        "noConnectionText": "Aucune connexion réseau détectée. Vous pourrez effectuer cette action quand vous aurez une connexion réseau."
     }
 }

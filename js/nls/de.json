@@ -8,7 +8,6 @@
         "clear": "Löschen",
         "close": "Schließen",
         "format": "dddd, dd. mmmm yyyy",
-        "formatSubmit": "yyyy/mm/dd",
         "labelMonthNext": "Nächsten Monat",
         "labelMonthPrev": "Vormonat",
         "labelMonthSelect": "Wählen Sie einen Monat",
@@ -30,6 +29,7 @@
         "deleteTitle": "Löschen",
         "delete": "Löschen",
         "cancel": "Abbrechen",
-        "deleteDoubleVerif": "Sie müssen \"KO\" in \"OK\" ändern, um die unwiderufliche Löschung zu bestätigen."
+        "deleteDoubleVerif": "Sie müssen \"KO\" in \"OK\" ändern, um die unwiderufliche Löschung zu bestätigen.",
+        "noConnectionText": "Aucune connexion réseau détectée. Vous pourrez effectuer cette action quand vous aurez une connexion réseau."
     }
 }
