@@ -22,8 +22,8 @@ module.exports = _.extend({
      * @param {string}          params.sizeClass                    Classe du slidePannel pour savoir sa taille
      * @param {Backbone.View}   [params.view]                       Instance de vue Backbone
      * @param {string}          [params.html]                       Contenu HTML
-     * @param {boolean}         params.closeOnClickOutside          True : ferme le panel quand on clic en dehors. (default : False)
-     * @param {boolean}         params.keepConnection               True : Affiche le slidePanel même s'il n'y a pas de connexion réseau
+     * @param {boolean}         [params.closeOnClickOutside]        True : ferme le panel quand on clic en dehors. (default : False)
+     * @param {boolean}         [params.keepConnection]             True : Affiche le slidePanel même s'il n'y a pas de connexion réseau
      *
      * full         -> 100%
      * medium       -> 2/3
@@ -186,7 +186,8 @@ module.exports = _.extend({
     },
     _showNetworkModal : function showNetworkModal() {
         modalManager.open({
-            view : viewManager.create('modal:network', require('../../modules/common/modals/network'))
+            view            : viewManager.create('modal:network', require('../../modules/common/modals/network')),
+            keepConnection  : true
         });
     }
 }, Backbone.Events);
