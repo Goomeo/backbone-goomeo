@@ -15,9 +15,6 @@ module.exports = View.extend({
         done();
     },
     cancelAction : function cancelAction() {
-        if (_.isFunction(this.cancelCallback)) {
-            this.cancelCallback();
-        }
         this.modal.close({
             name : this.name
         });
