@@ -44,6 +44,9 @@ $modal-content-font-weight                                      : $roboto-regula
 $modal-content-font-color                                       : color('g-deep-blue', 'base');
 $modal-overlay-color                                            : color('g-deep-blue', 'base');
 $modal-overlay-opacity                                          : 0.7;
+$modal-alert-text-color                                         : color('g-grey', 'base');
+$modal-alert-icon-size                                          : 110px;
+
 
 $btn-control-bar-height                                         : $slidepanel-bottom-buttons-height;
 $btn-control-font-weight                                        : $roboto-light;

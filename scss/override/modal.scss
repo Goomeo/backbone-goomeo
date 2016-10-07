@@ -47,6 +47,17 @@
   .modal-footer {
     padding: 0;
   }
+
+  .modal-alert {
+    .modal-content {
+      text-align: center;
+      color: $modal-alert-text-color;
+
+      i {
+        font-size: $modal-alert-icon-size;
+      }
+    }
+  }
 }
 
 .lean-overlay {

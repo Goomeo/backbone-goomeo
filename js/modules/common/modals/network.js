@@ -8,7 +8,7 @@ module.exports = View.extend({
     events : {
         'click .cancel' : 'cancelAction'
     },
-    className   : 'modal small',
+    className   : 'modal small modal-alert',
     render      : function render(done) {
         this.$el.html(this.template(tpl));
 
