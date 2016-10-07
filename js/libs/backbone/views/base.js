@@ -109,7 +109,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : 'green accent-4 white-text ' + params.style,
+                style       : 'green darken-2 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -119,7 +119,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : 'red accent-4 white-text ' + params.style,
+                style       : 'red darken-2 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -129,7 +129,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : 'blue accent-4 white-text ' + params.style,
+                style       : 'blue darken-2 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -139,7 +139,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : 'yellow accent-4 white-text ' + params.style,
+                style       : 'yellow darken-2 white-text ' + params.style,
                 callback    : params.callback
             });
         },
