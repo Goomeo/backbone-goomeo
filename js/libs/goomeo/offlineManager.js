@@ -6,6 +6,8 @@ require('offline-js/js/offline');
 
 module.exports = {
     init : function init(params) {
+        this.isInit = true;
+
         window.Offline.on('up', function () {
             EventManager.trigger('offline:up');
         });
@@ -19,10 +21,10 @@ module.exports = {
         }, 30000);
     },
     getState : function getState() {
-        return window.Offline.state;
+        return this.isInit === true ? window.Offline.state : 'up';
     },
     checkState : function checkState() {
         window.Offline.check();
-        return window.Offline.state;
+        return this.isInit === true ? window.Offline.state : 'up';
     }
 };
