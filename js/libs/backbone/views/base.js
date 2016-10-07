@@ -16,7 +16,6 @@ const eventManager              = require('../eventManager');
 const templatesManager          = require('../templatesManager');
 const panelManager              = require('../../goomeo/panelManager');
 const modalManager              = require('../../goomeo/modalManager');
-const notificationManager       = require('../../goomeo/notificationManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -110,7 +109,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'green accent-4 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -120,7 +119,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'red accent-4 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -130,7 +129,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'blue accent-4 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -140,7 +139,7 @@ module.exports = View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'yellow accent-4 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -155,9 +154,6 @@ module.exports = View.extend({
         close : function close(params) {
             modalManager.close(params);
         }
-    },
-    notice : function notice(params) {
-        notificationManager.show(params);
     },
     /**
      * Permet de créer une sous vue et de la rattacher directement à cette vue-ci.
