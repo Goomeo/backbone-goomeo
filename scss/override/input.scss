@@ -27,7 +27,10 @@
   }
 
   .prefix + input + label,
-  .prefix + textarea.materialize-textarea + label {
+  .prefix + textarea.materialize-textarea + label,
+  .prefix + input + ul.parsley-errors + label,
+  .prefix + textarea.materialize-textarea + ul.parsley-errors + label
+  {
     left: .75em;
   }
 }
