@@ -13,16 +13,18 @@
     </button>
 
     <script>
-        var $           = require('jquery');
+        const $ = require('jquery');
 
-        this.on('start', function () {
+        this.on('start', () => {
+            $(this.root).attr('disabled', 'disabled');
             this.disabled = true;
             this.spinner = true;
 
             this.update();
         });
 
-        this.on('stop', function () {
+        this.on('stop', () => {
+            $(this.root).removeAttr('disabled');
             this.disabled = false;
             this.spinner = false;
 
