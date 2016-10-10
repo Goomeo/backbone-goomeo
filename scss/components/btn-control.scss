@@ -55,8 +55,8 @@
     }
 
     &.disabled, &:disabled {
-      background-color: $button-bg-color-disabled !important;
-      color: $button-color-disabled !important;
+      background-color: $button-disabled-background !important;
+      color: $button-disabled-color !important;
     }
   }
 }
