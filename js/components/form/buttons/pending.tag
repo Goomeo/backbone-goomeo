@@ -7,7 +7,7 @@
         <spinner
                 if="{ spinner }"
                 size="button"
-                color="spinner-white-only"
+                color="spinner-grey-only"
                 ></spinner>
         <i18n word="{ opts.label || 'validate' }" />
     </button>
@@ -17,6 +17,7 @@
 
         this.on('start', () => {
             $(this.root).attr('disabled', 'disabled');
+            $(this.root).addClass('disabled');
             this.disabled = true;
             this.spinner = true;
 
@@ -25,6 +26,7 @@
 
         this.on('stop', () => {
             $(this.root).removeAttr('disabled');
+            $(this.root).removeClass('disabled');
             this.disabled = false;
             this.spinner = false;
 

@@ -54,7 +54,7 @@
       }
     }
 
-    &.disabled, &:disabled {
+    &.disabled, &:disabled, &.disabled:hover, &:disabled {
       background-color: $button-disabled-background !important;
       color: $button-disabled-color !important;
     }
