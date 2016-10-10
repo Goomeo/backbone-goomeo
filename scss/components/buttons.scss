@@ -5,6 +5,7 @@ btn-pending {
     height: 100%;
     background-color: transparent;
     border: none;
+    color: inherit;
 
     &:focus, &:hover, &:active {
       background-color: transparent;
