@@ -7,7 +7,7 @@
         <spinner
                 if="{ spinner }"
                 size="button"
-                color="spinner-grey-only"
+                color="spinner-white-only"
                 ></spinner>
         <i18n word="{ opts.label || 'validate' }" />
     </button>
