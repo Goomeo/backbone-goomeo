@@ -3,6 +3,12 @@ colorpicker {
 
   .input-field {
     margin-top: 5px;
+
+    &.parsley-error {
+      .chip {
+        border: 1px solid $parsley-color;
+      }
+    }
   }
 
   .chip {
@@ -12,8 +18,8 @@ colorpicker {
 
     .color-container {
       display: inline-block;
-      height: 32px;
-      width: 32px;
+      height: 30px;
+      width: 30px;
       line-height: 32px;
       font-size: 20px;
       border-radius: 50%;
