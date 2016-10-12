@@ -8,7 +8,7 @@
     </div>
 
 
-    <script>
+    <script type="text/babel">
         var _            = require('underscore'),
             $            = require('jquery'),
             tinycolor    = require('tinycolor2'),

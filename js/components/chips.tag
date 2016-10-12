@@ -5,7 +5,7 @@
         <i if="{ opts.close }" onclick="{ close }" class="material-icons close">close</i>
     </div>
 
-    <script>
+    <script type="text/babel">
         function close() {
             this.trigger('close');
             this.unmount();

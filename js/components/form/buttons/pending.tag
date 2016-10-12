@@ -12,7 +12,7 @@
         <i18n word="{ opts.label || 'validate' }" />
     </button>
 
-    <script>
+    <script type="text/babel">
         const $ = require('jquery');
 
         this.on('start', () => {

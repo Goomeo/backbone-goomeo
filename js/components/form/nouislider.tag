@@ -16,7 +16,7 @@
         name="slider-end"
     ></material-input>
 
-    <script>
+    <script type="text/babel">
         var _               = require('underscore'),
             $               = require('jquery'),
             noUiSlider      = require('materialize-css/extras/noUiSlider/nouislider'),

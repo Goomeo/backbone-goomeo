@@ -9,7 +9,7 @@
         <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

@@ -1,7 +1,7 @@
 <i18n>
     <raw content="{ lang }" />
 
-    <script>
+    <script type="text/babel">
         var _       = require('underscore'),
                 _str    = require('underscore.string'),
                 lang    = require('../libs/lang'),
