@@ -14,7 +14,7 @@
         </label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

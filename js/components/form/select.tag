@@ -12,7 +12,7 @@
         <label if="{ !opts.noLabel }" for="{ opts.dataId }"><i18n word="{ opts.label || 'choice' }" /></label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var $               = require('jquery'),
             parsleyMixin    = require('../../libs/riot/mixins/parsley');
 

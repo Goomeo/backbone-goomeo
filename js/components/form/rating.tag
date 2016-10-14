@@ -10,7 +10,7 @@
         </div>
         <label if="{ !opts.noLabel }" class="active"><i18n word="{ opts.label || 'rating' }" /></label>
     </div>
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

@@ -12,7 +12,7 @@
         <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'date' }" /></label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var $               = require('jquery'),
             _               = require('underscore'),
             lang            = require('../../libs/lang'),
