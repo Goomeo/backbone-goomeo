@@ -440,7 +440,7 @@ module.exports = View.extend({
         if (this.socket) {
             socketManager.unbind({
                 url         : this._socketUrl,
-                listeners   : _.map(this.socketEvents.default, (funcName) => {
+                listeners   : _.mapObject(this.socketEvents.default, (funcName) => {
                     return this[funcName];
                 })
             });
@@ -449,7 +449,7 @@ module.exports = View.extend({
         _.each(this.sockets, (socket, name) => {
             socketManager.unbind({
                 url         : this._socketsUrl[name],
-                listeners   : _.map(this.socketEvents[name], (funcName) => {
+                listeners   : _.mapObject(this.socketEvents[name], (funcName) => {
                     return this[funcName];
                 })
             });
