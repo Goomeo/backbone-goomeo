@@ -414,7 +414,7 @@ module.exports = View.extend({
             _.each(this.socketEvents.default, (funcName, event) => {
                 if (_.isFunction(this[funcName])) {
                     _.bindAll(this, funcName);
-                    this.socket.on(event, this[funcName]);
+                    this.socket.on(event, this[funcName].bind(this));
                 }
             });
         }
@@ -426,7 +426,7 @@ module.exports = View.extend({
             _.each(this.socketEvents[socketName], (funcName, event) => {
                 if (_.isFunction(this[funcName])) {
                     _.bindAll(this, funcName);
-                    this.sockets[socketName].on(event, this[funcName]);
+                    this.sockets[socketName].on(event, this[funcName].bind(this));
                 }
             });
         });
