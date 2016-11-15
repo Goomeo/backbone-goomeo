@@ -208,6 +208,29 @@ Dans l'exemple ci dessus, lorsque l'on reçois l'événement *click* d'un tag *j
 
 Les callback de ces événements ont au moins un paramètre qui correspond à l'objet du Tag concerné par l'événement. Le contexte des fonctions (la variable `this`), correspond à votre vue.
 
+### Sockets
+
+Nos vues Backbone peuvent aussi directement capturer les événements des sockets qui lui sont rattachés, et ce, de la même façon que les autres événements. Bien entendu, vous ne pouvez écouter que sur les sockets qui sont rattachés à votre vue.
+
+La liste des événements sockets est renseignée das l'attribut `socketEvents` et elle est séparée en deux niveaux. Au premier niveau on trouve un objet avec, pour chaque field le nom du socket et, por chaque socket, les événements correspondants et leur action rattachée.
+
+**Attention** : pour le socket par défaut (celui sans non si vous avez qu'un seul socket), ses événements sont à renseigner dans le field `default`.
+
+```javascript
+{
+  socketEvents : {
+    default : {
+        'test-result'   : 'socketCallbackAction',
+    }
+  },
+  socketCallbackAction : function socketCallbackAction(params) {
+      this.getLogger().debug(params);
+  }
+}
+```
+
+Les callback de ces événements ont au moins un paramètre qui correspond à ce que socket.io vous retourne (s'il vous retourne quelque-chose). Le contexte des fonctions (la variable `this`), correspond à votre vue.
+
 ## Stickit
 
 Nos vues backbone étendent toutes la bibliothèque Stickit développé par le New York Times. Sa documentation complète afin de rentrer plus en détail dans son fonctionnement se [trouve ici](https://nytimes.github.io/backbone.stickit)
@@ -283,3 +306,31 @@ La fonction render renseignée dans la vue est maintenant asynchrone. En effet, 
 - **afterRender** : utilisé pour faire des traitements après le render de la vue (chargement de scripts javascript, ...)
 
 Et pour finir, chargement de backbone.stickit sur tous les models de la vue, montage des tags de base Riot et lancement de l'événement `DOMContentLoaded`
+
+## Sockets
+
+Il est possible de rattacher des connexions sockets aux vues Backbone comme ceci :
+
+```javascript
+{
+    socket : '0.0.0.0:8080', // default socket
+    sockets : {
+        importer : 'importer.socketexample.io'
+    }
+}
+```
+
+Si la connexion existe déjà, on récupère l'existante sinon on la créée. Vous pourrez directement communiquer en socket des façons suivantes :
+
+```javascript
+this.socket.emit('test', {
+    name : 'Laurent'
+}, (result) => {
+    this.getLogger().debug(result);
+});
+this.sockets.importer.emit('test', {
+    name : 'Laurent'
+});
+```
+
+Le rattachement d'événements se fait comme vu plus haut sur la gestion des événements Socket.
