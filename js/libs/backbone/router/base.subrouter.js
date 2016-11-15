@@ -1,7 +1,7 @@
 'use strict';
 
-var Backbone        = require('backbone'),
-    basicFunctions  = require('./base');
+const Backbone        = require('backbone');
+const basicFunctions  = require('./base');
 
 require('backbone.subroute');
 

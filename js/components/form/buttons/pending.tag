@@ -1,6 +1,5 @@
 <btn-pending>
     <button
-            class="waves-effect waves-light btn { opts.color || 'green' }"
             type="{ opts.type || 'submit' }"
             id="{ opts.dataId || 'submit' }"
             disabled="{ disabled }"
@@ -13,17 +12,21 @@
         <i18n word="{ opts.label || 'validate' }" />
     </button>
 
-    <script>
-        var $           = require('jquery');
+    <script type="text/babel">
+        const $ = require('jquery');
 
-        this.on('start', function () {
+        this.on('start', () => {
+            $(this.root).attr('disabled', 'disabled');
+            $(this.root).addClass('disabled');
             this.disabled = true;
             this.spinner = true;
 
             this.update();
         });
 
-        this.on('stop', function () {
+        this.on('stop', () => {
+            $(this.root).removeAttr('disabled');
+            $(this.root).removeClass('disabled');
             this.disabled = false;
             this.spinner = false;
 

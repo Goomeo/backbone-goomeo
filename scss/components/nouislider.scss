@@ -1,0 +1,21 @@
+material-nouislider {
+  display: flex;
+  margin: 0 10px;
+
+  .slider-wrapper {
+    flex: 1;
+    margin: 10px 15px 0 10px;
+  }
+
+  material-input {
+    width: 30px;
+
+    .input-field {
+      margin: 0;
+
+      input {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

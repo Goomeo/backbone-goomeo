@@ -1,9 +1,10 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    Backbone        = require('backbone'),
-    viewManager     = require('backbone-goomeo/js/libs/backbone/viewManager');
+const $                 = require('jquery');
+const _                 = require('underscore');
+const Backbone          = require('backbone');
+const viewManager       = require('../backbone/viewManager');
+const offlineManager    = require('./offlineManager');
 
 module.exports = {
     defaultParams : {
@@ -17,15 +18,23 @@ module.exports = {
      *
      * A noter que si vous avez déjà une modal, elle est détruite pour laisser se crér la nouvelle.
      *
-     * @param {object}          params              Function params
-     * @param {string}          [params.html]       Modale en html
-     * @param {Backbone.View}   [params.view]       Instance de vue Backbone
-     * @param {object}          [params.options]    Options de la fonction `openModal` fournies par materialize-css.
+     * @param {object}          params                              Function params
+     * @param {string}          [params.html]                       Modale en html
+     * @param {Backbone.View}   [params.view]                       Instance de vue Backbone
+     * @param {boolean}         [params.keepConnection]             True : Affiche la modal même s'il n'y a pas de connexion réseau
+     * @param {object}          [params.options]                    Options de la fonction `openModal` fournies par materialize-css.
      */
     open : function open(params) {
         params.options = _.extend({}, this.defaultParams, params.options);
 
         this.close();
+
+        if (params.keepConnection !== true) {
+            if (offlineManager.getState() == 'down') {
+                this._showNetworkModal();
+                return;
+            }
+        }
 
         if (!_.isEmpty(params.html)) {
             $('body').append(params.html);
@@ -99,5 +108,11 @@ module.exports = {
         }
 
         $('body .modal').closeModal(params.options);
+    },
+    _showNetworkModal : function showNetworkModal() {
+        this.open({
+            view                : viewManager.create('modal:network', require('../../modules/common/modals/network')),
+            keepConnection      : true
+        });
     }
 };

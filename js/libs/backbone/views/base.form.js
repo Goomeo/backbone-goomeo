@@ -1,6 +1,6 @@
 'use strict';
 
-var BaseView = require('./base');
+const BaseView = require('./base');
 
 require('../../../components/form/input.tag');
 require('../../../components/form/textarea.tag');
@@ -17,8 +17,8 @@ module.exports = BaseView.extend({
         if (this.$('form').parsley().validate()) {
             this.sendForm(this.$('form'));
         } // else {
-            // cas des erreurs dans les tabs.
-            //@todo à voir comment faire avec la nouvelle API
+        // cas des erreurs dans les tabs.
+        //@todo à voir comment faire avec la nouvelle API
         // }
     },
     _mountBasicTags : function _mountBasicTags() {

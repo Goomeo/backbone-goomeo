@@ -1,5 +1,5 @@
 <survey>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <div class="survey-content valign-wrapper">
             <button each="{ v, i in num }"
                     onclick="{ click }"
@@ -10,7 +10,7 @@
     </div>
 
 
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

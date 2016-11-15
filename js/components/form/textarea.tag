@@ -1,6 +1,6 @@
 <material-textarea>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
-        <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.icon }</i>
+    <div class="input-field">
+        <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.material ? '' : opts.icon }</i>
         <textarea id="{ opts.dataId }"
                name="{ opts.dataName }"
                class="materialize-textarea"
@@ -9,7 +9,7 @@
         <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'name' }" /></label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

@@ -1,12 +1,25 @@
 colorpicker {
+  display: inline-block;
+
+  .input-field {
+    margin-top: 5px;
+
+    &.parsley-error {
+      .chip {
+        border: 1px solid $parsley-color;
+      }
+    }
+  }
+
   .chip {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
 
     .color-container {
       display: inline-block;
-      height: 32px;
-      width: 32px;
+      height: 30px;
+      width: 30px;
       line-height: 32px;
       font-size: 20px;
       border-radius: 50%;
@@ -24,15 +37,29 @@ colorpicker {
 }
 
 .sp-container {
-  @extend .z-depth-2;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: none;
   border: none;
-  background-color: color('shades', 'white');
 
   .sp-picker-container {
+    @extend .z-depth-2;
+
     border-left: none;
+    float: none;
+    margin: 10% auto 0;
+    padding: 12px;
+    height: 236px;
+    background-color: color('shades', 'white');
+
 
     .sp-input-container {
       .sp-input {
+        height: 1.2rem;
+        margin-top: 20px;
         &:focus {
           border-top: initial;
           border-left: initial;
@@ -42,30 +69,33 @@ colorpicker {
     }
 
     .sp-button-container {
-      .sp-choose {
+      .sp-cancel, .sp-choose {
         background-image: none;
-        background: color('green', 'base');
+        background: transparent;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 10px;
         line-height: 10px;
-        color: #fff;
+        color: color('g-deep-blue', 'base') !important;
         padding: 9px 11px;
         border-radius: 2px;
         text-align: center;
         vertical-align: middle;
         text-shadow: none;
+        text-decoration: none;
         border: none;
+        height: 30px;
+        margin: 0 5px;
 
         &:hover {
           text-shadow: none;
           border: none;
-          background: color('green', 'lighten-1');
+          background: color('grey', 'lighten-1');
         }
 
         &:active {
           box-shadow: none;
-          background-color: color('green', 'darken-1');
+          background-color: color('grey', 'darken-1');
         }
       }
     }

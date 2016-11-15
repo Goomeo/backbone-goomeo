@@ -1,13 +1,27 @@
 <material-nouislider>
+    <material-input
+        if="{ type == 'multiple' }"
+        data-name="{ opts.dataName || 'slider' }[]"
+        value="{ sliderParams.start[0] }"
+        no-label="true"
+        data-type="number"
+        name="slider-start"
+    ></material-input>
     <div class="slider-wrapper"></div>
+    <material-input
+        data-name="{ opts.dataName || 'slider' }[]"
+        value="{ sliderParams.start.length > 1 ? sliderParams.start[1] : sliderParams.start[0] }"
+        no-label="true"
+        data-type="number"
+        name="slider-end"
+    ></material-input>
 
-    <script>
-        var _           = require('underscore'),
-            noUiSlider  = require('materialize-css/extras/noUiSlider/nouislider');
-
-        this.on('mount', function () {
-            var defaultOptions = {
-                start: [0, 100],
+    <script type="text/babel">
+        var _               = require('underscore'),
+            $               = require('jquery'),
+            noUiSlider      = require('materialize-css/extras/noUiSlider/nouislider'),
+            defaultOptions  = {
+                start: [ 0, 100 ],
                 step: 1,
                 range: {
                     'min': 0,
@@ -23,9 +37,28 @@
                 }
             };
 
-            this.slider = noUiSlider.create(this.root.querySelector('.slider-wrapper'), _.extend({}, defaultOptions, this.opts.slider));
+        this.sliderParams  = _.extend({}, defaultOptions, this.opts.slider);
+
+        if (this.sliderParams.start.length > 1) {
+            this.type = "multiple"
+        } else {
+            this.type = "simple"
+        }
+
+        this.on('mount', function () {
+            this.slider = this.root.querySelector('.slider-wrapper');
+
+            noUiSlider.create(this.slider, this.sliderParams);
 
             this.slider.noUiSlider.on('update', function (values, handle) {
+                var inputsList = this.root.querySelectorAll('input');
+
+                inputsList.item(0).value = values[0];
+
+                if (values.length > 1) {
+                    inputsList.item(1).value = values[1];
+                }
+
                 this.trigger('nouislider:update', values, handle);
             }.bind(this));
 
@@ -51,6 +84,28 @@
             this.slider.noUiSlider.on('hover', function (value) {
                 this.trigger('nouislider:hover', value);
             }.bind(this));
+
+            if (this.type == 'multiple') {
+                $('input:first', this.root).on('keyup', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    this.slider.noUiSlider.set([ $(e.currentTarget).val(), null ]);
+                }.bind(this));
+                $('input:last', this.root).on('keyup', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    this.slider.noUiSlider.set([ null, $(e.currentTarget).val() ]);
+                }.bind(this));
+            } else if (this.type == 'simple') {
+                $('input', this.root).on('keyup', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    this.slider.noUiSlider.set($(e.currentTarget).val());
+                }.bind(this));
+            }
         });
 
         this.get = function get() {

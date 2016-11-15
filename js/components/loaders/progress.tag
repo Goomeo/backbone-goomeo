@@ -4,7 +4,7 @@
         <div if="{ !isdeterminate }" class="indeterminate"></div>
     </div>
 
-    <script>
+    <script type="text/babel">
         this.progress       = opts.progress;
         this.isdeterminate  = opts.isdeterminate;
 

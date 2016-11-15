@@ -1,5 +1,5 @@
 <rating>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <div class="rating-content valign-wrapper">
             <span each="{ v, i in num }" onclick="{ click }">
                 <i class="material-icons { parent.value >= i + 1 ? 'star' : 'star_border' }">{ parent.value >= i + 1 ? 'star' : 'star_border' }</i>
@@ -10,7 +10,7 @@
         </div>
         <label if="{ !opts.noLabel }" class="active"><i18n word="{ opts.label || 'rating' }" /></label>
     </div>
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

@@ -1,19 +1,22 @@
 <i18n>
     <raw content="{ lang }" />
 
-    <script>
+    <script type="text/babel">
         var _       = require('underscore'),
                 _str    = require('underscore.string'),
                 lang    = require('../libs/lang'),
                 config  = {
-                    variables : {}
+                    variables : []
                 };
 
         _.each(this.opts, function (item, key) {
             if (_str.startsWith(key, 'var')) {
                 var tempoKey = _str.underscored(key).split('_')[1];
 
-                config.variables[tempoKey] = item;
+                config.variables.push({
+                    key     : tempoKey,
+                    value   : item
+                });
             }
         });
 

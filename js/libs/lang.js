@@ -1,10 +1,10 @@
 'use strict';
 
-var _                       = require('underscore'),
-    Globalize               = require('globalize'),
-    moment                  = require('moment'),
-    log                     = require('loglevel'),
-    loglevelMessagePrefix   = require('loglevel-message-prefix');
+const _                       = require('underscore');
+const Globalize               = require('globalize');
+const moment                  = require('moment');
+const log                     = require('loglevel');
+const loglevelMessagePrefix   = require('loglevel-message-prefix');
 
 module.exports = {
     config : {
@@ -52,7 +52,7 @@ module.exports = {
     _initParsley    : function initParsley() {},
     _initMainData   : function initMainData() {},
     _initMessages   : function initMessages() {},
-    changeLocale : function changeLocale(locale) {
+    changeLocale    : function changeLocale(locale) {
         var newLocale       = locale,
             currentLocale   = localStorage.getItem('locale');
 
@@ -76,11 +76,11 @@ module.exports = {
             currentLocale = localStorage.getItem('locale');
 
         if (_.isEmpty(currentLocale)) {
-            this.changeLocale(navigatorLang);
+            this.changeLocale(_.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale);
             return;
         }
 
-        return _.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale;
+        return currentLocale;
     },
     /**
      * Traduit le mot clé passé en paramètre en utilisant globalize. Compatible pluralize, numberFormat, ...
@@ -110,16 +110,16 @@ module.exports = {
             }
 
             // format simple avec les variables passées en tableau ou en objet de type {clé : valeur ...)
-            //if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
-            //    var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
-            //
-            //    options = _.each(options, function (option, key) {
-            //        if (_.isNumber(option)) {
-            //            options[key] = numberFormatter(option);
-            //        }
-            //    });
-            //    return msgFormatter(options);
-            //}
+            if (options && (_.isArray(options) || !_.has(options, 'variables'))) {
+               var numberFormatter = currentGlobalize.numberFormatter({ style : 'decimal' });
+
+               options = _.each(options, function (option, key) {
+                   if (_.isNumber(option)) {
+                       options[key] = numberFormatter(option);
+                   }
+               });
+               return msgFormatter(options);
+            }
 
             // format avec options spécifiques
             if (options && options.variables) {

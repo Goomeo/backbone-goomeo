@@ -1,20 +1,19 @@
 <colorpicker>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
+    <div class="input-field">
         <div class="chip">
             <span class="color-container material-icons palette" style="background-color: { backgroundColor || 'inherit' }; color: { textColor || 'inherit' };">palette</span>
             <span class="color-name">{ opts.color }<i18n if="{ !opts.color }" word="{ opts.libelle || 'colorpickerChooseColor' }" /></span>
         </div>
         <input type="text" id="{ opts.dataId }" name="{ opts.dataName }" value="{ opts.color }"/>
-        <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="active"><i18n word="{ opts.label || 'color' }" /></label>
     </div>
 
 
-    <script>
+    <script type="text/babel">
         var _            = require('underscore'),
-                $            = require('jquery'),
-                tinycolor    = require('tinycolor2'),
-                parsleyMixin = require('../../libs/riot/mixins/parsley'),
-                $fade;
+            $            = require('jquery'),
+            tinycolor    = require('tinycolor2'),
+            parsleyMixin = require('../../libs/riot/mixins/parsley'),
+            $fade;
 
         this.mixin(parsleyMixin);
 

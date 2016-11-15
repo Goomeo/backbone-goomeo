@@ -1,19 +1,21 @@
 'use strict';
 
-var $                       = require('jquery'),
-    _                       = require('underscore'),
-    async                   = require('async'),
-    Backbone                = require('backbone'),
-    log                     = require('loglevel'),
-    loglevelMessagePrefix   = require('loglevel-message-prefix'),
-    Materialize             = global.Materialize,
-    moment                  = require('moment'),
-    riot                    = require('riot'),
-    viewManager             = require('../viewManager'),
-    eventManager            = require('../eventManager'),
-    templatesManager        = require('../templatesManager'),
-    panelManager            = require('../../goomeo/panelManager'),
-    modalManager            = require('../../goomeo/modalManager');
+const $                         = require('jquery');
+const _                         = require('underscore');
+const async                     = require('async');
+const Backbone                  = require('backbone');
+const log                       = require('loglevel');
+const loglevelMessagePrefix     = require('loglevel-message-prefix');
+const Materialize               = global.Materialize;
+const moment                    = require('moment');
+const riot                      = require('riot');
+const functions                 = require('../functions');
+const viewManager               = require('../viewManager');
+const eventManager              = require('../eventManager');
+const templatesManager          = require('../templatesManager');
+const panelManager              = require('../../goomeo/panelManager');
+const modalManager              = require('../../goomeo/modalManager');
+const socketManager             = require('../../goomeo/socketManager');
 
 // extensiosn de backbone.view
 require('backbone.stickit');
@@ -26,10 +28,10 @@ require('../../../components/loaders/spinner.tag');
 
 Backbone.$ = $;
 
-module.exports = Backbone.View.extend({
-    constructor : function constructor(options) {
-        Backbone.View.apply(this, arguments);
+var View = Backbone.View.extend(functions);
 
+module.exports = View.extend({
+    constructor : function constructor(options) {
         _.bindAll(this, 'render', 'mountTags', 'template', 'beforeRender', 'afterRender', '_mountBasicTags', 'createSubView', 'dispose');
 
         this.models             = options.models || {};
@@ -37,8 +39,10 @@ module.exports = Backbone.View.extend({
         this.subviews           = {};
         this.name               = options.name;
         this.tags               = {};
+        this.global             = eventManager;
 
         this._initGlobalEvents();
+        this._initSockets();
 
         this.render = _.wrap(this.render, function wrapRender(render) {
             async.series([
@@ -64,6 +68,7 @@ module.exports = Backbone.View.extend({
                     }.bind(this));
                 }.bind(this),
                 function (done) {
+                    this._mountBasicTags();
                     this.afterRender(function () {
                         this.trigger('render:after');
                         this.global.trigger(this.name + ':render:after');
@@ -71,7 +76,6 @@ module.exports = Backbone.View.extend({
                     }.bind(this));
                 }.bind(this)
             ], function () {
-                this._mountBasicTags();
                 this._initStickit();
                 this._domContentLoaded();
 
@@ -87,29 +91,8 @@ module.exports = Backbone.View.extend({
 
             return this;
         }.bind(this));
-    },
-    global : {
-        on : function on() {
-            eventManager.on.apply(this, arguments);
-        },
-        off : function off() {
-            eventManager.off.apply(this, arguments);
-        },
-        trigger : function trigger() {
-            eventManager.trigger.apply(this, arguments);
-        },
-        once : function once() {
-            eventManager.once.apply(this, arguments);
-        },
-        listenTo : function listenTo() {
-            eventManager.listenTo.apply(this, arguments);
-        },
-        stopListening : function stopListening() {
-            eventManager.stopListening.apply(this, arguments);
-        },
-        listenToOnce : function listenToOnce() {
-            eventManager.listenToOnce.apply(this, arguments);
-        }
+
+        Backbone.View.apply(this, arguments);
     },
     panels : {
         open : function open() {
@@ -126,7 +109,7 @@ module.exports = Backbone.View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'green darken-3 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -136,7 +119,7 @@ module.exports = Backbone.View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'red darken-3 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -146,7 +129,7 @@ module.exports = Backbone.View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'blue darken-3 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -156,7 +139,7 @@ module.exports = Backbone.View.extend({
             this.show({
                 message     : $content,
                 duration    : params.duration,
-                style       : params.style,
+                style       : 'yellow darken-3 white-text ' + params.style,
                 callback    : params.callback
             });
         },
@@ -217,24 +200,14 @@ module.exports = Backbone.View.extend({
             }, this);
         }
 
-        if (this.collections) {
-            delete this.collections;
-        }
-        if (this.models) {
-            _.each(this.models, function (model) {
-                this.unstickit(model);
-            }, this);
-            delete this.models;
-        }
-
         viewManager.remove(this.name);
 
-        this.unstickit();
         this.undelegateEvents();
         this.unbind();
         this.unmountAllTags();
         this._unbindStikits();
         this._removeGlobalEvents();
+        this._unbindSockets();
         $(this.el).remove();
         this.remove();
         Backbone.View.prototype.remove.call(this);
@@ -423,6 +396,64 @@ module.exports = Backbone.View.extend({
         }
 
         return this._logger;
+    },
+    /**
+     * Permet d'initialiser les événements sockets propres à la vue
+     *
+     * @private
+     */
+    _initSockets : function initSockets() {
+        if (!this.socketEvents) {
+            return;
+        }
+
+        if (this.socketEvents && !_.isEmpty(this.socket)) {
+            this._socketUrl = this.socket;
+            this.socket     = socketManager.create(this.socket);
+
+            _.each(this.socketEvents.default, (funcName, event) => {
+                if (_.isFunction(this[funcName])) {
+                    _.bindAll(this, funcName);
+                    this.socket.on(event, this[funcName].bind(this));
+                }
+            });
+        }
+
+        this._socketsUrl = this.sockets;
+        _.each(this.sockets, (url, socketName) => {
+            this.sockets[socketName] = socketManager.create(url);
+
+            _.each(this.socketEvents[socketName], (funcName, event) => {
+                if (_.isFunction(this[funcName])) {
+                    _.bindAll(this, funcName);
+                    this.sockets[socketName].on(event, this[funcName].bind(this));
+                }
+            });
+        });
+    },
+    /**
+     * Supprime tous les événements sockets de la vue
+     *
+     * @private
+     */
+    _unbindSockets : function unbindSocket() {
+        if (this.socket) {
+            socketManager.unbind({
+                url         : this._socketUrl,
+                listeners   : _.mapObject(this.socketEvents.default, (funcName) => {
+                    return this[funcName];
+                })
+            });
+        }
+
+        _.each(this.sockets, (socket, name) => {
+            socketManager.unbind({
+                url         : this._socketsUrl[name],
+                listeners   : _.mapObject(this.socketEvents[name], (funcName) => {
+                    return this[funcName];
+                })
+            });
+        });
     },
     // fonctions de base vides
     render              : function render() {},

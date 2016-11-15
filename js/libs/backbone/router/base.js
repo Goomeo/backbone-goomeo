@@ -1,9 +1,11 @@
 'use strict';
 
-var log                     = require('loglevel'),
-    loglevelMessagePrefix   = require('loglevel-message-prefix');
+const _                     = require('underscore');
+const functions             = require('../functions');
+const log                   = require('loglevel');
+const loglevelMessagePrefix = require('loglevel-message-prefix');
 
-module.exports = {
+module.exports = _.extend({}, functions, {
     /**
      * Permet de récupérer le logger de la vue
      */
@@ -18,4 +20,4 @@ module.exports = {
 
         return this._logger;
     }
-};
+});

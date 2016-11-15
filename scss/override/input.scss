@@ -1,0 +1,57 @@
+.input-field {
+  input:not([type]),
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=url],
+  input[type=time],
+  input[type=date],
+  input[type=datetime],
+  input[type=datetime-local],
+  input[type=tel],
+  input[type=number],
+  input[type=search],
+  textarea.materialize-textarea {
+    height: 2rem;
+  }
+  textarea.materialize-textarea {
+    padding: .4rem 0 0 0;
+    min-height: 5rem;
+  }
+  label {
+    top: 0.6rem;
+    left: 0;
+    &.active {
+      transform: translateY(-120%);
+    }
+  }
+
+  .prefix + input + label,
+  .prefix + textarea.materialize-textarea + label,
+  .prefix + input + ul.parsley-errors-list + label,
+  .prefix + textarea.materialize-textarea + ul.parsley-errors-list + label {
+    left: .75em;
+  }
+
+  .prefix + input + ul.parsley-errors-list,
+  .prefix + textarea.materialize-textarea + ul.parsley-errors-list {
+    padding-left: 5px;
+  }
+
+  &.parsley-error {
+    input:not([type]),
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=url],
+    input[type=time],
+    input[type=date],
+    input[type=datetime],
+    input[type=datetime-local],
+    input[type=tel],
+    input[type=number],
+    input[type=search] {
+      margin-bottom: 10px;
+    }
+  }
+}

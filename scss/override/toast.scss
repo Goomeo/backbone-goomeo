@@ -1,0 +1,10 @@
+#toast-container {
+  @media #{$large-and-up} {
+    top: 60px;
+    right: 10px;
+  }
+
+  .toast {
+    font-size: 14px;
+  }
+}

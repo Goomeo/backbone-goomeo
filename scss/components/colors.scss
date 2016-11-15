@@ -1,0 +1,126 @@
+$g-deep-blue: (
+        'base'      : #1e2a36,
+        "lighten-5" : #98afc6,
+        "lighten-4" : #6688aa,
+        "lighten-3" : #4d6c8b,
+        "lighten-2" : #34495d,
+        "lighten-1" : #29394a,
+        "darken-1"  : #131b22,
+        "darken-2"  : #080b0f,
+        "darken-3"  : #000000,
+        "darken-4"  : #000000,
+        "accent-1"  : #98afc6,
+        "accent-2"  : #6688aa,
+        "accent-3"  : #29394a,
+        "accent-4"  : #080b0f
+);
+
+$g-grey: (
+        'base'      : #787f86,
+        "lighten-5" : #ffffff,
+        "lighten-4" : #dbdddf,
+        "lighten-3" : #bec1c5,
+        "lighten-2" : #989ea3,
+        "lighten-1" : #888e95,
+        "darken-1"  : #6a7076,
+        "darken-2"  : #5b6066,
+        "darken-3"  : #4d5156,
+        "darken-4"  : #3e4245,
+        "accent-1"  : #ffffff,
+        "accent-2"  : #dbdddf,
+        "accent-3"  : #888e95,
+        "accent-4"  : #5b6066
+);
+
+$g-blue-grey: (
+        'base'      : #979fae,
+        "lighten-5" : #ffffff,
+        "lighten-4" : #f0f1f3,
+        "lighten-3" : #e4e6e9,
+        "lighten-2" : #d1d4db,
+        "lighten-1" : #a8afbc,
+        "darken-1"  : #868fa1,
+        "darken-2"  : #757f94,
+        "darken-3"  : #667084,
+        "darken-4"  : #4b5361,
+        "accent-1"  : #ffffff,
+        "accent-2"  : #f0f1f3,
+        "accent-3"  : #868fa1,
+        "accent-4"  : #757f94
+);
+
+$colors: (
+        "materialize-red" : $materialize-red,
+        "red"             : $red,
+        "pink"            : $pink,
+        "purple"          : $purple,
+        "deep-purple"     : $deep-purple,
+        "indigo"          : $indigo,
+        "blue"            : $blue,
+        "light-blue"      : $light-blue,
+        "cyan"            : $cyan,
+        "teal"            : $teal,
+        "green"           : $green,
+        "light-green"     : $light-green,
+        "lime"            : $lime,
+        "yellow"          : $yellow,
+        "amber"           : $amber,
+        "orange"          : $orange,
+        "deep-orange"     : $deep-orange,
+        "brown"           : $brown,
+        "blue-grey"       : $blue-grey,
+        "grey"            : $grey,
+        "shades"          : $shades,
+        "g-deep-blue"     : $g-deep-blue,
+        "g-grey"          : $g-grey,
+        "g-blue-grey"     : $g-blue-grey
+);
+
+
+// Color Classes
+
+@each $color_name, $color in $colors {
+  @each $color_type, $color_value in $color {
+    @if $color_type == "base" {
+      .#{$color_name} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text {
+        color: $color_value !important;
+      }
+    }
+    @else {
+      .#{$color_name}.#{$color_type} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text.text-#{$color_type} {
+        color: $color_value !important;
+      }
+    }
+  }
+}
+
+// Shade classes
+@each $color, $color_value in $shades {
+  .#{$color} {
+    background-color: $color_value !important;
+  }
+  .#{$color}-text {
+    color: $color_value !important;
+  }
+}
+
+
+// usage: color("name_of_color", "type_of_color")
+// to avoid to repeating map-get($colors, ...)
+
+@function color($color, $type) {
+  @if map-has-key($colors, $color) {
+    $curr_color: map-get($colors, $color);
+    @if map-has-key($curr_color, $type) {
+      @return map-get($curr_color, $type);
+    }
+  }
+  @warn "Unknown `#{$color}` in $colors.";
+  @return null;
+}

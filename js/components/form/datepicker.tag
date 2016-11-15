@@ -1,6 +1,6 @@
 <material-datepicker>
-    <div class="input-field { opts.col ? 'col ' + opts.col : '' }">
-        <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.icon }</i>
+    <div class="input-field">
+        <i if="{ opts.icon }" class="material-icons prefix { opts.icon }">{ opts.material ? '' : opts.icon }</i>
         <input id="{ opts.dataId }"
                name="{ opts.dataName }"
                type="date"
@@ -12,7 +12,7 @@
         <label if="{ !opts.noLabel }" for="{ opts.dataId }" class="{ opts.isActive ? 'active' : '' }"><i18n word="{ opts.label || 'date' }" /></label>
     </div>
 
-    <script>
+    <script type="text/babel">
         var $               = require('jquery'),
             _               = require('underscore'),
             lang            = require('../../libs/lang'),
@@ -23,7 +23,7 @@
                 "monthsShort"       : lang.i18n('monthsShort').split(', '),
                 "weekdaysFull"      : lang.i18n('weekdaysFull').split(', '),
                 "weekdaysShort"     : lang.i18n('weekdaysShort').split(', '),
-                "today"             : lang.i18n('today'),
+                "today"             : '',
                 "clear"             : lang.i18n('clear'),
                 "close"             : lang.i18n('close'),
                 "format"            : lang.i18n('format'),
@@ -34,6 +34,11 @@
             };
 
         this.mixin(parsleyMixin);
+
+        if (this.parent) {
+            this.opts               = this.opts.datepicker;
+            this.opts.datepicker    = this.opts.params
+        }
 
         if (this.opts.value) {
             this.opts.isActive = true;

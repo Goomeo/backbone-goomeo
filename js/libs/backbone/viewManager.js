@@ -1,8 +1,8 @@
 'use strict';
 
-var _                   = require('underscore'),
-    Backbone            = require('backbone'),
-    eventManager        = require('./eventManager');
+const _                 = require('underscore');
+const Backbone          = require('backbone');
+const eventManager      = require('./eventManager');
 
 module.exports = {
     backboneMapArray : {},

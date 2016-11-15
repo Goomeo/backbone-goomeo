@@ -9,7 +9,7 @@
             />
     <label for="{ opts.dataId }"><i18n word="{ opts.label }" /></label>
 
-    <script>
+    <script type="text/babel">
         var parsleyMixin = require('../../libs/riot/mixins/parsley');
 
         this.mixin(parsleyMixin);

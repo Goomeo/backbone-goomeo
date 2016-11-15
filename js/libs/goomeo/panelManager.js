@@ -1,10 +1,12 @@
 'use strict';
 
-var $               = require('jquery'),
-    _               = require('underscore'),
-    Backbone        = require('backbone'),
-    eventManager    = require('../backbone/eventManager'),
-    viewManager     = require('../backbone/viewManager');
+const $                 = require('jquery');
+const _                 = require('underscore');
+const Backbone          = require('backbone');
+const eventManager      = require('../backbone/eventManager');
+const viewManager       = require('../backbone/viewManager');
+const offlineManager    = require('./offlineManager');
+const modalManager      = require('./modalManager');
 
 module.exports = _.extend({
     defaultParams : {
@@ -20,18 +22,22 @@ module.exports = _.extend({
      * @param {string}          params.sizeClass                    Classe du slidePannel pour savoir sa taille
      * @param {Backbone.View}   [params.view]                       Instance de vue Backbone
      * @param {string}          [params.html]                       Contenu HTML
-     * @param {boolean}         params.closeOnClickOutside          True : ferme le panel quand on clic en dehors. (default : False)
+     * @param {boolean}         [params.closeOnClickOutside]        True : ferme le panel quand on clic en dehors. (default : False)
+     * @param {boolean}         [params.keepConnection]             True : Affiche le slidePanel même s'il n'y a pas de connexion réseau
      *
-     * max          -> 100%
-     * high         -> 90%;
-     * medium-high  -> 80%
-     * low-high     -> 70%
-     * medium       -> 50%
-     * low          -> 30%
+     * full         -> 100%
+     * medium       -> 2/3
+     * low          -> 1/3
      */
     open : function open(params) {
         params = _.extend({}, this.defaultParams, params);
 
+        if (params.keepConnection !== true) {
+            if (offlineManager.getState() == 'down') {
+                this._showNetworkModal();
+                return;
+            }
+        }
 
         var $html       = $('html'),
             $panel      = $('.slidepanels');
@@ -114,7 +120,7 @@ module.exports = _.extend({
         }
     },
     _initPanel : function initPanel(params) {
-        var $title      = $('<a href="#" class="slidepanel-close back-button" ><i class="material-icons">close</i></a>'),
+        var $title      = $('<a href="#" class="slidepanel-close back-button waves-effect waves-light" ><i class="material-icons">close</i></a>'),
             $content    = $('<div class="slidepanel-content"></div>'),
             $panel      = $('<div class="slidepanels z-depth-3"></div>'),
             $fade       = $('<div class="slidepanel-fade animated"></div>'),
@@ -177,5 +183,11 @@ module.exports = _.extend({
         }
 
         params.$panel.find('.top-bar .title').html(params.options.title);
+    },
+    _showNetworkModal : function showNetworkModal() {
+        modalManager.open({
+            view            : viewManager.create('modal:network', require('../../modules/common/modals/network')),
+            keepConnection  : true
+        });
     }
 }, Backbone.Events);
