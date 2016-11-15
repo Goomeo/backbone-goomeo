@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <script src="js/lib/energize.js" type="text/javascript"></script>
-<script src="js/lib/imagesloaded.min.js" type="text/javascript"></script>
-<script src="js/lib/jquery_ui.js" type="text/javascript"></script>
-<script src="js/lib/jquery.highlight.js" type="text/javascript"></script>
-<script src="js/lib/jquery.tocify.js" type="text/javascript"></script>
-<script src="js/lib/lunr.js" type="text/javascript"></script>
-    <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/lib/energize.js"></script>
+<script src="js/lib/imagesloaded.min.js"></script>
+<script src="js/lib/jquery_ui.js"></script>
+<script src="js/lib/jquery.highlight.js"></script>
+<script src="js/lib/jquery.tocify.js"></script>
+<script src="js/lib/lunr.js"></script>
+    <script src="js/script.js"></script>
 
     
       <script>
@@ -75,10 +75,10 @@
 <li>des composants RiotJS</li>
 </ul>
 <p>Vous trouverez dans cette documentation toutes les infos pour utiliser ce projet au sein du votre.</p>
-<h2 id="Pr_E9requis"><a href="#Pr_E9requis" class="headerlink" title="Prérequis"></a>Prérequis</h2><p><strong>Attention</strong> : Cette library a été conçue pour être utilisée au sein d’un projet pour du Front et compilé avec <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>.</p>
+<h2 id="Prerequis"><a href="#Prerequis" class="headerlink" title="Prérequis"></a>Prérequis</h2><p><strong>Attention</strong> : Cette library a été conçue pour être utilisée au sein d’un projet pour du Front et compilé avec <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>.</p>
 <p>Vous devez impérativement avoir NodeJS &gt;= 0.12 pour pouvoir utiliser cette library.</p>
-<h2 id="Compatibilit_E9"><a href="#Compatibilit_E9" class="headerlink" title="Compatibilité"></a>Compatibilité</h2><p>Normalement tous les composants Riot et le code Javascript sont compatible sous ie9+. Toutefois, plusieurs animations CSS et la police d’icône ne fonctionneront pas dessus.</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><pre><code class="highlight bash"><span class="line">npm install --save backbone-goomeo</span><br></code></pre>
+<h2 id="Compatibilite"><a href="#Compatibilite" class="headerlink" title="Compatibilité"></a>Compatibilité</h2><p>Normalement tous les composants Riot et le code Javascript sont compatible sous ie9+. Toutefois, plusieurs animations CSS et la police d’icône ne fonctionneront pas dessus.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><pre><code class="highlight bash"><div class="line">npm install --save backbone-goomeo</div></code></pre>
 
         
           
@@ -99,26 +99,26 @@
 </code></pre>
 <h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>La seule limitation avec Browserify, c’est que votre code ainsi structuré n’est pas utilisable directement dans le navigateur. Vous devrez impérativement builder votre code afin de générer un fichier javascript valide.</p>
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Il est possible de dire certaines choses à Browserify pour simplifier l’utilisation des ressources externes, mettre certaines variables en global sur notre code, …</p>
-<h3 id="Librairies_externes"><a href="#Librairies_externes" class="headerlink" title="Librairies externes"></a>Librairies externes</h3><p>Il est possible que dans les librairies installées par <em>NPM</em>, il y en aie plusieurs qui ne soient pas prévues pour fonctionner sous CommonJS. Heureusement, il est possible de palier à ceci dans le fichier <em>package.json</em> afin d’indiquer à Browserify de convertir les fichiers suivants :</p>
+<h3 id="Librairies-externes"><a href="#Librairies-externes" class="headerlink" title="Librairies externes"></a>Librairies externes</h3><p>Il est possible que dans les librairies installées par <em>NPM</em>, il y en aie plusieurs qui ne soient pas prévues pour fonctionner sous CommonJS. Heureusement, il est possible de palier à ceci dans le fichier <em>package.json</em> afin d’indiquer à Browserify de convertir les fichiers suivants :</p>
 <blockquote>
 <p>Browser files</p>
 </blockquote>
 <pre><code class="json highlight">{
-  "<span class="attr">browser</span>": {
-    "<span class="attr">jQuery</span>": <span class="string">"./node_modules/jquery/dist/jquery.min.js"</span>,
-    "<span class="attr">jquery.form2js</span>": <span class="string">"./node_modules/form2js/src/jquery.toObject.js"</span>
+  <span class="attr">"browser"</span>: {
+    <span class="attr">"jQuery"</span>: <span class="string">"./node_modules/jquery/dist/jquery.min.js"</span>,
+    <span class="attr">"jquery.form2js"</span>: <span class="string">"./node_modules/form2js/src/jquery.toObject.js"</span>
   }
 }
 </code></pre>
 <p>Ici nous indiquons aux fichiers <code>jquery.min,js</code> et <code>jquery.toObject.js</code> d’être convertis en fichiers CommonJS valide et d’être appelé avec la fonction <code>require()</code> via le mot clé <code>jQuery</code> et <code>jQuery.form2js</code>.</p>
-<h3 id="Variables_globales"><a href="#Variables_globales" class="headerlink" title="Variables globales"></a>Variables globales</h3><p>Dans le projet nous utilisons qu’une variable globale : <em>jquery</em>. Effectivement, si l’on veut <code>require(&#39;jQuery&#39;)</code>, on va tout le temps récupérer l’objet jQuery de base et non l’objet étendu par tous les modules. Pour palier à ça, nous plaçons jQuery en variable globale afin d’avoir toujours le <code>jQuery</code> étendu au lieu de celui de base.</p>
+<h3 id="Variables-globales"><a href="#Variables-globales" class="headerlink" title="Variables globales"></a>Variables globales</h3><p>Dans le projet nous utilisons qu’une variable globale : <em>jquery</em>. Effectivement, si l’on veut <code>require(&#39;jQuery&#39;)</code>, on va tout le temps récupérer l’objet jQuery de base et non l’objet étendu par tous les modules. Pour palier à ça, nous plaçons jQuery en variable globale afin d’avoir toujours le <code>jQuery</code> étendu au lieu de celui de base.</p>
 <p>Pour cela, nous passons par un <em>shim</em> de browserify configuré comme ceci :</p>
 <blockquote>
 <p>Shims :</p>
 </blockquote>
 <pre><code class="json highlight">{
-  "<span class="attr">browserify-shim</span>": {
-    "<span class="attr">jquery</span>": <span class="string">"global:jQuery"</span>
+  <span class="attr">"browserify-shim"</span>: {
+    <span class="attr">"jquery"</span>: <span class="string">"global:jQuery"</span>
   }
 }
 </code></pre>
@@ -168,14 +168,14 @@ global.jQuery = <span class="built_in">require</span>(<span class="string">'jQue
 </table>
 <p>Si vous voulez ajouter un template facilement, vous le pouvez grâce au <code>package.json</code> de la façon suivante :</p>
 <pre><code class="json highlight">{
-  "<span class="attr">aliasify</span>": {
-    "<span class="attr">aliases</span>": {
-      "<span class="attr">tpl</span>": <span class="string">"./js/tpl"</span>,
-      "<span class="attr">models</span>": <span class="string">"./js/models"</span>,
-      "<span class="attr">components</span>": <span class="string">"./js/components"</span>,
-      "<span class="attr">libs</span>": <span class="string">"./js/libs"</span>,
-      "<span class="attr">modules</span>": <span class="string">"./js/modules"</span>,
-      "<span class="attr">collections</span>": <span class="string">"./js/collections"</span>
+  <span class="attr">"aliasify"</span>: {
+    <span class="attr">"aliases"</span>: {
+      <span class="attr">"tpl"</span>: <span class="string">"./js/tpl"</span>,
+      <span class="attr">"models"</span>: <span class="string">"./js/models"</span>,
+      <span class="attr">"components"</span>: <span class="string">"./js/components"</span>,
+      <span class="attr">"libs"</span>: <span class="string">"./js/libs"</span>,
+      <span class="attr">"modules"</span>: <span class="string">"./js/modules"</span>,
+      <span class="attr">"collections"</span>: <span class="string">"./js/collections"</span>
     }
   }
 }
@@ -273,7 +273,7 @@ global.jQuery = <span class="built_in">require</span>(<span class="string">'jQue
 <span class="keyword">var</span> logger = log.getLogger(<span class="string">'unnompourlerendreunique'</span>);
 
 loglevelMessagePrefix(<span class="keyword">this</span>._logger, {
-    staticPrefixes : [ <span class="string">'unnompourlerendreunique'</span> ]
+    <span class="attr">staticPrefixes</span> : [ <span class="string">'unnompourlerendreunique'</span> ]
 });
 
 <span class="comment">// ensuite vous pouvez utiliser logger comme vous voulez</span>
@@ -283,7 +283,7 @@ logger.info(<span class="string">'test info'</span>);
 
 
           
-              <h1 id="Vues_Backbone"><a href="#Vues_Backbone" class="headerlink" title="Vues Backbone"></a>Vues Backbone</h1><p>Les vues Backbone du projet ne devront pas étendre <code>Backbone.View</code>. En effet, nous avons créer une classe de base afin d’ajouter un nombre de fonctions utiles permettant d’améliorer le développement.</p>
+              <h1 id="Vues-Backbone"><a href="#Vues-Backbone" class="headerlink" title="Vues Backbone"></a>Vues Backbone</h1><p>Les vues Backbone du projet ne devront pas étendre <code>Backbone.View</code>. En effet, nous avons créer une classe de base afin d’ajouter un nombre de fonctions utiles permettant d’améliorer le développement.</p>
 <p>La classe de base se trouve dans <em>/js/libs/backbone/views/base.js</em>. Si vous voulez éttendre cette vue pour avoir d’autres vues de base réutilisables, vous devrez les créer dans le répertoire <em>/js/libs/backbone/views</em></p>
 <h2 id="Organisation"><a href="#Organisation" class="headerlink" title="Organisation"></a>Organisation</h2><p>Toute la partie javascript sera rangée dans le répertoire <code>js</code> et toute la partie HTML sera rangée dans le répertoire <code>tpl</code>.</p>
 <p>Chaque groupe fonctionnel de vues doit se retrouver dans un répertoire désignant ce même groupe. Par exemple, toutes les vues composant le module LNS se retrouvent dans un sous répertoire lns. De même, la vue maîtresse de ce groupe devra s’appeler index.</p>
@@ -307,17 +307,17 @@ logger.info(<span class="string">'test info'</span>);
         │   └── form.html        # template du formulaire
         └── index.html           # template de la page d&apos;accueuil
 </code></pre>
-<h2 id="Cr_E9ation_d_u2019une_sous_vue"><a href="#Cr_E9ation_d_u2019une_sous_vue" class="headerlink" title="Création d’une sous vue"></a>Création d’une sous vue</h2><p>Dans les anciens projets, nous avions pour habitude de créer toutes les sous vues par le viewManager. Mais la tâche était redondante sur le fait qu’il fallait ajouter manuellement la vue au tableau <code>subviews</code> afin que toutes les vues soient détruites quand la principale l’était.</p>
+<h2 id="Creation-d’une-sous-vue"><a href="#Creation-d’une-sous-vue" class="headerlink" title="Création d’une sous vue"></a>Création d’une sous vue</h2><p>Dans les anciens projets, nous avions pour habitude de créer toutes les sous vues par le viewManager. Mais la tâche était redondante sur le fait qu’il fallait ajouter manuellement la vue au tableau <code>subviews</code> afin que toutes les vues soient détruites quand la principale l’était.</p>
 <p>Dorénavant, vous devrez passer par la méthode <code>this.createSubView()</code>. La fonction s’utilise de la même façon à la différence que vous n’avez plus besoin de rajouter la sous-vue au tableau de subviews. Elle le fait pour vous.</p>
 <pre><code class="javascript highlight"><span class="comment">// avant</span>
 <span class="keyword">var</span> subView = vm.create(<span class="string">'nomdevotrevue'</span>, votreView, {
-    key : <span class="string">'foo'</span>
+    <span class="attr">key</span> : <span class="string">'foo'</span>
 });
 <span class="keyword">this</span>.subviews.push(subView);
 
 <span class="comment">// après</span>
 <span class="keyword">var</span> subView = <span class="keyword">this</span>.createSubView(<span class="string">'nomdevotrevue'</span>, votreView, {
-    key : <span class="string">'foo'</span>
+    <span class="attr">key</span> : <span class="string">'foo'</span>
 });
 </code></pre>
 <blockquote>
@@ -326,15 +326,15 @@ logger.info(<span class="string">'test info'</span>);
 <pre><code class="text highlight">fichier : /js/modules/events/maps/index.js
 vue     : events:maps:index
 </code></pre>
-<h2 id="Ouverture/fermeture_d_u2019un_slidePanel"><a href="#Ouverture/fermeture_d_u2019un_slidePanel" class="headerlink" title="Ouverture/fermeture d’un slidePanel."></a>Ouverture/fermeture d’un slidePanel.</h2><blockquote>
+<h2 id="Ouverture-fermeture-d’un-slidePanel"><a href="#Ouverture-fermeture-d’un-slidePanel" class="headerlink" title="Ouverture/fermeture d’un slidePanel."></a>Ouverture/fermeture d’un slidePanel.</h2><blockquote>
 <p>ouverture :</p>
 </blockquote>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.panels.open({
-    view    : <span class="keyword">this</span>.createSubView(<span class="string">'todo:form'</span>, formView, {
-        model : <span class="keyword">this</span>.model
+    <span class="attr">view</span>    : <span class="keyword">this</span>.createSubView(<span class="string">'todo:form'</span>, formView, {
+        <span class="attr">model</span> : <span class="keyword">this</span>.model
     }),
-    options : {
-        title : <span class="string">'Test'</span>
+    <span class="attr">options</span> : {
+        <span class="attr">title</span> : <span class="string">'Test'</span>
     }
 });
 </code></pre>
@@ -346,10 +346,10 @@ vue     : events:maps:index
 <p>Un slidePanel est un panneau latéral souvent utilisé pour afficher des formulaires ou des donnés complémentaires. Vous avez la possibilité d’en ouvrir et d’en fermet facilement au sein de votre vue backbone gràce à <code>this.panels</code>.</p>
 <p>Cet objet vous donne accès aux fonction <code>open()</code> et <code>close</code> du panelManager.</p>
 <p>Si vous voulez plus d’informations. rendez-vous sur la documentation du panelManager.</p>
-<h2 id="Montage_de_tags_Riot"><a href="#Montage_de_tags_Riot" class="headerlink" title="Montage de tags Riot"></a>Montage de tags Riot</h2><p><em>Pour de plus amples informations concernant les tags, comment les créer, rangement, …, Veuillez vous rendre sur la documentation dédiée.</em></p>
+<h2 id="Montage-de-tags-Riot"><a href="#Montage-de-tags-Riot" class="headerlink" title="Montage de tags Riot"></a>Montage de tags Riot</h2><p><em>Pour de plus amples informations concernant les tags, comment les créer, rangement, …, Veuillez vous rendre sur la documentation dédiée.</em></p>
 <p>De base, <em>riot</em> regarde le DOM de toute la page web pour créer nos tags et ne garde donc pas la notion de DOM limitée à notre vue courante Backbone. Afin de palier au problème, si vous voulez monter des tags dans votre vue Backbone, vous le pouvez grâce à la fonction <code>mountTags(params)</code>.</p>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'jumbotron'</span>
+    <span class="attr">tag</span> : <span class="string">'jumbotron'</span>
 });
 </code></pre>
 <blockquote>
@@ -365,7 +365,7 @@ vue     : events:maps:index
 <span class="built_in">module</span>.exports = View.extend({
 });
 </code></pre>
-<h2 id="C9v_E9nements"><a href="#C9v_E9nements" class="headerlink" title="Événements"></a>Événements</h2><h3 id="De_Vue"><a href="#De_Vue" class="headerlink" title="De Vue"></a>De Vue</h3><p>Les événements de vue sont renseignés dans les vues via l’attribut <code>events</code>. Ces événements sont des événements jQuery sur le <code>$el</code> de la vue uniquement (et de ses sous vues).</p>
+<h2 id="Evenements"><a href="#Evenements" class="headerlink" title="Événements"></a>Événements</h2><h3 id="De-Vue"><a href="#De-Vue" class="headerlink" title="De Vue"></a>De Vue</h3><p>Les événements de vue sont renseignés dans les vues via l’attribut <code>events</code>. Ces événements sont des événements jQuery sur le <code>$el</code> de la vue uniquement (et de ses sous vues).</p>
 <p>L’objet <em>events</em> se sépare en deux parties :</p>
 <ul>
 <li><strong>Les Fields</strong> : Ce sont les événements jQuery</li>
@@ -376,14 +376,14 @@ vue     : events:maps:index
 <p>Events de vue</p>
 </blockquote>
 <pre><code class="javascript highlight">{
-  events : {
+  <span class="attr">events</span> : {
     <span class="string">'submit form'</span>  : <span class="string">'validAction'</span>,
     <span class="string">'click a#toto'</span> : <span class="string">'redirectAction'</span>
   },
-  validAction : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
+  <span class="attr">validAction</span> : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
     <span class="comment">// action du formulaire</span>
   },
-  redirectAction : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
+  <span class="attr">redirectAction</span> : <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>{
     <span class="comment">// action de redirection</span>
   }
 }
@@ -400,14 +400,14 @@ vue     : events:maps:index
 <p>Events globaux :</p>
 </blockquote>
 <pre><code class="javascript highlight">{
-  globalEvents : {
+  <span class="attr">globalEvents</span> : {
       <span class="string">'submitForm'</span> : <span class="string">'submitAction'</span>,
       <span class="string">'addElement'</span> : <span class="string">'addElementAction'</span>
   },
-  submitAction : <span class="function"><span class="keyword">function</span> <span class="title">submitAction</span>(<span class="params"></span>) </span>{
+  <span class="attr">submitAction</span> : <span class="function"><span class="keyword">function</span> <span class="title">submitAction</span>(<span class="params"></span>) </span>{
       <span class="built_in">console</span>.log(<span class="string">'submitAction'</span>);
   },
-  addElementAction : <span class="function"><span class="keyword">function</span> <span class="title">addElementAction</span>(<span class="params">element</span>) </span>{
+  <span class="attr">addElementAction</span> : <span class="function"><span class="keyword">function</span> <span class="title">addElementAction</span>(<span class="params">element</span>) </span>{
     <span class="built_in">console</span>.log(element);
   }
 }
@@ -417,21 +417,21 @@ vue     : events:maps:index
 </blockquote>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.global.trigger(<span class="string">'submitForm'</span>);
 <span class="keyword">this</span>.global.trigger(<span class="string">'addElement'</span> {
-  name : <span class="string">'foo'</span>
+  <span class="attr">name</span> : <span class="string">'foo'</span>
 });
 </code></pre>
-<h3 id="Tag_-_26gt_3B_View"><a href="#Tag_-_26gt_3B_View" class="headerlink" title="Tag -&gt; View"></a>Tag -&gt; View</h3><p>Nos vues Backbone peuvent directement capturer des événements Riot (si bien entendu ils en déclenchent) simplement de la même façon que les événements de vue et les événements globaux. Bien entendu, vous ne pouvez écouter sur une vue que les événements des tags qu’elle contient.</p>
+<h3 id="Tag-gt-View"><a href="#Tag-gt-View" class="headerlink" title="Tag -&gt; View"></a>Tag -&gt; View</h3><p>Nos vues Backbone peuvent directement capturer des événements Riot (si bien entendu ils en déclenchent) simplement de la même façon que les événements de vue et les événements globaux. Bien entendu, vous ne pouvez écouter sur une vue que les événements des tags qu’elle contient.</p>
 <p>La liste des événements de Tags de vue est renseignée dans l’attribut <code>tagEvents</code> et elle est séparée en deux niveaux. Au premier niveau on trouve un objet avec pour chaque field le nom du tag et, pour chaque tag, les événements correspondant à <code>evenement + selecteur CSS</code> :</p>
 <blockquote>
 <p>Events de tags :</p>
 </blockquote>
 <pre><code class="javascript highlight">{
-  tagEvents : {
-    jumbotron : {
+  <span class="attr">tagEvents</span> : {
+    <span class="attr">jumbotron</span> : {
       <span class="string">'click #testId'</span> : <span class="string">'clickAction'</span>
     }
   },
-  clickAction : <span class="function"><span class="keyword">function</span> <span class="title">clickAction</span>(<span class="params">tag</span>) </span>{
+  <span class="attr">clickAction</span> : <span class="function"><span class="keyword">function</span> <span class="title">clickAction</span>(<span class="params">tag</span>) </span>{
       tag.unmount();
       <span class="built_in">console</span>.log(<span class="keyword">this</span>);
   },
@@ -439,27 +439,42 @@ vue     : events:maps:index
 </code></pre>
 <p>Dans l’exemple ci dessus, lorsque l’on reçois l’événement <em>click</em> d’un tag <em>jumbotron</em> ayant l’ID <em>testId</em>, alors on effectue l’action <em>clickAction</em>.</p>
 <p>Les callback de ces événements ont au moins un paramètre qui correspond à l’objet du Tag concerné par l’événement. Le contexte des fonctions (la variable <code>this</code>), correspond à votre vue.</p>
+<h3 id="Sockets"><a href="#Sockets" class="headerlink" title="Sockets"></a>Sockets</h3><p>Nos vues Backbone peuvent aussi directement capturer les événements des sockets qui lui sont rattachés, et ce, de la même façon que les autres événements. Bien entendu, vous ne pouvez écouter que sur les sockets qui sont rattachés à votre vue.</p>
+<p>La liste des événements sockets est renseignée das l’attribut <code>socketEvents</code> et elle est séparée en deux niveaux. Au premier niveau on trouve un objet avec, pour chaque field le nom du socket et, por chaque socket, les événements correspondants et leur action rattachée.</p>
+<p><strong>Attention</strong> : pour le socket par défaut (celui sans non si vous avez qu’un seul socket), ses événements sont à renseigner dans le field <code>default</code>.</p>
+<pre><code class="javascript highlight">{
+  <span class="attr">socketEvents</span> : {
+    <span class="attr">default</span> : {
+        <span class="string">'test-result'</span>   : <span class="string">'socketCallbackAction'</span>,
+    }
+  },
+  <span class="attr">socketCallbackAction</span> : <span class="function"><span class="keyword">function</span> <span class="title">socketCallbackAction</span>(<span class="params">params</span>) </span>{
+      <span class="keyword">this</span>.getLogger().debug(params);
+  }
+}
+</code></pre>
+<p>Les callback de ces événements ont au moins un paramètre qui correspond à ce que socket.io vous retourne (s’il vous retourne quelque-chose). Le contexte des fonctions (la variable <code>this</code>), correspond à votre vue.</p>
 <h2 id="Stickit"><a href="#Stickit" class="headerlink" title="Stickit"></a>Stickit</h2><p>Nos vues backbone étendent toutes la bibliothèque Stickit développé par le New York Times. Sa documentation complète afin de rentrer plus en détail dans son fonctionnement se <a href="https://nytimes.github.io/backbone.stickit">trouve ici</a></p>
 <h3 id="Instanciation"><a href="#Instanciation" class="headerlink" title="Instanciation"></a>Instanciation</h3><p>Pour utiliser Stickit, vous avez plusieurs choix possibles entre : Le renseignement directement dans les propriétés de la vue ou en appel direct dans le code comme expliqué dans leur documentation.</p>
 <p><strong>À savoir</strong> : Dans nos vues, vous n’aurrez pas besoin de faire l’appel à la fonction <code>this.stickit()</code> à la fin de votre <em>render</em>. Il est fait automatiquement par nos vues juste après l’instanciation des tags Riot. De plus, vous n’êtes pas limités, dans les propriétés de la vue, au binding du model principal.</p>
-<h3 id="Mod_E8le_Principal"><a href="#Mod_E8le_Principal" class="headerlink" title="Modèle Principal"></a>Modèle Principal</h3><blockquote>
+<h3 id="Modele-Principal"><a href="#Modele-Principal" class="headerlink" title="Modèle Principal"></a>Modèle Principal</h3><blockquote>
 <p>Pour le modèle principal (renseigné par <code>this.model</code>), les Bindings sont renseignés dans le field <code>bindings</code> comme ceci :</p>
 </blockquote>
 <pre><code class="javascript highlight">{
-    bindings : {
+    <span class="attr">bindings</span> : {
         <span class="string">'#author'</span>: <span class="string">'author'</span>
     }
 }
 </code></pre>
 <p>Ici, si le field <code>authors</code> de mon modèle est modifié, alors l’élément de ma vue avec l’identifiant <code>#authors</code> est mis à jour avec la nouvelle valeur.</p>
-<h3 id="Mod_E8les_compl_E9mentaires"><a href="#Mod_E8les_compl_E9mentaires" class="headerlink" title="Modèles complémentaires"></a>Modèles complémentaires</h3><blockquote>
+<h3 id="Modeles-complementaires"><a href="#Modeles-complementaires" class="headerlink" title="Modèles complémentaires"></a>Modèles complémentaires</h3><blockquote>
 <p>Pour les modèles complémentaires (renseignés dans <code>this.models</code>), les Bindings sont renseignés dans le field <code>&lt;nomdumodel&gt;Bindings</code>. Ce qui nous donne :</p>
 </blockquote>
 <pre><code class="javascript highlight">{
-    userBindings : {
+    <span class="attr">userBindings</span> : {
         <span class="string">'#name'</span> : <span class="string">'name'</span>
     },
-    moduleBindings : {
+    <span class="attr">moduleBindings</span> : {
         <span class="string">'#lock'</span> : <span class="string">'islocked'</span>
     }
     initialize : <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>{
@@ -479,7 +494,7 @@ vue     : events:maps:index
 </blockquote>
 <pre><code class="javascript highlight">render : <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>{
     <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(tpl, {
-        model : <span class="keyword">this</span>.model
+        <span class="attr">model</span> : <span class="keyword">this</span>.model
     }));
 
     done();
@@ -494,6 +509,25 @@ vue     : events:maps:index
 <li><strong>afterRender</strong> : utilisé pour faire des traitements après le render de la vue (chargement de scripts javascript, …)</li>
 </ul>
 <p>Et pour finir, chargement de backbone.stickit sur tous les models de la vue, montage des tags de base Riot et lancement de l’événement <code>DOMContentLoaded</code></p>
+<h2 id="Sockets-1"><a href="#Sockets-1" class="headerlink" title="Sockets"></a>Sockets</h2><p>Il est possible de rattacher des connexions sockets aux vues Backbone comme ceci :</p>
+<pre><code class="javascript highlight">{
+    <span class="attr">socket</span> : <span class="string">'0.0.0.0:8080'</span>, <span class="comment">// default socket</span>
+    sockets : {
+        <span class="attr">importer</span> : <span class="string">'importer.socketexample.io'</span>
+    }
+}
+</code></pre>
+<p>Si la connexion existe déjà, on récupère l’existante sinon on la créée. Vous pourrez directement communiquer en socket des façons suivantes :</p>
+<pre><code class="javascript highlight"><span class="keyword">this</span>.socket.emit(<span class="string">'test'</span>, {
+    <span class="attr">name</span> : <span class="string">'Laurent'</span>
+}, (result) =&gt; {
+    <span class="keyword">this</span>.getLogger().debug(result);
+});
+<span class="keyword">this</span>.sockets.importer.emit(<span class="string">'test'</span>, {
+    <span class="attr">name</span> : <span class="string">'Laurent'</span>
+});
+</code></pre>
+<p>Le rattachement d’événements se fait comme vu plus haut sur la gestion des événements Socket.</p>
 
           
               <h1 id="Riot"><a href="#Riot" class="headerlink" title="Riot"></a>Riot</h1><p>Riot.JS est un petit framework permettantde crér des tags à la manière de Reat.JS afin de réutiliser très facilement des composants complexes.</p>
@@ -515,12 +549,12 @@ vue     : events:maps:index
 <p><strong>Attention</strong> : Les alias de Browserify pour le require ne marchent pas du tout ici.</p>
 
           
-              <h1 id="Composants_de_base"><a href="#Composants_de_base" class="headerlink" title="Composants de base"></a>Composants de base</h1><p>Vous trouverez ici la liste complète ainsi que le fonctionnement de tous les composants de base RiotJS.</p>
+              <h1 id="Composants-de-base"><a href="#Composants-de-base" class="headerlink" title="Composants de base"></a>Composants de base</h1><p>Vous trouverez ici la liste complète ainsi que le fonctionnement de tous les composants de base RiotJS.</p>
 <h2 id="Chips"><a href="#Chips" class="headerlink" title="Chips"></a>Chips</h2><p>Génère un composant chips définit par materialize. Est aussi utilisé si vous voulez créer des tags.</p>
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">chips</span> <span class="attr">content</span>=<span class="string">"Chip d'exemple"</span>&gt;</span><span class="tag">&lt;/<span class="name">chips</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'chips'</span>
+    <span class="attr">tag</span> : <span class="string">'chips'</span>
 });
 </code></pre>
 <table>
@@ -568,7 +602,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">empty</span> <span class="attr">material</span>=<span class="string">"true"</span> <span class="attr">data-icon</span>=<span class="string">"list"</span> <span class="attr">data-message</span>=<span class="string">"tasksEmpty"</span>&gt;</span><span class="tag">&lt;/<span class="name">empty</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'empty'</span>
+    <span class="attr">tag</span> : <span class="string">'empty'</span>
 });
 </code></pre>
 <table>
@@ -603,7 +637,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">raw</span> <span class="attr">content</span>=<span class="string">"contenuHtmlouPas"</span> /&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'raw'</span>
+    <span class="attr">tag</span> : <span class="string">'raw'</span>
 });
 </code></pre>
 <table>
@@ -627,7 +661,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">i18n</span> <span class="attr">word</span>=<span class="string">"welcome"</span> /&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'i18n'</span>
+    <span class="attr">tag</span> : <span class="string">'i18n'</span>
 });
 </code></pre>
 <table>
@@ -661,14 +695,14 @@ vue     : events:maps:index
 </code></pre>
 <aside class="notice">Ce composant est monté automatiquement si vous étendez une vue basée sur celle de base fournit par cette library.</aside>
           
-              <h1 id="Composants_loaders"><a href="#Composants_loaders" class="headerlink" title="Composants loaders"></a>Composants loaders</h1><p>Les composants loaders permettent d’afficher un loader à l’écran. Barre de progression, spinner, barre de loading indéterminé, …</p>
+              <h1 id="Composants-loaders"><a href="#Composants-loaders" class="headerlink" title="Composants loaders"></a>Composants loaders</h1><p>Les composants loaders permettent d’afficher un loader à l’écran. Barre de progression, spinner, barre de loading indéterminé, …</p>
 <h2 id="Spinner"><a href="#Spinner" class="headerlink" title="Spinner"></a>Spinner</h2><pre><code class="html highlight"><span class="tag">&lt;<span class="name">spinner</span>
     <span class="attr">size</span>=<span class="string">"button"</span>
     <span class="attr">color</span>=<span class="string">"spinner-grey-only"</span>
     &gt;</span><span class="tag">&lt;/<span class="name">spinner</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'spinner'</span>
+    <span class="attr">tag</span> : <span class="string">'spinner'</span>
 });
 </code></pre>
 <table>
@@ -696,7 +730,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-progress</span>&gt;</span><span class="tag">&lt;/<span class="name">material-progress</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-progress'</span>
+    <span class="attr">tag</span> : <span class="string">'material-progress'</span>
 });
 </code></pre>
 <table>
@@ -737,7 +771,7 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="Composants_formulaire"><a href="#Composants_formulaire" class="headerlink" title="Composants formulaire"></a>Composants formulaire</h1><p>Tous les composants de formulaires utilisent l’apparence Material UI définie par <em>materialize-css</em>.<br>De base, si vous utilisez ces composants Riot dans une vue Backbone étendant <code>backbone-goomeo/js/libs/backbone/views/base.form</code>, alors vous aurez automatiquement de chargés les composants <code>material-input</code> et <code>material-textarea</code></p>
+              <h1 id="Composants-formulaire"><a href="#Composants-formulaire" class="headerlink" title="Composants formulaire"></a>Composants formulaire</h1><p>Tous les composants de formulaires utilisent l’apparence Material UI définie par <em>materialize-css</em>.<br>De base, si vous utilisez ces composants Riot dans une vue Backbone étendant <code>backbone-goomeo/js/libs/backbone/views/base.form</code>, alors vous aurez automatiquement de chargés les composants <code>material-input</code> et <code>material-textarea</code></p>
 <aside class="notice">La plupart des composants de formulaire ont des paramètres supplémentaires afin de permettre leur validation par la bibliothèque <em>ParsleyJS</em>.<br>Pour cela, vous devrez juste ajouter en lieu et place de <code>data-parsley-&lt;suite&gt;</code> les attribut <code>parsley-&lt;suite&gt;</code> sur les composants concernés.</aside>
 
 <aside class="notice">Pour les paramètres composés avec un <code>-</code>, si vous passez par le javascript, vous devrez le convertir en camelcase. Exemple : pour <code>data-id</code>, passez <code>dataId</code>.</aside>
@@ -750,7 +784,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-input</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-input'</span>
+    <span class="attr">tag</span> : <span class="string">'material-input'</span>
 });
 </code></pre>
 <p>Input de base généré avec le label associé.</p>
@@ -825,7 +859,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-textarea</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-textarea'</span>
+    <span class="attr">tag</span> : <span class="string">'material-textarea'</span>
 });
 </code></pre>
 <p>Textarea de base généré avec le label associé.</p>
@@ -895,7 +929,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-checkbox</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-checkbox'</span>
+    <span class="attr">tag</span> : <span class="string">'material-checkbox'</span>
 });
 </code></pre>
 <p>Checkbox de base généré avec le label associé.</p>
@@ -955,7 +989,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-radio</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-radio'</span>
+    <span class="attr">tag</span> : <span class="string">'material-radio'</span>
 });
 </code></pre>
 <p>Radio de base généré avec le label associé.</p>
@@ -1016,11 +1050,11 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-select</span>&gt;</span>
 </code></pre>
 <pre><code class="js highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-select'</span>,
-    options : {
-        items : [
-            { value : <span class="number">1</span>, name : <span class="string">"Choice One"</span> },
-            { value : <span class="number">2</span>, name : <span class="string">"Choice Two"</span> }
+    <span class="attr">tag</span> : <span class="string">'material-select'</span>,
+    <span class="attr">options</span> : {
+        <span class="attr">items</span> : [
+            { <span class="attr">value</span> : <span class="number">1</span>, <span class="attr">name</span> : <span class="string">"Choice One"</span> },
+            { <span class="attr">value</span> : <span class="number">2</span>, <span class="attr">name</span> : <span class="string">"Choice Two"</span> }
         ]
     }
 });
@@ -1107,7 +1141,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-checkbox</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-switch'</span>
+    <span class="attr">tag</span> : <span class="string">'material-switch'</span>
 });
 </code></pre>
 <p>Switch de base.</p>
@@ -1168,7 +1202,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">colorpicker</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'colorpicker'</span>
+    <span class="attr">tag</span> : <span class="string">'colorpicker'</span>
 });
 </code></pre>
 <table>
@@ -1294,7 +1328,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-datepicker</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-datepicker'</span>
+    <span class="attr">tag</span> : <span class="string">'material-datepicker'</span>
 });
 </code></pre>
 <table>
@@ -1417,7 +1451,7 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-slider</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-slider'</span>
+    <span class="attr">tag</span> : <span class="string">'material-slider'</span>
 });
 </code></pre>
 <table>
@@ -1465,13 +1499,13 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-nouislider</span>&gt;</span><span class="tag">&lt;/<span class="name">material-nouislider</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-nouislider'</span>,
-    options : {
-        slider : {
-            start: [<span class="number">0</span>, <span class="number">100</span>],
-            connect: <span class="literal">true</span>,
-            step: <span class="number">1</span>,
-            range: {
+    <span class="attr">tag</span> : <span class="string">'material-nouislider'</span>,
+    <span class="attr">options</span> : {
+        <span class="attr">slider</span> : {
+            <span class="attr">start</span>: [<span class="number">0</span>, <span class="number">100</span>],
+            <span class="attr">connect</span>: <span class="literal">true</span>,
+            <span class="attr">step</span>: <span class="number">1</span>,
+            <span class="attr">range</span>: {
                 <span class="string">'min'</span>: <span class="number">0</span>,
                 <span class="string">'max'</span>: <span class="number">100</span>
             }
@@ -1589,7 +1623,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">btn-pending</span> <span class="attr">data-id</span>=<span class="string">"validate"</span>&gt;</span><span class="tag">&lt;/<span class="name">btn-pending</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'btn-pending'</span>
+    <span class="attr">tag</span> : <span class="string">'btn-pending'</span>
 });
 </code></pre>
 <table>
@@ -1646,7 +1680,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">rating</span>&gt;</span><span class="tag">&lt;/<span class="name">rating</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'rating'</span>
+    <span class="attr">tag</span> : <span class="string">'rating'</span>
 });
 </code></pre>
 <table>
@@ -1721,7 +1755,7 @@ vue     : events:maps:index
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">survey</span>&gt;</span><span class="tag">&lt;/<span class="name">survey</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'survey'</span>
+    <span class="attr">tag</span> : <span class="string">'survey'</span>
 });
 </code></pre>
 <table>
@@ -1782,13 +1816,13 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="Lang_Input"><a href="#Lang_Input" class="headerlink" title="Lang Input"></a>Lang Input</h2><p>Génère plusieurs input en fonction des langues passées en paramètre. Ces input permettent de remplir un champ traduit au sein de votre projet.</p>
+<h2 id="Lang-Input"><a href="#Lang-Input" class="headerlink" title="Lang Input"></a>Lang Input</h2><p>Génère plusieurs input en fonction des langues passées en paramètre. Ces input permettent de remplir un champ traduit au sein de votre projet.</p>
 <blockquote>
 <p>Format du champ traduit</p>
 </blockquote>
 <pre><code class="json highlight">{
-  "<span class="attr">fr</span>" : <span class="string">"Titre francais"</span>,
-  "<span class="attr">en</span>" : <span class="string">"titre en"</span>
+  <span class="attr">"fr"</span> : <span class="string">"Titre francais"</span>,
+  <span class="attr">"en"</span> : <span class="string">"titre en"</span>
 }
 </code></pre>
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-input-lang</span>
@@ -1798,9 +1832,9 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-input-lang</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-input-lang'</span>,
-    options : {
-        langs : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
+    <span class="attr">tag</span> : <span class="string">'material-input-lang'</span>,
+    <span class="attr">options</span> : {
+        <span class="attr">langs</span> : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
     }
 });
 </code></pre>
@@ -1852,13 +1886,13 @@ vue     : events:maps:index
 </table>
 <aside class="notice">Utilise <em>ParsleyJS</em>.</aside>
 
-<h2 id="Lang_Textarea"><a href="#Lang_Textarea" class="headerlink" title="Lang Textarea"></a>Lang Textarea</h2><p>Génère plusieurs textarea en fonction des langues passées en paramètre. Ces textarea permettent de remplir un champ traduit au sein de votre projet.</p>
+<h2 id="Lang-Textarea"><a href="#Lang-Textarea" class="headerlink" title="Lang Textarea"></a>Lang Textarea</h2><p>Génère plusieurs textarea en fonction des langues passées en paramètre. Ces textarea permettent de remplir un champ traduit au sein de votre projet.</p>
 <blockquote>
 <p>Format du champ traduit</p>
 </blockquote>
 <pre><code class="json highlight">{
-  "<span class="attr">fr</span>" : <span class="string">"Titre francais"</span>,
-  "<span class="attr">en</span>" : <span class="string">"titre en"</span>
+  <span class="attr">"fr"</span> : <span class="string">"Titre francais"</span>,
+  <span class="attr">"en"</span> : <span class="string">"titre en"</span>
 }
 </code></pre>
 <pre><code class="html highlight"><span class="tag">&lt;<span class="name">material-textarea-lang</span>
@@ -1868,9 +1902,9 @@ vue     : events:maps:index
     &gt;</span><span class="tag">&lt;/<span class="name">material-textarea-lang</span>&gt;</span>
 </code></pre>
 <pre><code class="javascript highlight"><span class="keyword">this</span>.mountTags({
-    tag : <span class="string">'material-textarea-lang'</span>,
-    options : {
-        langs : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
+    <span class="attr">tag</span> : <span class="string">'material-textarea-lang'</span>,
+    <span class="attr">options</span> : {
+        <span class="attr">langs</span> : [ <span class="string">'fr'</span>, <span class="string">'en'</span> ]
     }
 });
 </code></pre>
@@ -1929,11 +1963,11 @@ vue     : events:maps:index
 
 <span class="comment">// ...</span>
 <span class="keyword">this</span>.modal.open({
-  view : <span class="keyword">this</span>.createSubView(<span class="string">'modal:delete'</span>, deleteModal, {
-      hasDoubleVerif      : <span class="literal">true</span>,
-      validateCallback    : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+  <span class="attr">view</span> : <span class="keyword">this</span>.createSubView(<span class="string">'modal:delete'</span>, deleteModal, {
+      <span class="attr">hasDoubleVerif</span>      : <span class="literal">true</span>,
+      <span class="attr">validateCallback</span>    : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
           <span class="keyword">this</span>.model.destroy();
-          <span class="keyword">this</span>.toasts.success({ message : <span class="string">'Tâche supprimée avec succès.'</span> });
+          <span class="keyword">this</span>.toasts.success({ <span class="attr">message</span> : <span class="string">'Tâche supprimée avec succès.'</span> });
           <span class="keyword">this</span>.dispose();
       }.bind(<span class="keyword">this</span>)
   })
@@ -2008,11 +2042,11 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="API_-_EventManager"><a href="#API_-_EventManager" class="headerlink" title="API - EventManager"></a>API - EventManager</h1><p>L’eventManager est l’objet de centralisation de tous les événements globaux. Cette classe étend uniquement Backbone.Events.</p>
+              <h1 id="API-EventManager"><a href="#API-EventManager" class="headerlink" title="API - EventManager"></a>API - EventManager</h1><p>L’eventManager est l’objet de centralisation de tous les événements globaux. Cette classe étend uniquement Backbone.Events.</p>
 
           
-              <h1 id="API_-_ViewManager"><a href="#API_-_ViewManager" class="headerlink" title="API - ViewManager"></a>API - ViewManager</h1><p>Le view Manager est la classe utilisée pour gérer la création de nouvelles vues et la suppression des vues existantes.</p>
-<h2 id="create_28name_2C_view_2C__5Boptions_5D_29"><a href="#create_28name_2C_view_2C__5Boptions_5D_29" class="headerlink" title="create(name, view, [options])"></a>create(name, view, [options])</h2><p>Créer une nouvelle vue Backbone et l’ajoute à la collection des vues.</p>
+              <h1 id="API-ViewManager"><a href="#API-ViewManager" class="headerlink" title="API - ViewManager"></a>API - ViewManager</h1><p>Le view Manager est la classe utilisée pour gérer la création de nouvelles vues et la suppression des vues existantes.</p>
+<h2 id="create-name-view-options"><a href="#create-name-view-options" class="headerlink" title="create(name, view, [options])"></a>create(name, view, [options])</h2><p>Créer une nouvelle vue Backbone et l’ajoute à la collection des vues.</p>
 <table>
 <thead>
 <tr>
@@ -2041,7 +2075,7 @@ vue     : events:maps:index
 </table>
 <aside class="warning"><strong>Attention</strong> : Si vous créez une vue avec un nom utilisé par une autre, alors l’ancienne vue est purement et simplement supprimée.</aside>
 
-<h2 id="get_28name_29"><a href="#get_28name_29" class="headerlink" title="get(name)"></a>get(name)</h2><p>Récupère une vue à partir de son nom. Si la vue n’existe pas, retourne <code>false</code></p>
+<h2 id="get-name"><a href="#get-name" class="headerlink" title="get(name)"></a>get(name)</h2><p>Récupère une vue à partir de son nom. Si la vue n’existe pas, retourne <code>false</code></p>
 <table>
 <thead>
 <tr>
@@ -2058,7 +2092,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="disposeAll_28_5Bwithout_5D_29"><a href="#disposeAll_28_5Bwithout_5D_29" class="headerlink" title="disposeAll([without])"></a>disposeAll([without])</h2><p>Supprime toutes les vues sauf celles passées en paramètre</p>
+<h2 id="disposeAll-without"><a href="#disposeAll-without" class="headerlink" title="disposeAll([without])"></a>disposeAll([without])</h2><p>Supprime toutes les vues sauf celles passées en paramètre</p>
 <table>
 <thead>
 <tr>
@@ -2075,7 +2109,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="dispose_28name_29"><a href="#dispose_28name_29" class="headerlink" title="dispose(name)"></a>dispose(name)</h2><p>upprime la vue passée en paramètre, ses événements ainsi que toutes ses sous-vues et leurs événements</p>
+<h2 id="dispose-name"><a href="#dispose-name" class="headerlink" title="dispose(name)"></a>dispose(name)</h2><p>upprime la vue passée en paramètre, ses événements ainsi que toutes ses sous-vues et leurs événements</p>
 <table>
 <thead>
 <tr>
@@ -2092,7 +2126,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="exist_28name_29"><a href="#exist_28name_29" class="headerlink" title="exist(name)"></a>exist(name)</h2><p>Test si la vue passé en paramètre existe.</p>
+<h2 id="exist-name"><a href="#exist-name" class="headerlink" title="exist(name)"></a>exist(name)</h2><p>Test si la vue passé en paramètre existe.</p>
 <table>
 <thead>
 <tr>
@@ -2111,9 +2145,9 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="API_-_PanelManager"><a href="#API_-_PanelManager" class="headerlink" title="API - PanelManager"></a>API - PanelManager</h1><p>Le panel manager gère la gestion du panneau latéral servant à contenir un formulaire ou des informations complémentaires.</p>
+              <h1 id="API-PanelManager"><a href="#API-PanelManager" class="headerlink" title="API - PanelManager"></a>API - PanelManager</h1><p>Le panel manager gère la gestion du panneau latéral servant à contenir un formulaire ou des informations complémentaires.</p>
 <p>Ce pannel se situe du côté droite de l’écran et, selon la résulution de lécran et la taille désirée, vous pouvez avoir un panneau couvrant entre 30 et 100% de l’écran.</p>
-<h2 id="Tailles_disponibles"><a href="#Tailles_disponibles" class="headerlink" title="Tailles disponibles"></a>Tailles disponibles</h2><p>Voici les classes disponibles ainsi que la taille qu’elles représentent :</p>
+<h2 id="Tailles-disponibles"><a href="#Tailles-disponibles" class="headerlink" title="Tailles disponibles"></a>Tailles disponibles</h2><p>Voici les classes disponibles ainsi que la taille qu’elles représentent :</p>
 <table>
 <thead>
 <tr>
@@ -2150,7 +2184,7 @@ vue     : events:maps:index
 </table>
 <aside class="warning"><strong>Attention</strong> : Ces tailles sont indiquées pour les écrans d’une résolution suppérieure ou égale à 992px</aside>
 
-<h2 id="open_28params_29"><a href="#open_28params_29" class="headerlink" title="open(params)"></a>open(params)</h2><p>Fonction appelée pour ouvrir un slidePannel</p>
+<h2 id="open-params"><a href="#open-params" class="headerlink" title="open(params)"></a>open(params)</h2><p>Fonction appelée pour ouvrir un slidePannel</p>
 <table>
 <thead>
 <tr>
@@ -2190,10 +2224,10 @@ vue     : events:maps:index
 <h2 id="close"><a href="#close" class="headerlink" title="close"></a>close</h2><p>Ferme le slidePanel</p>
 
           
-              <h1 id="API_-_ModalManager"><a href="#API_-_ModalManager" class="headerlink" title="API - ModalManager"></a>API - ModalManager</h1><p>le modalManager gère la création et la fermeture de toutes les modales crées au sein du projet. </p>
+              <h1 id="API-ModalManager"><a href="#API-ModalManager" class="headerlink" title="API - ModalManager"></a>API - ModalManager</h1><p>le modalManager gère la création et la fermeture de toutes les modales crées au sein du projet. </p>
 <aside class="notice">Vous êtes limités à une modale ouverte en simultané. Si vous essayez d’en ouvrir une autre, l’ancienne est fermée sans aucun préavis.</aside>
 
-<h2 id="open_28params_29"><a href="#open_28params_29" class="headerlink" title="open(params)"></a>open(params)</h2><p>Permet de crér une modale à partir d’HTML ou d’une vue backbone.</p>
+<h2 id="open-params"><a href="#open-params" class="headerlink" title="open(params)"></a>open(params)</h2><p>Permet de crér une modale à partir d’HTML ou d’une vue backbone.</p>
 <p><strong>Atention</strong> : Popur marcher en html vous devez avoir la structure totale d’une modal.<br>Pour les vue, la classe de votre vue doit être celle de base de la modal.</p>
 <table>
 <thead>
@@ -2221,7 +2255,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="close_28params_29"><a href="#close_28params_29" class="headerlink" title="close(params)"></a>close(params)</h2><table>
+<h2 id="close-params"><a href="#close-params" class="headerlink" title="close(params)"></a>close(params)</h2><table>
 <thead>
 <tr>
 <th>parametre</th>
@@ -2244,8 +2278,8 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="API_-_TemplatesManager"><a href="#API_-_TemplatesManager" class="headerlink" title="API - TemplatesManager"></a>API - TemplatesManager</h1><p>Classe servant à compiler les templates et à récupérer directement ceux qui l’ont été.</p>
-<h2 id="compile_28template_29"><a href="#compile_28template_29" class="headerlink" title="compile(template)"></a>compile(template)</h2><p>Compile le template passé en paramètre et retourne la fonction généré par <code>_.template()</code>.<br>Si le template passé a déjà été compilé, retourne directement le résultat de <code>_.template</code> stocké en mémoire.</p>
+              <h1 id="API-TemplatesManager"><a href="#API-TemplatesManager" class="headerlink" title="API - TemplatesManager"></a>API - TemplatesManager</h1><p>Classe servant à compiler les templates et à récupérer directement ceux qui l’ont été.</p>
+<h2 id="compile-template"><a href="#compile-template" class="headerlink" title="compile(template)"></a>compile(template)</h2><p>Compile le template passé en paramètre et retourne la fonction généré par <code>_.template()</code>.<br>Si le template passé a déjà été compilé, retourne directement le résultat de <code>_.template</code> stocké en mémoire.</p>
 <table>
 <thead>
 <tr>
@@ -2262,7 +2296,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="remove_28template_29"><a href="#remove_28template_29" class="headerlink" title="remove(template)"></a>remove(template)</h2><p>Supprime le template passé en paramètre de la mémoire du templateManager pour permettre une nouvelle compilation de zéro au prochain appel de <code>compile()</code></p>
+<h2 id="remove-template"><a href="#remove-template" class="headerlink" title="remove(template)"></a>remove(template)</h2><p>Supprime le template passé en paramètre de la mémoire du templateManager pour permettre une nouvelle compilation de zéro au prochain appel de <code>compile()</code></p>
 <table>
 <thead>
 <tr>
@@ -2281,7 +2315,7 @@ vue     : events:maps:index
 </table>
 
           
-              <h1 id="API_-_View__3A_Base"><a href="#API_-_View__3A_Base" class="headerlink" title="API - View : Base"></a>API - View : Base</h1><p>La vue Base permet de rajouter plusieurs fonctions à Backbone.JS parmis :</p>
+              <h1 id="API-View-Base"><a href="#API-View-Base" class="headerlink" title="API - View : Base"></a>API - View : Base</h1><p>La vue Base permet de rajouter plusieurs fonctions à Backbone.JS parmis :</p>
 <ul>
 <li>renseignement dans votre vue des events globaux à la manière des events de DOM</li>
 <li>renseignement des modification du dom à partir de tous les models de votre vue (via baxkbone.stickit)</li>
@@ -2290,7 +2324,7 @@ vue     : events:maps:index
 <li>utilisation des toasts de materialize-css plus facilement</li>
 <li>création des sous vues permettant automatiquement leur suppression si la vue parente est supprimée</li>
 </ul>
-<h2 id="createSubView_28name_2C_view_2C_options_29"><a href="#createSubView_28name_2C_view_2C_options_29" class="headerlink" title="createSubView(name, view, options)"></a>createSubView(name, view, options)</h2><p>Permet de créer une sous vue et de la rattacher directement à cette vue-ci.</p>
+<h2 id="createSubView-name-view-options"><a href="#createSubView-name-view-options" class="headerlink" title="createSubView(name, view, options)"></a>createSubView(name, view, options)</h2><p>Permet de créer une sous vue et de la rattacher directement à cette vue-ci.</p>
 <table>
 <thead>
 <tr>
@@ -2321,7 +2355,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="template_28template_2C_params_29"><a href="#template_28template_2C_params_29" class="headerlink" title="template(template, params)"></a>template(template, params)</h2><p>Permet de compiler un template en fonction des paramètres passés et retourne un string du template compilé.</p>
+<h2 id="template-template-params"><a href="#template-template-params" class="headerlink" title="template(template, params)"></a>template(template, params)</h2><p>Permet de compiler un template en fonction des paramètres passés et retourne un string du template compilé.</p>
 <table>
 <thead>
 <tr>
@@ -2350,8 +2384,8 @@ vue     : events:maps:index
 <ul>
 <li><strong>moment</strong> : Objet moment afin de facilement manipuler les dates</li>
 </ul>
-<h2 id="dispose_28_29"><a href="#dispose_28_29" class="headerlink" title="dispose()"></a>dispose()</h2><p>Supprime la vue et tout ce qui s’y rapporte en événements et en tags</p>
-<h2 id="mountTags_28params_29"><a href="#mountTags_28params_29" class="headerlink" title="mountTags(params)"></a>mountTags(params)</h2><p>Permet de monter des tags RIOT dans notre vue et de rattacher tous les événements renseignés</p>
+<h2 id="dispose"><a href="#dispose" class="headerlink" title="dispose()"></a>dispose()</h2><p>Supprime la vue et tout ce qui s’y rapporte en événements et en tags</p>
+<h2 id="mountTags-params"><a href="#mountTags-params" class="headerlink" title="mountTags(params)"></a>mountTags(params)</h2><p>Permet de monter des tags RIOT dans notre vue et de rattacher tous les événements renseignés</p>
 <table>
 <thead>
 <tr>
@@ -2395,16 +2429,16 @@ vue     : events:maps:index
 </tbody>
 </table>
 <p>Retourne un tableau de tags Riot.</p>
-<h2 id="unmountAllTags_28_29"><a href="#unmountAllTags_28_29" class="headerlink" title="unmountAllTags()"></a>unmountAllTags()</h2><p>Supprime tous les tags Riot de notre Vue</p>
-<h2 id="waitingRender_28callback_29"><a href="#waitingRender_28callback_29" class="headerlink" title="waitingRender(callback)"></a>waitingRender(callback)</h2><p>Fonction appelée avant beforeRender pour afficher du contenu pendant l’exécution de cette fonction (chargement, une emptyView, …). Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
-<h2 id="beforeRender_28callback_29"><a href="#beforeRender_28callback_29" class="headerlink" title="beforeRender(callback)"></a>beforeRender(callback)</h2><p>Fonction appelée juste avant l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
-<h2 id="render_28callback_29"><a href="#render_28callback_29" class="headerlink" title="render(callback)"></a>render(callback)</h2><p>Fonction appelée pour afficher le rendu final de votre vue. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
-<h2 id="afterRender_28callback_29"><a href="#afterRender_28callback_29" class="headerlink" title="afterRender(callback)"></a>afterRender(callback)</h2><p>Fonction appelée juste après l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
-<h2 id="prerequireAction_28_29"><a href="#prerequireAction_28_29" class="headerlink" title="prerequireAction()"></a>prerequireAction()</h2><p>Fonction appelée juste après Initialize et servant à charger des données externes (données de models, collections, …)</p>
+<h2 id="unmountAllTags"><a href="#unmountAllTags" class="headerlink" title="unmountAllTags()"></a>unmountAllTags()</h2><p>Supprime tous les tags Riot de notre Vue</p>
+<h2 id="waitingRender-callback"><a href="#waitingRender-callback" class="headerlink" title="waitingRender(callback)"></a>waitingRender(callback)</h2><p>Fonction appelée avant beforeRender pour afficher du contenu pendant l’exécution de cette fonction (chargement, une emptyView, …). Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="beforeRender-callback"><a href="#beforeRender-callback" class="headerlink" title="beforeRender(callback)"></a>beforeRender(callback)</h2><p>Fonction appelée juste avant l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="render-callback"><a href="#render-callback" class="headerlink" title="render(callback)"></a>render(callback)</h2><p>Fonction appelée pour afficher le rendu final de votre vue. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="afterRender-callback"><a href="#afterRender-callback" class="headerlink" title="afterRender(callback)"></a>afterRender(callback)</h2><p>Fonction appelée juste après l’appel de Render. Fonction asynchrone. Pensez à appeler le callback à la fin de votre fonction</p>
+<h2 id="prerequireAction"><a href="#prerequireAction" class="headerlink" title="prerequireAction()"></a>prerequireAction()</h2><p>Fonction appelée juste après Initialize et servant à charger des données externes (données de models, collections, …)</p>
 <h2 id="global"><a href="#global" class="headerlink" title="global"></a>global</h2><p>Objet permettant de gérer tous les événements globaux de votre vue. Cet objet est composé des mêmes fonctions que Backbone.Events.</p>
 <h2 id="panels"><a href="#panels" class="headerlink" title="panels"></a>panels</h2><p>Objet permettant de manipuler le slidePanel au travers du PanelManager. Utilise les fonctions <code>open</code> et <code>close</code>.</p>
 <h2 id="modal"><a href="#modal" class="headerlink" title="modal"></a>modal</h2><p>Objet permettant de manipuler les modals au travers du ModalManager. Utilise les fonctions <code>open</code> et <code>close</code>.</p>
-<h2 id="toasts-show_28params_29"><a href="#toasts-show_28params_29" class="headerlink" title="toasts.show(params)"></a>toasts.show(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée.</p>
+<h2 id="toasts-show-params"><a href="#toasts-show-params" class="headerlink" title="toasts.show(params)"></a>toasts.show(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée.</p>
 <table>
 <thead>
 <tr>
@@ -2447,7 +2481,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="toasts-success_28params_29"><a href="#toasts-success_28params_29" class="headerlink" title="toasts.success(params)"></a>toasts.success(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de succès (avec l’icône à gauche)</p>
+<h2 id="toasts-success-params"><a href="#toasts-success-params" class="headerlink" title="toasts.success(params)"></a>toasts.success(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de succès (avec l’icône à gauche)</p>
 <table>
 <thead>
 <tr>
@@ -2490,7 +2524,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="toasts-error_28params_29"><a href="#toasts-error_28params_29" class="headerlink" title="toasts.error(params)"></a>toasts.error(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’erreur (avec l’icône à gauche)</p>
+<h2 id="toasts-error-params"><a href="#toasts-error-params" class="headerlink" title="toasts.error(params)"></a>toasts.error(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’erreur (avec l’icône à gauche)</p>
 <table>
 <thead>
 <tr>
@@ -2533,7 +2567,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="toasts-info_28params_29"><a href="#toasts-info_28params_29" class="headerlink" title="toasts.info(params)"></a>toasts.info(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’information (avec l’icône à gauche)</p>
+<h2 id="toasts-info-params"><a href="#toasts-info-params" class="headerlink" title="toasts.info(params)"></a>toasts.info(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages d’information (avec l’icône à gauche)</p>
 <table>
 <thead>
 <tr>
@@ -2576,7 +2610,7 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="toasts-warn_28params_29"><a href="#toasts-warn_28params_29" class="headerlink" title="toasts.warn(params)"></a>toasts.warn(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de warning (avec l’icône à gauche)</p>
+<h2 id="toasts-warn-params"><a href="#toasts-warn-params" class="headerlink" title="toasts.warn(params)"></a>toasts.warn(params)</h2><p>Permet d’afficher un élément Toast à partir des paramètres d’entrée pour les messages de warning (avec l’icône à gauche)</p>
 <table>
 <thead>
 <tr>
@@ -2619,10 +2653,10 @@ vue     : events:maps:index
 </tr>
 </tbody>
 </table>
-<h2 id="getLogger_28_29"><a href="#getLogger_28_29" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché à la vue courante. à utiliser à la place et comme l’objet <code>console</code>.</p>
+<h2 id="getLogger"><a href="#getLogger" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché à la vue courante. à utiliser à la place et comme l’objet <code>console</code>.</p>
 
           
-              <h1 id="API_-_Router"><a href="#API_-_Router" class="headerlink" title="API - Router"></a>API - Router</h1><h2 id="getLogger_28_29"><a href="#getLogger_28_29" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché au routeur courant. à utiliser à la place et comme l’objet <code>console</code>.</p>
+              <h1 id="API-Router"><a href="#API-Router" class="headerlink" title="API - Router"></a>API - Router</h1><h2 id="getLogger"><a href="#getLogger" class="headerlink" title="getLogger()"></a>getLogger()</h2><p>Permet de récupérer le logger rattaché au routeur courant. à utiliser à la place et comme l’objet <code>console</code>.</p>
 
           
         
