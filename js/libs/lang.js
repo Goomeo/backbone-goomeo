@@ -76,8 +76,10 @@ module.exports = {
             currentLocale = localStorage.getItem('locale');
 
         if (_.isEmpty(currentLocale)) {
-            this.changeLocale(_.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale);
-            return;
+            var newLocal = _.contains(this.config.locale.availables, navigatorLang) ? navigatorLang : defaultLocale;
+
+            this.changeLocale(newLocal);
+            return newLocal;
         }
 
         return currentLocale;
