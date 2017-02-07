@@ -145,6 +145,13 @@ module.exports = View.extend({
         },
         show : function (params) {
             Materialize.toast(params.message, params.duration || 3000, params.style, params.callback);
+
+            // close toast on click
+            $('#toast-container .toast').on('click', function toastAction(evt) {
+                $(this).fadeOut(function() {
+                    $(this).remove();
+                });
+            });
         }
     },
     modal : {
