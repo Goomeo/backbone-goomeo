@@ -30,6 +30,6 @@
         "delete": "Delete",
         "cancel": "Cancel",
         "deleteDoubleVerif": "You have to change \"KO\" to \"OK\" to confirm complete removal.",
-        "noConnectionText": "Aucune connexion réseau détectée. Vous pourrez effectuer cette action quand vous aurez une connexion réseau."
+        "noConnectionText": "No network connection detected. You can refresh the list once you have a network connection."
     }
 }

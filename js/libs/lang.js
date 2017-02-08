@@ -24,9 +24,9 @@ module.exports = {
 
         var locale  = this.getLocale();
 
-        moment.locale(locale);
-        window.Parsley.setLocale(locale);
-        this.globalize.locale(locale);
+        moment.locale(this._getLocaleForMoment(locale));
+        window.Parsley.setLocale(this._getLocaleForParsley(locale));
+        this.globalize.locale(this._getLocaleForGlobalize(locale));
 
         this._logger = log.getLogger('i18n');
 
@@ -61,9 +61,9 @@ module.exports = {
         }
 
         if (newLocale != currentLocale) {
-            moment.locale(newLocale);
-            this.globalize.locale(newLocale);
-            window.Parsley.setLocale(newLocale);
+            moment.locale(this._getLocaleForMoment(newLocale));
+            this.globalize.locale(this._getLocaleForGlobalize(newLocale));
+            window.Parsley.setLocale(this._getLocaleForParsley(newLocale));
 
             localStorage.setItem('locale', newLocale);
 
@@ -95,13 +95,16 @@ module.exports = {
      * @returns {String}
      */
     i18n : function i18n(keyword, options) {
-        var currentGlobalize;
+        var currentGlobalize,
+            locale;
 
         if (options && !_.isEmpty(options.locale)) {
-            currentGlobalize = this.globalize(options.locale);
+            locale = options.locale;
         } else {
-            currentGlobalize = this.globalize(this.getLocale());
+            locale = this.getLocale();
         }
+
+        currentGlobalize = this.globalize(this._getLocaleForGlobalize(locale));
 
         try {
             var msgFormatter = currentGlobalize.messageFormatter(keyword);
@@ -188,5 +191,27 @@ module.exports = {
         }
 
         return opts;
+    },
+    _getLocaleForMoment : function _getLocaleForMoment(locale) {
+        if (locale == 'cn') {
+            return 'zh-cn';
+        }
+        return locale;
+    },
+    _getLocaleForGlobalize : function _getLocaleForGlobalize(locale) {
+        if (locale == 'cn') {
+            return 'zh-cn';
+        }
+        return locale;
+    },
+    _getLocaleForParsley : function _getLocaleForParsley(locale) {
+        // special case for Parsley locales : cn => zh_cn, pt => pt-pt
+        if (locale == 'cn') {
+            return 'zh-cn';
+        }
+        if (locale == 'pt') {
+            return 'pt-pt';
+        }
+        return locale;
     }
 };
