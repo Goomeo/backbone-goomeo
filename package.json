@@ -38,7 +38,7 @@
     "loglevel": "1.4.1",
     "loglevel-message-prefix": "1.1.1",
     "materialize-css": "0.97.7",
-    "moment": "2.14.1",
+    "moment": "2.29.2",
     "moment-timezone": "0.5.4",
     "nouislider": "8.5.1",
     "offline-js": "0.7.18",
